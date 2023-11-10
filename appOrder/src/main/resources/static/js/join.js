@@ -28,7 +28,7 @@ function joinAction() {
       if (json.result == 1) {
         //회원가입 성공
         //다음페이지로 이동
-        window.location.href = "/loginForm";
+        window.location.href = "/login";
       } else {
         //회원가입 실패
         alert("회원가입 실패입니다.");

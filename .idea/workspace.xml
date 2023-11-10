@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9339e4bf-0f8b-4492-a38c-3b2ddcfbfe50" name="변경" comment="" />
+    <list default="true" id="9339e4bf-0f8b-4492-a38c-3b2ddcfbfe50" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,7 +23,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/EZEN/Documents/git-blog",
+    "last_opened_file_path": "C:/Users/EZEN/Documents/git-blog/git-collabo/appOrder",
     "settings.editor.selected.configurable": "File.Encoding"
   }
 }]]></component>
