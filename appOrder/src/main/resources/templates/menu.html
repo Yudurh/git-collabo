@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Mega coffee menu</title>
+    <link rel="icon" href="" />
+    <link rel="stylesheet" type="text/css" href="./css/menu_style.css" />
+  </head>
+  <body>
+    <div class="kiosk-box">
+      <div class="wrap">
+        <div class="header">
+          <div class="headerRightBox">
+            <div class="returnButtonBox">
+              <button id="returnButton">이전</button>
+            </div>
+            <div class="headerTextBox">
+              <span class="headerText">주문하기</span>
+            </div>
+            <div id="searchBox">검색하기</div>
+          </div>
+        </div>
+        <div class="main">
+          <div class="nav">
+            <button id="recommendMenu">신메뉴</button>
+            <button id="burgerSet">세트메뉴</button>
+            <button id="happyMeal">커피(HOT)</button>
+            <button id="coffee">커피(ICE)</button>
+            <button id="dessert">디저트</button>
+            <button id="drinks">음료</button>
+          </div>
+          <div class="section"></div>
+        </div>
+        <div class="cartBox">
+          <div class="goToBox">
+            <button onclick="goToBack()" id="goToBack">주문 취소</button>
+            <button onclick="goToPay()" id="goToPay">주문 완료</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./js/join.js"></script>
+  </body>
+</html>
