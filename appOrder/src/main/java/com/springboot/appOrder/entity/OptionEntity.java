@@ -1,8 +1,6 @@
 package com.springboot.appOrder.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -13,8 +11,12 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OptionEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "option_no")
     private Long optionNo;
+    @Column(name = "option_item_cate")
+    private String optionItemCart;
     @Column(name = "option_name")
     private String optionName;
     @Column(name = "option_price")
