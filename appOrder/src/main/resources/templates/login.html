@@ -22,6 +22,7 @@
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
     crossorigin="anonymous"
   />
+  <link rel="stylesheet" href="./css/login.css" />
   <body>
     <div id="wrap">
       <div id="header">
@@ -33,11 +34,11 @@
       <!-- 아이디/비밀번호 입력 -->
       <div id="main">
         <div id="loginBox">
-          <div>
+          <div class="login_Content">
             <label for="inputId" class="form-label">아이디</label>
             <input type="id" id="inputId" name="inputId" class="form-control" />
           </div>
-          <div>
+          <div class="login_Content">
             <label for="inputPw" class="form-label">비밀번호</label>
             <input
               type="password"
@@ -52,10 +53,8 @@
       <!-- 로그인/회원가입 버튼 -->
       <div id="footer">
         <div id="btns">
-          <button type="button" class="btn btn-dark" onclick="loginAction()">
-            로그인
-          </button>
-          <button type="button" class="btn btn-dark" onclick="join()">회원가입</button>
+          <button type="button" onclick="loginAction()">로그인</button>
+          <button type="button" onclick="join()">회원가입</button>
         </div>
       </div>
     </div>
