@@ -1,6 +1,7 @@
 package com.springboot.appOrder.controller;
 import com.springboot.appOrder.dto.JoinDto;
 import com.springboot.appOrder.dto.LoginDto;
+import com.springboot.appOrder.dto.MemberDto;
 import com.springboot.appOrder.dto.ResultDto;
 import com.springboot.appOrder.entity.CartRepository;
 import com.springboot.appOrder.entity.MemberEntity;
@@ -12,6 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -91,4 +93,26 @@ public class ApiControllerYem {
 
         return resultDto;
     }
+
+    // 회원 정보 수정
+    @PostMapping("/memberUpdateForm")
+    public ResultDto memberUpdate(@RequestBody MemberDto memberDto){
+
+        MemberEntity memberEntity = MemberEntity.toMemberEntity(memberDto);
+        MemberEntity newEntity = memberRepository.save(memberEntity);
+
+        ResultDto resultDto = ResultDto.builder()
+                .status("ok")
+                .result(1)
+                .build();
+
+        return resultDto;
+
+    }
+
+
+
+
+
+
 }

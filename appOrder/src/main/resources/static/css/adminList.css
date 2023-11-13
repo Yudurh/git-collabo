@@ -32,19 +32,6 @@ th {
   width: 300px;
 }
 
-.link_gnb {
-  font-size: 20px;
-  font-weight: bold;
-  text-decoration: none;
-  color: darkgray;
-  width: 200px;
-  margin-bottom: 10px;
-}
-
-.link_gnb:hover {
-  color: black;
-}
-
 #header_menu {
   display: flex;
   flex-direction: row;

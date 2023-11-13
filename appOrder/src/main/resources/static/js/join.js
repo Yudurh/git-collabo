@@ -28,10 +28,11 @@ function joinAction() {
       if (json.result == 1) {
         //회원가입 성공
         //다음페이지로 이동
+        alert("회원가입 성공했습니다.");
         window.location.href = "/login";
       } else {
         //회원가입 실패
-        alert("회원가입 실패입니다.");
+        alert("회원가입 실패했습니다.");
       }
     }) //실제 데이타
     .catch((error) => {

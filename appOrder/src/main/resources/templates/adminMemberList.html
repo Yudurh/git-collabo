@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <title>회원 목록</title>
   </head>
-  <link rel="stylesheet" href="./css/admin.css" />
   <script src="https://code.jquery.com/jquery-latest.min.js"></script>
   <script
     src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -23,7 +22,7 @@
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
     crossorigin="anonymous"
   />
-  <link rel="stylesheet" href="./css/admin.css" />
+  <link rel="stylesheet" href="./css/adminList.css" />
   <body>
     <div id="wrap">
       <div id="header">
@@ -34,11 +33,9 @@
       <div id="main">
         <div id="aside">
           <div id="aside_menu">
-            <nav class="nav nav-pills nav-fill">
-              <a class="link_gnb" href="#"> 회원 목록</a>
-              <a class="link_gnb" href="#"> 주문 목록</a>
-              <a class="link_gnb" href="#"> 결제 목록</a>
-            </nav>
+          <button>회원 목록</button>
+          <button>주문 목록</button>
+          <button>결제 목록</button>
           </div>
         </div>
         <div id="section">
@@ -70,20 +67,20 @@
                 <td><span th:text="${member.memberPoint}"></span></td>
                 <td><span th:text="${member.memberJoinDatetime}"></span></td>
                 <td>
-                  <button
+                  <a
+                    th:href="|/memberUpdate?memberNo=${ member.memberNo }|"
                     class="btn btn-primary"
-                    th:onclick="|func_member_update(${member.memberNo});|"
+                    role="button"
+                    >수정</a
                   >
-                    수정
-                  </button>
                 </td>
                 <td>
-                  <button
-                    class="btn btn-danger"
-                    th:onclick="|func_member_delete(${member.memberNo});|"
+                  <a
+                          th:href="|/memberDelete?memberNo=${ member.memberNo }|"
+                          class="btn btn-danger"
+                          role="button"
+                  >삭제</a
                   >
-                    삭제
-                  </button>
                 </td>
               </tr>
             </tbody>
