@@ -1,0 +1,40 @@
+#wrap {
+  text-align: center;
+}
+
+#header h2 {
+  font-weight: bold;
+}
+
+#header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(217, 215, 215);
+  height: 100px;
+}
+
+#main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+#aside_menu #main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+th {
+  width: 300px;
+}
+
+#header_menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+

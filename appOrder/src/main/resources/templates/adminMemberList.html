@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>회원 목록</title>
+  </head>
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+    integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+    crossorigin="anonymous"
+  ></script>
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+    crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="./css/adminList.css" />
+  <body>
+    <div id="wrap">
+      <div id="header">
+        <div id="header_title">
+          <h2>회원 목록</h2>
+        </div>
+      </div>
+      <div id="main">
+        <div id="aside">
+          <div id="aside_menu">
+          <button>회원 목록</button>
+          <button>주문 목록</button>
+          <button>결제 목록</button>
+          </div>
+        </div>
+        <div id="section">
+          <span
+            id="member_count"
+            th:text="|총 ${count}개의 상품이 있습니다.|"
+          ></span>
+          <table class="table table-hover table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">번호</th>
+                <th scope="col">아이디</th>
+                <th scope="col">비밀번호</th>
+                <th scope="col">이름</th>
+                <th scope="col">역할</th>
+                <th scope="col">스탬프</th>
+                <th scope="col">가입일</th>
+                <th scope="col">수정</th>
+                <th scope="col">삭제</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="member, status:${ list }">
+                <td><span th:text="${member.memberNo}"></span></td>
+                <td><span th:text="${member.memberId}"></span></td>
+                <td><span th:text="${member.memberPw}"></span></td>
+                <td><span th:text="${member.memberName}"></span></td>
+                <td><span th:text="${member.memberRole}"></span></td>
+                <td><span th:text="${member.memberPoint}"></span></td>
+                <td><span th:text="${member.memberJoinDatetime}"></span></td>
+                <td>
+                  <a
+                    th:href="|/memberUpdate?memberNo=${ member.memberNo }|"
+                    class="btn btn-primary"
+                    role="button"
+                    >수정</a
+                  >
+                </td>
+                <td>
+                  <a
+                          th:href="|/memberDelete?memberNo=${ member.memberNo }|"
+                          class="btn btn-danger"
+                          role="button"
+                  >삭제</a
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
