@@ -1,8 +1,5 @@
-
 window.addEventListener("load", function () {
-
   fetch_itemlist();
-
 });
 
 let recommendItems = [];
@@ -11,34 +8,33 @@ let dessertItems = [];
 let drinksItems = [];
 let arrayCart = [];
 
-function fetch_itemlist(){
-    fetch("/itemlistAll", {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-      //body: JSON.stringify({
-      //  calType: "add",
-      //}),
-    })
-  .then((response) => {
-    //console.log("response:"+response);
-    return response.json();
-  }) //HTTP 응답
-  .then((json) => {
-    //{ status: "ok", result: 5 }
-    //console.log("json:" + json);
+function fetch_itemlist() {
+  fetch("/itemlistAll", {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+    //body: JSON.stringify({
+    //  calType: "add",
+    //}),
+  })
+    .then((response) => {
+      //console.log("response:"+response);
+      return response.json();
+    }) //HTTP 응답
+    .then((json) => {
+      //{ status: "ok", result: 5 }
+      //console.log("json:" + json);
 
-    recommendItems = json.itemlistRecommand;
-    coffeeItems = json.itemlistCoffee;
-    dessertItems = json.itemlistDesert;
-    drinksItems = json.itemlistDrink;
+      recommendItems = json.itemlistRecommand;
+      coffeeItems = json.itemlistCoffee;
+      dessertItems = json.itemlistDesert;
+      drinksItems = json.itemlistDrink;
 
-    console.log(recommendItems)
-    onload_func();
-
-  }) //실제 데이타
-  .catch((error) => {
-    console.log(error);
-  });
+      console.log(recommendItems);
+      onload_func();
+    }) //실제 데이타
+    .catch((error) => {
+      console.log(error);
+    });
 }
 function resetButtonStyles() {
   const buttons = document.querySelectorAll(".nav button");
@@ -47,9 +43,7 @@ function resetButtonStyles() {
   });
 }
 
-
-
-function onload_func(){
+function onload_func() {
   const recommendMenuButton = document.getElementById("recommendMenu");
   resetButtonStyles();
   recommendMenuButton.classList.add("selected");
@@ -64,7 +58,6 @@ function onload_func(){
   // 로컬 저장소 아이템 불러오기
   const savedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
   arrayCart = savedCartItems;
-
 }
 let currentPage = 1;
 const itemsPerPage = 9;
@@ -83,11 +76,10 @@ function getSelectedItems() {
   }
 }
 
-
 function updateContent(items) {
-const startIndex = (currentPage - 1) * itemsPerPage;
+  const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-const paginatedItems = items.slice(startIndex, endIndex);
+  const paginatedItems = items.slice(startIndex, endIndex);
   const sectionContent = document.querySelector(".section");
   sectionContent.innerHTML = "";
 
@@ -95,20 +87,20 @@ const paginatedItems = items.slice(startIndex, endIndex);
   rmBoxContainer.classList.add("rmBox_Container");
 
   paginatedItems.forEach((item) => {
-   const itemHTML = `
+    const itemHTML = `
         <button class="rmBox_inner" onclick="add('${item.itemCode}')">
           <img src="${item.itemImageUrl}" alt="${item.itemName}" />
           <span class="rmBox_title">${item.itemName}</span>
           <span class="rmBox_money">${item.itemPrice}원</span>
         </button>
       `;
-//    const itemHTML = `
-//      <button class="rmBox_inner" onclick="add('${item.id}')">
-//        <img src="${item.imageUrl}" alt="${item.title}" />
-//        <span class="rmBox_title">${item.title}</span>
-//        <span class="rmBox_money">${item.price}원</span>
-//      </button>
-//    `;
+    //    const itemHTML = `
+    //      <button class="rmBox_inner" onclick="add('${item.id}')">
+    //        <img src="${item.imageUrl}" alt="${item.title}" />
+    //        <span class="rmBox_title">${item.title}</span>
+    //        <span class="rmBox_money">${item.price}원</span>
+    //      </button>
+    //    `;
     rmBoxContainer.innerHTML += itemHTML;
   });
 
@@ -152,7 +144,7 @@ document.getElementById("nextButton").addEventListener("click", function () {
 });
 
 document.getElementById("recommendMenu").addEventListener("click", function () {
-  document.querySelector(".headerText").textContent = "추천 메뉴";
+  //  document.querySelector(".headerText").textContent = "추천 메뉴";
   const sectionContent = document.querySelector(".section");
 
   resetButtonStyles();
@@ -174,7 +166,6 @@ document.getElementById("recommendMenu").addEventListener("click", function () {
 //  updateContent(burgerSetItems);
 //});
 
-
 //document.getElementById("happyMeal").addEventListener("click", function () {
 //  document.querySelector(".headerText").textContent = "해피밀";
 //  const sectionContent = document.querySelector(".section");
@@ -188,7 +179,7 @@ document.getElementById("recommendMenu").addEventListener("click", function () {
 //});
 
 document.getElementById("coffee").addEventListener("click", function () {
-  document.querySelector(".headerText").textContent = "커피";
+  //  document.querySelector(".headerText").textContent = "커피";
   const sectionContent = document.querySelector(".section");
 
   resetButtonStyles();
@@ -200,7 +191,7 @@ document.getElementById("coffee").addEventListener("click", function () {
 });
 
 document.getElementById("dessert").addEventListener("click", function () {
-  document.querySelector(".headerText").textContent = "디저트";
+  //  document.querySelector(".headerText").textContent = "디저트";
   const sectionContent = document.querySelector(".section");
 
   resetButtonStyles();
@@ -212,7 +203,7 @@ document.getElementById("dessert").addEventListener("click", function () {
 });
 
 document.getElementById("drinks").addEventListener("click", function () {
-  document.querySelector(".headerText").textContent = "음료";
+  //  document.querySelector(".headerText").textContent = "음료";
   const sectionContent = document.querySelector(".section");
 
   resetButtonStyles();

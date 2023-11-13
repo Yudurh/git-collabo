@@ -16,7 +16,7 @@ public class OptionEntity {
     @Column(name = "option_no")
     private Long optionNo;
     @Column(name = "option_item_cate")
-    private String optionItemCart;
+    private String optionItemCate;
     @Column(name = "option_name")
     private String optionName;
     @Column(name = "option_price")
