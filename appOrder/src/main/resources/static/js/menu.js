@@ -85,8 +85,9 @@ function getSelectedItems() {
 
 
 function updateContent(items) {
-
-
+const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+const paginatedItems = items.slice(startIndex, endIndex);
   const sectionContent = document.querySelector(".section");
   sectionContent.innerHTML = "";
 
@@ -134,3 +135,98 @@ function updateCartItem(productIndex, newCount) {
   updateCartSummary();
 }
 
+//이전, 다음 버튼 ( '<' 과 '>' )
+document.getElementById("prevButton").addEventListener("click", function () {
+  if (currentPage > 1) {
+    currentPage--;
+    updateContent(getSelectedItems());
+  }
+});
+
+document.getElementById("nextButton").addEventListener("click", function () {
+  const totalPageCount = Math.ceil(burgerSetItems.length / itemsPerPage);
+  if (currentPage < totalPageCount) {
+    currentPage++;
+    updateContent(getSelectedItems());
+  }
+});
+
+document.getElementById("recommendMenu").addEventListener("click", function () {
+  document.querySelector(".headerText").textContent = "추천 메뉴";
+  const sectionContent = document.querySelector(".section");
+
+  resetButtonStyles();
+  this.classList.add("selected");
+
+  currentPage = 1;
+  updateContent(recommendItems);
+});
+
+//document.getElementById("burgerSet").addEventListener("click", function () {
+//  document.querySelector(".headerText").textContent = "버거 & 세트";
+//  const sectionContent = document.querySelector(".section");
+//
+//  resetButtonStyles();
+//
+//  this.classList.add("selected");
+//
+//  currentPage = 1;
+//  updateContent(burgerSetItems);
+//});
+
+
+//document.getElementById("happyMeal").addEventListener("click", function () {
+//  document.querySelector(".headerText").textContent = "해피밀";
+//  const sectionContent = document.querySelector(".section");
+//
+//  resetButtonStyles();
+//
+//  this.classList.add("selected");
+//
+//  currentPage = 1;
+//  updateContent(happyMealItems);
+//});
+
+document.getElementById("coffee").addEventListener("click", function () {
+  document.querySelector(".headerText").textContent = "커피";
+  const sectionContent = document.querySelector(".section");
+
+  resetButtonStyles();
+
+  this.classList.add("selected");
+
+  currentPage = 1;
+  updateContent(coffeeItems);
+});
+
+document.getElementById("dessert").addEventListener("click", function () {
+  document.querySelector(".headerText").textContent = "디저트";
+  const sectionContent = document.querySelector(".section");
+
+  resetButtonStyles();
+
+  this.classList.add("selected");
+
+  currentPage = 1;
+  updateContent(dessertItems);
+});
+
+document.getElementById("drinks").addEventListener("click", function () {
+  document.querySelector(".headerText").textContent = "음료";
+  const sectionContent = document.querySelector(".section");
+
+  resetButtonStyles();
+
+  this.classList.add("selected");
+
+  currentPage = 1;
+  updateContent(drinksItems);
+});
+
+// 버튼 스타일 초기화
+function resetButtonStyles() {
+  const buttons = document.querySelectorAll(".nav button");
+  buttons.forEach((button) => {
+    button.classList.remove("selected");
+  });
+}
