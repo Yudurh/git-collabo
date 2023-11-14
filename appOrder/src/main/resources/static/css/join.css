@@ -1,37 +1,28 @@
 #wrap {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  text-align: center;
-  flex-direction: column;
   width: 700px;
   height: 1000px;
-  border: 1px solid black;
-  background-color: #fdd000;
-}
-#main {
-  margin: 10px;
-  width: 40%;
-  height: 30%;
-}
-#idBox {
   display: flex;
-  justify-content: space-between;
-  margin: 15px;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffdc00;
 }
-#pwBox {
-  display: flex;
-  justify-content: space-between;
-  margin: 15px;
+
+#main h4 {
+  text-align: center;
 }
+
+#idBox,
+#pwBox,
 #nameBox {
   display: flex;
-  justify-content: space-between;
-  margin: 15px;
+  flex-direction: row;
+  width: 400px;
+  padding: 10px;
 }
-#footer {
-  display: flex;
-  width: 100%;
-  margin: 10px;
-  justify-content: space-evenly;
+
+label {
+  width: 30%;
+  text-align: center;
+  margin: 5px;
+  font-weight: bold;
 }

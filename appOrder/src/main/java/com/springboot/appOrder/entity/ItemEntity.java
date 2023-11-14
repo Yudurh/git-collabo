@@ -25,6 +25,8 @@ public class ItemEntity {
         private String itemCode;
         @Column(name = "item_name")
         private String itemName;
+        @Column(name = "item_content")
+        private String itemContent;
         @Column(name = "item_cate")
         private String itemCate;
         @Column(name = "item_recommend")
@@ -42,6 +44,7 @@ public class ItemEntity {
                         .itemNo(itemDto.getItemNo())
                         .itemCode(itemDto.getItemCode())
                         .itemName(itemDto.getItemName())
+                        .itemContent(itemDto.getItemContent())
                         .itemCate(itemDto.getItemCate())
                         .itemRecommend(itemDto.getItem_recommend())
                         .itemPrice(itemDto.getItemPrice())

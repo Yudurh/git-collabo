@@ -15,6 +15,7 @@ public class ItemDto {
     private Long itemNo;
     private String itemCode;
     private String itemName;
+    private String itemContent;
     private String itemCate;
     private Integer item_recommend;
     private Integer itemPrice;
@@ -26,6 +27,7 @@ public class ItemDto {
                 .itemNo(entity.getItemNo())
                 .itemCode(entity.getItemCode())
                 .itemName(entity.getItemName())
+                .itemContent(entity.getItemContent())
                 .itemCate(entity.getItemCate())
                 .item_recommend(entity.getItemRecommend())
                 .itemPrice(entity.getItemPrice())

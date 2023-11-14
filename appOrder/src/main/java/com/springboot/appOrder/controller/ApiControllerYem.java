@@ -96,19 +96,27 @@ public class ApiControllerYem {
 
     // 회원 정보 수정
     @PostMapping("/memberUpdateForm")
-    public ResultDto memberUpdate(@RequestBody MemberDto memberDto){
-
+    public ResultDto memberUpdateForm(@RequestBody MemberDto memberDto) {
         MemberEntity memberEntity = MemberEntity.toMemberEntity(memberDto);
         MemberEntity newEntity = memberRepository.save(memberEntity);
 
-        ResultDto resultDto = ResultDto.builder()
-                .status("ok")
-                .result(1)
-                .build();
+        ResultDto resultDto = null;
+
+        if( newEntity != null  ) {
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(1)
+                    .build();
+        }else{
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(0)
+                    .build();
+        }
 
         return resultDto;
-
     }
+
 
 
 

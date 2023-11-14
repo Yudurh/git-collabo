@@ -28,6 +28,11 @@ public class MainControllerYem {
     @Autowired
     private OptionRepository optionRepository;
 
+    @GetMapping("")
+    public String first(){
+        return "first";
+    }
+
     @GetMapping("/login")
     public String login(){
         return "login";
@@ -38,7 +43,7 @@ public class MainControllerYem {
         return "main";
     }
 
-    // 회원 정보 조회
+    // ( 사용자 ) 회원 정보 조회
     @GetMapping("/adminMemberList")
     public String adminMemberList(Model model){
 
@@ -49,7 +54,7 @@ public class MainControllerYem {
         return "adminMemberList";
     }
 
-    // 회원 정보 수정
+    // ( 관리자 ) 회원 정보 수정
     @GetMapping("memberUpdate")
     public String memberUpdateForm(@RequestParam String memberNo,
                                    Model model){
@@ -65,7 +70,7 @@ public class MainControllerYem {
 
     }
 
-    // 회원 정보 삭제
+    // ( 관리자 ) 회원 정보 삭제
     @GetMapping("/memberDelete")
     public String  memberDelete (@RequestParam Long memberNo,
                               Model model) {
@@ -75,17 +80,31 @@ public class MainControllerYem {
         return "redirect:/adminMemberList";
     }
 
-    // 상품 정보 조회
+    // (사용자) 상품 정보 조회
     @GetMapping("/itemInfo")
     public String itemInfo(Model model){
 
+        // 클릭한 아이템의 정보
         List<ItemEntity> itemEntitiy = itemRepository.findByItemName("왕할메가커피");
         // 메뉴 중복이 없으므로 .get(0)을 하면 원하는 커피 정보를 가져옴
         ItemEntity itemEntity = itemEntitiy.get(0);
         model.addAttribute("itemName", itemEntity.getItemName());
+        model.addAttribute("itemPrice", itemEntity.getItemPrice());
+        model.addAttribute("itemContent", itemEntity.getItemContent());
 
+        // 퍼스널 옵션
         List<OptionEntity> coffeeOption = optionRepository.findByOptionItemCate("커피");
         model.addAttribute("option", coffeeOption);
+
+        // 추천 메뉴 아이템 정보
+        List<ItemEntity> itemEntitiy2 = itemRepository.findByItemRecommend(1);
+        ItemEntity itemEntity2 = itemEntitiy.get(0);
+        model.addAttribute("itemRecomImg", itemEntity2.getItemImageUrl());
+        model.addAttribute("ItemRecomName", itemEntity2.getItemName());
+        model.addAttribute("ItemRecomPrice", itemEntity2.getItemPrice());
+
+
+
 
 
         return "itemInfo";

@@ -31,6 +31,8 @@
       </div>
       <div id="main">
         <div class="updateContent">
+          <input id="memberNo" type="hidden" th:value="${member.memberNo}">
+          <input id="memberJoinDatetime" type="hidden" th:value="${member.memberJoinDatetime}">
           <label>아이디</label>
           <input
             class="form-control"
@@ -86,5 +88,6 @@
         <button onclick="memberUpdate();">수정</button>
       </div>
     </div>
+    <script src="./js/adminUpdate.js"></script>
   </body>
 </html>
