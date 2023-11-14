@@ -8,8 +8,8 @@
   <body>
     <div class="kiosk-box">
       <div class="wrap">
-        <div class="header">
-          <div class="headerRightBox">
+        <div class="header bg-light">
+          <div class="headerRightBox bg-light">
             <div class="returnButtonBox">
               <img src="./Img/left-arrow.png" />
             </div>
@@ -23,12 +23,16 @@
           </div>
         </div>
         <div class="main">
-          <div class="nav">
-            <button id="recommendMenu">신메뉴</button>
-            <button id="coffee">커피</button>
-            <button id="dessert">디저트</button>
-            <button id="drinks">음료</button>
-            <button>무언가</button>
+          <div class="nav flex-nowrap">
+            <div><button class="navB" id="recommendMenu">신메뉴</button></div>
+            <div><button class="navB" id="coffee">커피</button></div>
+            <div><button class="navB" id="dessert">디저트</button></div>
+            <div><button class="navB" id="drinks">음료</button></div>
+            <div><button class="navB">무언가</button></div>
+          </div>
+          <div class="nav2">
+            <div id="menuAcount">몇개</div>
+            <div id="sort" onclick="sort1()">1열보기</div>
           </div>
           <div class="section"></div>
           <div class="sectionMove">
@@ -38,12 +42,29 @@
         </div>
         <div class="cartBox">
           <div class="goToBox">
-            <button onclick="goToBack()" id="goToBack">주문 취소</button>
-            <button onclick="goToPay()" id="goToPay">주문 완료</button>
+            <button onclick="goToBack()" id="goToBack">의정부역점</button>
+            <button
+              onclick="goToPay()"
+              id="goToPay"
+              class="btn position-relative"
+            >
+              <img src="./Img/icons8-cart-30.png" alt="" />
+              <span class="visually-hidden">unread messages</span>
+              <span
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                >99+
+              </span>
+            </button>
           </div>
         </div>
       </div>
     </div>
     <script src="./js/menu.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
   </body>
 </html>

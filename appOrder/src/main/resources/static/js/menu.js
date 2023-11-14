@@ -90,8 +90,8 @@ function updateContent(items) {
     const itemHTML = `
         <button class="rmBox_inner" onclick="add('${item.itemCode}')">
           <img src="${item.itemImageUrl}" alt="${item.itemName}" />
-          <span class="rmBox_title">${item.itemName}</span>
-          <span class="rmBox_money">${item.itemPrice}원</span>
+          <div class="rmBox_text"><span class="rmBox_title">${item.itemName}</span>
+         <span class="rmBox_money">${item.itemPrice}원</span></div>
         </button>
       `;
     //    const itemHTML = `
@@ -220,4 +220,96 @@ function resetButtonStyles() {
   buttons.forEach((button) => {
     button.classList.remove("selected");
   });
+}
+// 요소, 사이즈
+const nav = document.querySelector(".nav");
+const navScrollWidth = nav.scrollWidth;
+const navClientWidth = nav.clientWidth;
+// 이벤트마다 갱신될 값
+let startX = 0;
+let nowX = 0;
+let endX = 0;
+let navX = 0;
+//이벤트 핸들러 선언
+
+//스크롤 시작 이벤트
+const onScrollStart = (e) => {
+  startX = getClientX(e);
+  window.addEventListener("mousemove", onScrollMove);
+  window.addEventListener("touchmove", onScrollMove);
+  window.addEventListener("mouseup", onScrollEnd);
+  window.addEventListener("touchend", onScrollEnd);
+};
+//스크롤 진행 이벤트
+const onScrollMove = (e) => {
+  nowX = getClientX(e);
+  setTranslateX(navX + nowX - startX);
+};
+const onScrollEnd = (e) => {
+  endX = getClientX(e);
+  navX = getTranslateX();
+  if (navX > 0) {
+    setTranslateX(0);
+    nav.style.transition = `all 0.3s ease`;
+    navX = 0;
+  } else if (navX < navClientWidth - navScrollWidth) {
+    setTranslateX(navClientWidth - navScrollWidth);
+    nav.style.transition = `all 0.3s ease`;
+    navX = navClientWidth - navScrollWidth;
+  }
+
+  window.removeEventListener("mousedown", onScrollStart);
+  window.removeEventListener("touchstart", onScrollStart);
+  window.removeEventListener("mousemove", onScrollMove);
+  window.removeEventListener("touchmove", onScrollMove);
+  window.removeEventListener("mouseup", onScrollEnd);
+  window.removeEventListener("touchend", onScrollEnd);
+  window.removeEventListener("click", onClick);
+
+  setTimeout(() => {
+    bindEvents();
+    nav.style.transition = "";
+  }, 300);
+};
+const onClick = (e) => {};
+//유틸함수 정의
+
+const getClientX = (e) => {
+  const isTouches = e.touches ? true : false;
+  return isTouches ? e.touches[0].clientX : e.clientX;
+};
+
+const getTranslateX = () => {
+  return parseInt(getComputedStyle(nav).transform.split(/[^\-0-9]+/g)[5]);
+};
+
+const setTranslateX = (x) => {
+  nav.style.transform = `translateX(${x}px)`;
+};
+
+//이벤트 연결
+
+const bindEvents = () => {
+  nav.addEventListener("mousedown", onScrollStart);
+  nav.addEventListener("touchstart", onScrollStart);
+  nav.addEventListener("click", onClick);
+};
+bindEvents();
+
+function sort1() {
+  let rmBox_Container = document.querySelector(".rmBox_Container");
+  let rmBox_inner = document.getElementsByClassName("rmBox_inner");
+  let rmBox_text = document.getElementsByClassName("rmBox_text");
+  let sort = document.getElementById("sort");
+
+  for (let i = 0; i < rmBox_inner.length; i++) {
+    rmBox_inner[i].style.flexDirection = "row";
+    rmBox_inner[i].style.justifyContent = "left";
+    rmBox_inner[i].style.width = "100%";
+    rmBox_text[i].style.flexDirection = "row";
+  }
+
+  rmBox_Container.style.flexDirection = "column";
+
+  sort.innerHTML = "3열 보기";
 }
