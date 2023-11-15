@@ -18,24 +18,31 @@ function loginAction() {
     .then((response) => {
       console.log("response:" + response);
       console.log("response:" + JSON.stringify(response));
+      return response.json();
     }) //HTTP 응답
     .then((json) => {
       //{ status: "ok", result: 5 }
       console.log("json:" + json);
       console.log("response:" + JSON.stringify(json));
 
-      if (json.result == 1) {
+   if( json.result == 2 ){
+      //관리자페이지로 이동
+      window.location.href = "/adminMemberList";
+    }else if( json.result == 1 ){
+        //로그인 성공
+        //다음페이지로 이동
         window.location.href = "/main";
-      } else {
+    }else{
         //로그인 실패
-        alert("로그인 실패입니다.");
-      }
+        alert('로그인 실패입니다.');
+    }
+
     }) //실제 데이타
     .catch((error) => {
       console.log(error);
     });
 }
 
-function joinForm() {
-  window.location.href = "/joinForm";
+function join() {
+  window.location.href = "/join";
 }
