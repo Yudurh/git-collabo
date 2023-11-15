@@ -1,5 +1,7 @@
 package com.springboot.appOrder.entity;
 
+import com.springboot.appOrder.dto.JoinDto;
+import com.springboot.appOrder.dto.MemberDto;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -33,5 +35,27 @@ public class MemberEntity {
     @DateTimeFormat(pattern = "yyyy-MM-ddTHH:mm:ss")
     private LocalDateTime memberJoinDatetime; //가입일 "2023-10-12"
 
+    public static MemberEntity toJoinEntity(JoinDto dto){
+        return MemberEntity.builder()
+                .memberNo(0L)
+                .memberId(dto.getLoginId())
+                .memberPw(dto.getLoginPw())
+                .memberName(dto.getLoginName())
+                .memberRole("ROLE_USER")
+                .memberPoint(0)
+                .memberJoinDatetime(LocalDateTime.now())
+                .build();
+    }
+    public static MemberEntity toMemberEntity(MemberDto dto){
+        return MemberEntity.builder()
+                .memberNo(dto.getMemberNo())
+                .memberId(dto.getMemberId())
+                .memberPw(dto.getMemberPw())
+                .memberName(dto.getMemberName())
+                .memberRole(dto.getMemberRole())
+                .memberPoint(dto.getMemberPoint())
+                .memberJoinDatetime(dto.getMemberJoinDatetime())
+                .build();
+    }
 
 }

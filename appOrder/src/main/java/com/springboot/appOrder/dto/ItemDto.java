@@ -1,8 +1,8 @@
 package com.springboot.appOrder.dto;
 
 import com.springboot.appOrder.entity.ItemEntity;
+import com.springboot.appOrder.entity.MemberEntity;
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
@@ -16,10 +16,9 @@ public class ItemDto {
     private String itemCode;
     private String itemName;
     private String itemCate;
-    private Integer itemRecommend;
+    private Integer item_recommend;
     private Integer itemPrice;
     private String itemImageUrl;
-    @DateTimeFormat(pattern = "yyyy-MM-ddTHH:mm:ss")
     private LocalDateTime itemUpdateDatetime;
 
     public static ItemDto toDto(ItemEntity entity){
@@ -28,10 +27,10 @@ public class ItemDto {
                 .itemCode(entity.getItemCode())
                 .itemName(entity.getItemName())
                 .itemCate(entity.getItemCate())
-                .itemRecommend(entity.getItemRecommend())
+                .item_recommend(entity.getItemRecommend())
                 .itemPrice(entity.getItemPrice())
                 .itemImageUrl(entity.getItemImageUrl())
                 .itemUpdateDatetime(entity.getItemUpdateDatetime())
                 .build();
-}
+    }
 }

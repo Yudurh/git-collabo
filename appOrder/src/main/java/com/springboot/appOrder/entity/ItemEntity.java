@@ -1,6 +1,7 @@
 package com.springboot.appOrder.entity;
 
 import com.springboot.appOrder.dto.ItemDto;
+import com.springboot.appOrder.dto.MemberDto;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -36,18 +37,17 @@ public class ItemEntity {
         @DateTimeFormat(pattern = "yyyy-MM-ddTHH:mm:ss")
         private LocalDateTime itemUpdateDatetime;
 
-
-        public static ItemEntity toEntity(ItemDto dto){
+        public static ItemEntity toItemEntity(ItemDto itemDto){
                 return ItemEntity.builder()
-                        .itemNo(dto.getItemNo())
-                        .itemCode(dto.getItemCode())
-                        .itemName(dto.getItemName())
-                        .itemCate(dto.getItemCate())
-                        .itemRecommend(dto.getItemRecommend())
-                        .itemPrice(dto.getItemPrice())
-                        .itemImageUrl(dto.getItemImageUrl())
-                        .itemUpdateDatetime(dto.getItemUpdateDatetime())
+                        .itemNo(itemDto.getItemNo())
+                        .itemCode(itemDto.getItemCode())
+                        .itemName(itemDto.getItemName())
+                        .itemCate(itemDto.getItemCate())
+                        .itemRecommend(itemDto.getItem_recommend())
+                        .itemPrice(itemDto.getItemPrice())
+                        .itemImageUrl(itemDto.getItemImageUrl())
+                        .itemUpdateDatetime(itemDto.getItemUpdateDatetime())
                         .build();
-        }
 
+        }
     }
