@@ -70,6 +70,10 @@
       margin: 0px;
       padding: 0px;
     }
+
+    .form-check {
+      padding-left: 0;
+    }
   </style>
   <body>
     <div id="wrap">
@@ -82,8 +86,8 @@
               width="150px"
             />
           </div>
-          <span id="itemTitle" th:text="${ itemName }"></span>
-          <div id="itemContent">꿀들어간 아메리카노 히히</div>
+          <div id="itemTitle" th:text="${ itemName }"></div>
+          <div id="itemContent" th:text="${ itemContent }"></div>
         </div>
       </div>
       <!-- 퍼스널 옵션, 수량, 추천 메뉴 -->
@@ -112,11 +116,10 @@
                   <span th:text=" ${option.optionCate} "></span>
                   <div id="optionContent">
                     <input
-                      class="form-check-input"
                       type="radio"
-                      name="flexRadioDefault"
-                      id="flexRadioDefault1"
-                      th:text=" ${ option.optionName }"
+                      name="optionName"
+                      id="optionName"
+                      th:text=" ${option.optionName}"
                     />
                     <div th:text=" ${ option.optionPrice }"></div>
                   </div>
@@ -127,11 +130,11 @@
         </div>
         <div id="itemQuantity">
           <div id="quantityBox">
-            <button>+</button>
+            <button id="plus" onclick="plus()">+</button>
             <div id="quantity">1</div>
-            <button>-</button>
+            <button id="minus" onclick="minus()">-</button>
           </div>
-          <div id="price">2700</div>
+          <div id="price" th:text=" ${ itemPrice } "></div>
         </div>
         <div id="recommendMemu">
           <h7>추천 메뉴</h7>
@@ -145,10 +148,12 @@
             <img
               src="https://img.79plus.co.kr/megahp/manager/upload/menu/20231025193235_1698229955914_EH9HF0a_7U.jpg"
               width="80px"
+              th:href=" ${itemRecomImg} "
             />
             <div id="recomInfo">
-              <div class="recomTitle">쿠키쿠키</div>
-              <div class="recomPrice">3500</div>
+              <div class="recomTitle" th:text=" ${ItemRecomName} ">
+              </div>
+              <div class="recomPrice" th:text=" ${ItemRecomPrice} "></div>
             </div>
           </div>
         </div>
@@ -165,5 +170,6 @@
         </div>
       </div>
     </div>
+    <script src="./js/itemInfo.js"></script>
   </body>
 </html>
