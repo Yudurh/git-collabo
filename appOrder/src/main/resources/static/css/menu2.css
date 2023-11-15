@@ -1,0 +1,124 @@
+.kiosk-box {
+  width: 500px;
+  height: 1000px;
+}
+.wrap {
+  background-color: white;
+}
+.header {
+  z-index: 1;
+  position: sticky;
+  top: 0px;
+  background-color: white;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.headerRightBox {
+  width: 500px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 10px 0px 10px;
+  background-color: white;
+}
+.main {
+  overflow: hidden;
+}
+.nav {
+  display: flex;
+  z-index: -2;
+  /* flex-wrap: nowrap; */
+  /* overflow-x: scroll; */
+  /* overflow-y: hidden; */
+  width: 500px;
+  flex-flow: row nowrap;
+  transform: translate(0, 0);
+}
+.nav2 {
+  display: flex;
+  padding: 5px;
+  justify-content: space-between;
+  width: 500px;
+}
+.nav::-webkit-scrollbar {
+  display: none;
+}
+.navB {
+  z-index: -3;
+  flex-wrap: nowrap;
+  flex: 0 0 auto;
+  width: 120px;
+  margin: 3px 0px 0px 3px;
+  border: 1px solid grey;
+  /* box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2); */
+  border-radius: 10px;
+  color: gray;
+  background-color: transparent;
+  cursor: pointer;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+.navB.selected {
+  color: rgb(255, 255, 255);
+  background-color: black;
+}
+.sectionMove {
+  display: none;
+}
+.rmBox_Container {
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  /* flex-direction: row; */
+}
+.rmBox_inner {
+  display: flex;
+  flex-direction: row;
+  /* flex-direction: column; */
+  justify-content: left;
+  /* justify-content: center; */
+  align-items: center;
+  height: 30%;
+  width: 100%;
+  /* width: 30%; */
+  margin: 15px;
+  border: 0;
+
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: white;
+}
+.rmBox_text {
+  display: flex;
+  flex-direction: column;
+}
+.rmBox_text span {
+  margin: 5px;
+}
+.rmBox_inner img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.cartBox {
+  background-color: black;
+  padding: 5px 10px 5px 10px;
+  position: fixed;
+  margin: 5px;
+  width: 490px;
+  bottom: 10px;
+}
+.goToBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+#goToBack {
+  color: aliceblue;
+  border: none;
+  background-color: black;
+}
