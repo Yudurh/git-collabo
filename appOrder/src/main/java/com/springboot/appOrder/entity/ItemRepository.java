@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ItemRepository  extends JpaRepository<ItemEntity, Long> {
     List<ItemEntity> findByItemName (String itemName);
+    List<ItemEntity> findByItemRecommend(int recommend);
+    List<ItemEntity> findByItemCate(String category);
 }

@@ -15,6 +15,15 @@ CREATE TABLE item(
     item_update_datetime DATETIME DEFAULT NOW() -- 작성/수정 시간
 );
 SELECT * FROM item;
+INSERT INTO item VALUES(null, '123e4567-e89b-12d3-a456-556642440000', '커피1',
+        '커피', 1, 7800, 'https://www.mcdonalds.co.kr/upload/product/pcList/1614163214488.png', DEFAULT);
+INSERT INTO item VALUES(NULL, '456e4567-e89b-12d3-a456-556642440001', '커피2',
+        '커피', 1, 5800, 'https://www.mcdonalds.co.kr/upload/product/pcList/1583730880048.png', DEFAULT);
+INSERT INTO item VALUES(NULL, '456e4567-e89b-12d3-a456-556642440002', '음료1',
+        '음료', 0, 6000, 'https://www.mcdonalds.co.kr/upload/product/pcList/1583730513407.png', DEFAULT);
+INSERT INTO item VALUES(NULL, '456e4567-e89b-12d3-a456-556642440003', '디저트1',
+        '디저트', 0, 7300, 'https://www.mcdonalds.co.kr/upload/product/pcList/1583730095033.png', DEFAULT);
+
 
 --장바구니안에 들어가는 물건 한개에 대한 정보
 DROP TABLE if EXISTS cart;
@@ -25,8 +34,8 @@ CREATE TABLE cart (
     item_name TEXT NOT NULL, -- 상품이름;
     item_image_url TEXT NOT NULL, -- 이미지
     item_price INT(255) NOT NULL, -- 가격
-    option_name VARCHAR(255), -- 옵션이름
-    option_price int(255), -- 옵션 가격
+    option_name VARCHAR(255) NOT NULL DEFAULT ('해당없음'), -- 옵션이름
+    option_price int(255) NOT NULL DEFAULT(0), -- 옵션 가격
     cart_item_amount INT(255) NOT NULL, -- 구매갯수
     cart_date DATETIME DEFAULT NOW() -- 장바구니에 담긴 시간/날짜
 );
@@ -72,8 +81,9 @@ CREATE TABLE apporder.member(
 DROP TABLE if EXISTS apporder.p_option;
 CREATE TABLE apporder.p_option(
    option_no INT AUTO_INCREMENT NOT NULL PRIMARY KEY, -- 고유키
-   option_name VARCHAR(255) NOT NULL, -- 아이디
-   option_price int(255) NOT NULL, -- 암호
+   option_item_cate VARCHAR(255) NOT NULL,
+   option_name VARCHAR(255) NOT NULL DEFAULT ('해당없음'), -- 아이디
+   option_price int(255) NOT NULL DEFAULT('0') -- 암호
 );
 
 

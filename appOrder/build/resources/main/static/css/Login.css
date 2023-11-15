@@ -1,0 +1,48 @@
+#wrap {
+  width: 700px;
+  height: 1000px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  background-color: #ffdc00;
+}
+
+.logoImg {
+  margin-top: 100px;
+}
+
+.login_Content {
+  display: flex;
+  flex-direction: row;
+
+  width: 400px;
+  padding: 10px;
+}
+
+label {
+  width: 30%;
+
+  text-align: center;
+  margin: 5px;
+
+  font-weight: bold;
+}
+
+#btns {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  border-style: none;
+  width: 400px;
+  height: 50px;
+  margin: 15px;
+
+  background-color: #452613;
+  color: whitesmoke;
+  border-radius: 10px;
+}
