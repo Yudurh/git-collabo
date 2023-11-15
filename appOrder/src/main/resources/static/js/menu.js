@@ -52,12 +52,13 @@ function onload_func() {
   const sectionContent = document.querySelector(".section");
   recommendMenuButton.click();
 
+  acountBox();
   // 추가 메뉴에서 사용하도록 저장
-  localStorage.setItem("recommendItems", JSON.stringify(recommendItems));
+  // localStorage.setItem("recommendItems", JSON.stringify(recommendItems));
 
-  // 로컬 저장소 아이템 불러오기
-  const savedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-  arrayCart = savedCartItems;
+  // // 로컬 저장소 아이템 불러오기
+  // const savedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+  // arrayCart = savedCartItems;
 }
 let currentPage = 1;
 const itemsPerPage = 9;
@@ -94,13 +95,6 @@ function updateContent(items) {
          <span class="rmBox_money">${item.itemPrice}원</span></div>
         </button>
       `;
-    //    const itemHTML = `
-    //      <button class="rmBox_inner" onclick="add('${item.id}')">
-    //        <img src="${item.imageUrl}" alt="${item.title}" />
-    //        <span class="rmBox_title">${item.title}</span>
-    //        <span class="rmBox_money">${item.price}원</span>
-    //      </button>
-    //    `;
     rmBoxContainer.innerHTML += itemHTML;
   });
 
@@ -108,7 +102,7 @@ function updateContent(items) {
 }
 function updateCartItem(productIndex, newCount) {
   // 로컬 저장소 데이터 불러오기
-  const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+  // const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
   for (const cart of cartItems) {
     //if (cart.id === productIndex) {
@@ -120,7 +114,7 @@ function updateCartItem(productIndex, newCount) {
   }
 
   // 데이터 업데이트
-  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  // localStorage.setItem("cartItems", JSON.stringify(cartItems));
 
   // 화면 업데이트
   dispCart();
@@ -152,6 +146,7 @@ document.getElementById("recommendMenu").addEventListener("click", function () {
 
   currentPage = 1;
   updateContent(recommendItems);
+  acountBox();
 });
 
 //document.getElementById("burgerSet").addEventListener("click", function () {
@@ -188,6 +183,7 @@ document.getElementById("coffee").addEventListener("click", function () {
 
   currentPage = 1;
   updateContent(coffeeItems);
+  acountBox();
 });
 
 document.getElementById("dessert").addEventListener("click", function () {
@@ -200,6 +196,7 @@ document.getElementById("dessert").addEventListener("click", function () {
 
   currentPage = 1;
   updateContent(dessertItems);
+  acountBox();
 });
 
 document.getElementById("drinks").addEventListener("click", function () {
@@ -212,6 +209,7 @@ document.getElementById("drinks").addEventListener("click", function () {
 
   currentPage = 1;
   updateContent(drinksItems);
+  acountBox();
 });
 
 // 버튼 스타일 초기화
@@ -301,15 +299,27 @@ function sort1() {
   let rmBox_inner = document.getElementsByClassName("rmBox_inner");
   let rmBox_text = document.getElementsByClassName("rmBox_text");
   let sort = document.getElementById("sort");
+  let cssSort = document.getElementById("cssSort");
 
-  for (let i = 0; i < rmBox_inner.length; i++) {
-    rmBox_inner[i].style.flexDirection = "row";
-    rmBox_inner[i].style.justifyContent = "left";
-    rmBox_inner[i].style.width = "100%";
-    rmBox_text[i].style.flexDirection = "row";
+  if (sort.innerHTML == "1열보기") {
+    cssSort.href = "./css/menu2.css";
+    sort.innerHTML = "3열보기";
+  } else {
+    cssSort.href = "./css/menu.css";
+    sort.innerHTML = "1열보기";
   }
 
-  rmBox_Container.style.flexDirection = "column";
-
-  sort.innerHTML = "3열 보기";
+  // for (let i = 0; i < rmBox_inner.length; i++) {
+  //   rmBox_inner[i].style.flexDirection = "row";
+  //   rmBox_inner[i].style.justifyContent = "left";
+  //   rmBox_inner[i].style.width = "100%";
+  //   rmBox_text[i].style.flexDirection = "row";
+  // }
+  // rmBox_Container.style.flexDirection = "column";
+  // sort.innerHTML = "3열 보기";
+}
+function acountBox() {
+  let rmBox_inner = document.getElementsByClassName("rmBox_inner");
+  let menuAcount = document.getElementById("menuAcount");
+  menuAcount.innerHTML = rmBox_inner.length + " 개";
 }

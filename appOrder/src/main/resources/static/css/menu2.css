@@ -69,20 +69,20 @@
 }
 .rmBox_Container {
   display: flex;
-  /* justify-content: left; */
-  /* flex-direction: column; */
-  flex-direction: row;
+  justify-content: left;
+  flex-direction: column;
+  /* flex-direction: row; */
 }
 .rmBox_inner {
   display: flex;
-  /* flex-direction: row; */
-  flex-direction: column;
-  /* justify-content: left; */
-  justify-content: center;
+  flex-direction: row;
+  /* flex-direction: column; */
+  justify-content: left;
+  /* justify-content: center; */
   align-items: center;
   height: 30%;
-  /* width: 100%; */
-  width: 30%;
+  width: 100%;
+  /* width: 30%; */
   margin: 15px;
   border: 0;
 
