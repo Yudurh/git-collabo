@@ -21,60 +21,8 @@
       integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="./css/itemInfo.css" />
   </head>
-  <style>
-    #wrap {
-      width: 700px;
-      height: 1000px;
-      display: flex;
-      flex-direction: column;
-
-      border: 1px solid black;
-    }
-    .accordion-button:not(.collapsed) {
-      background-color: white;
-    }
-
-    #header {
-      text-align: center;
-    }
-
-    #header,
-    #main,
-    #footer {
-      display: flex;
-      flex-direction: column;
-    }
-
-    #itemQuantity,
-    #quantityBox {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-    }
-
-    #btns {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    #optionContent {
-      display: flex;
-      flex-direction: row;
-      gap: 10px;
-    }
-
-    .accordion-body {
-      margin: 0px;
-      padding: 0px;
-    }
-
-    .form-check {
-      padding-left: 0;
-    }
-  </style>
   <body>
     <div id="wrap">
       <!-- 상품 이미지, 상품명, 상품 내용 -->
@@ -112,16 +60,20 @@
               data-bs-parent="#accordionExample"
             >
               <div class="accordion-body" style="border: 1px solid red">
-                <div class="form-check" th:each="option, status:${ option }">
-                  <span th:text=" ${option.optionCate} "></span>
-                  <div id="optionContent">
+                <div class="form-check">
+                  <span th:text=" ${option2.optionCate} " th:each="option2, status:${ option2 }"></span>
+                  <div id="optionContent"th:each="option, status:${ option }">
                     <input
                       type="radio"
+                      class="optionName"
                       name="optionName"
-                      id="optionName"
+                      th:value="${option.optionPrice}"
                       th:text=" ${option.optionName}"
                     />
-                    <div th:text=" ${ option.optionPrice }"></div>
+                    <div
+                      id="optionPrice"
+                      th:text=" ${ option.optionPrice }"
+                    ></div>
                   </div>
                 </div>
               </div>
@@ -130,11 +82,16 @@
         </div>
         <div id="itemQuantity">
           <div id="quantityBox">
-            <button id="plus" onclick="plus()">+</button>
+            <button id="plus" name="plus">+</button>
             <div id="quantity">1</div>
-            <button id="minus" onclick="minus()">-</button>
+            <button id="minus" name="minus">-</button>
           </div>
           <div id="price" th:text=" ${ itemPrice } "></div>
+          <div
+            id="priceValue"
+            th:text=" ${ itemPrice } "
+            class="visually-hidden"
+          ></div>
         </div>
         <div id="recommendMemu">
           <h7>추천 메뉴</h7>
@@ -151,8 +108,7 @@
               th:href=" ${itemRecomImg} "
             />
             <div id="recomInfo">
-              <div class="recomTitle" th:text=" ${ItemRecomName} ">
-              </div>
+              <div class="recomTitle" th:text=" ${ItemRecomName} "></div>
               <div class="recomPrice" th:text=" ${ItemRecomPrice} "></div>
             </div>
           </div>

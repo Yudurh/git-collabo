@@ -1,0 +1,51 @@
+#wrap {
+  width: 700px;
+  height: 1000px;
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid black;
+}
+.accordion-button:not(.collapsed) {
+  background-color: white;
+}
+
+#header {
+  text-align: center;
+}
+
+#header,
+#main,
+#footer {
+  display: flex;
+  flex-direction: column;
+}
+
+#itemQuantity,
+#quantityBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
+
+#optionContent {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.accordion-body {
+  margin: 0px;
+  padding: 0px;
+}
+
+.form-check {
+  padding-left: 0;
+}

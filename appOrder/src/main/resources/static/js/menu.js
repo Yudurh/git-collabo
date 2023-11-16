@@ -89,7 +89,7 @@ function updateContent(items) {
 
   paginatedItems.forEach((item) => {
     const itemHTML = `
-        <button class="rmBox_inner" onclick="add('${item.itemCode}')">
+        <button class="rmBox_inner" onclick="func_item_update('${item.itemName}')">
           <img src="${item.itemImageUrl}" alt="${item.itemName}" />
           <div class="rmBox_text"><span class="rmBox_title">${item.itemName}</span>
          <span class="rmBox_money">${item.itemPrice}원</span></div>
@@ -322,4 +322,8 @@ function acountBox() {
   let rmBox_inner = document.getElementsByClassName("rmBox_inner");
   let menuAcount = document.getElementById("menuAcount");
   menuAcount.innerHTML = rmBox_inner.length + " 개";
+}
+
+function func_item_update(itemName) {
+  window.location.href = "/itemInfo?itemName=" + itemName;
 }
