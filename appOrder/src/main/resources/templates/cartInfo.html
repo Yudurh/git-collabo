@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>장바구니</title>
+  </head>
+  <link rel="stylesheet" href="./css/cart.css" />
+  <body>
+    <div id="wrap">
+      <div id="header">
+        <button class="preBtn" onclick="window.history.back();"><</button>
+        <div id="header_title">
+          <h4>주문하기</h4>
+        </div>
+      </div>
+      <div id="main">
+        <!-- 매장명 -->
+        <!-- 타임리프 처리 -->
+        <div id="storeName">의정부역점</div>
+        <h4>주문 상품</h4>
+        <!-- 타임리프 처리 -->
+        <div class="cartIn" th:each=" cart, status: ${ list } ">
+          <!-- 보이지 않는 것 -->
+          <input id="cartNo" type="hidden" th:value="${cart.cartNo}" />
+          <input id="cartCode" type="hidden" th:value="${cart.cartCode}" />
+          <input id="itemCode" type="hidden" th:value="${cart.itemCode}" />
+          <input id="cartDate" type="hidden" th:value="${cart.cartDate}" />
+          <!-- 보이는 것-->
+          <img
+            class="cartItemImg"
+            th:src="${cart.itemImageUrl}"
+            alt="Product Image"
+          />
+          <div class="cartIn2">
+            <div class="cartItemName" th:text=" ${ cart.itemName }">커피</div>
+            <div class="cartItemOption" th:text=" ${ cart.optionName }">
+              옵션
+            </div>
+            <div class="quantityAndPrice">
+              <div class="Btns">
+                <button class="plus" onclick="plus();">+</button>
+                <div
+                  class="cartQuantity"
+                  th:text="${cart.cartItemAmount}"
+                ></div>
+                <button class="minus" onclick="minus();">-</button>
+              </div>
+              <div class="cartPriceBox">
+                <span
+                  class="cartPrice"
+                  th:text="${cart.cartPrice * cart.cartItemAmount}"
+                >
+                </span>
+                <div class="priceTxt">원</div>
+              </div>
+            </div>
+          </div>
+          <button class="delet">X</button>
+        </div>
+      </div>
+      <div id="main_content">
+        장바구니에 담은 상품은 최대 30일간 보관됩니다.
+      </div>
+      <div id="footer">
+        <div id="cartPriceBox">
+          <div style="font-size: 15px">상품 금액</div>
+          <!-- 타임리프 처리 -->
+
+          <span id="cartTotalPrice"></span>
+        </div>
+        <div id="footer_btn">
+          <button>주문하기</button>
+        </div>
+      </div>
+    </div>
+    <script src="./js/cart.js"></script>
+  </body>
+</html>

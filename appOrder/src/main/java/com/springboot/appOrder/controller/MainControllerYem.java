@@ -1,9 +1,6 @@
 package com.springboot.appOrder.controller;
 
-import com.springboot.appOrder.dto.ItemDto;
-import com.springboot.appOrder.dto.MemberDto;
-import com.springboot.appOrder.dto.OptionDto;
-import com.springboot.appOrder.dto.ResultDto;
+import com.springboot.appOrder.dto.*;
 import com.springboot.appOrder.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -85,6 +82,7 @@ public class MainControllerYem {
     public String itemInfo(Model model){
 
         // 클릭한 아이템의 정보
+        // 나중에 아이템 번호를 불러와서 사용
         List<ItemEntity> itemEntitiy = itemRepository.findByItemName("왕할메가커피");
         // 메뉴 중복이 없으므로 .get(0)을 하면 원하는 커피 정보를 가져옴
         ItemEntity itemEntity = itemEntitiy.get(0);
@@ -102,13 +100,17 @@ public class MainControllerYem {
         model.addAttribute("itemRecomImg", itemEntity2.getItemImageUrl());
         model.addAttribute("ItemRecomName", itemEntity2.getItemName());
         model.addAttribute("ItemRecomPrice", itemEntity2.getItemPrice());
-
-
-
-
-
+        
         return "itemInfo";
     }
 
+    // ( 관리자 ) 장바구니 정보 조회
+    @GetMapping("/cartInfo")
+    public String cartInfo(CartEntity cartEntity,
+            Model model) {
+        List<CartEntity> cartEntities = cartRepository.findAll();
+        model.addAttribute("list", cartEntities);
+        return "cartInfo";
+    }
 
 }

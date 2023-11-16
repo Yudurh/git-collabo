@@ -1,5 +1,7 @@
 package com.springboot.appOrder.entity;
 
+import com.springboot.appOrder.dto.CartDto;
+
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -24,17 +26,29 @@ public class CartEntity {
     private String itemCode;
     @Column(name = "item_name")
     private String itemName;
-    @Column(name = "item_price")
-    private Integer itemPrice;
-    @Column(name = "option_name")
-    private String optionName;
-    @Column(name = "option_price")
-    private String optionPrice;
+    @Column(name = "cart_price")
+    private Integer cartPrice;
     @Column(name = "item_image_url")
     private String itemImageUrl;
+    @Column(name = "option_name")
+    private String optionName;
     @Column(name = "cart_item_amount")
     private Integer cartItemAmount;
     @Column(name = "cart_date")
     @DateTimeFormat(pattern = "yyyy-MM-ddTHH:mm:ss")
     private LocalDateTime cartDate;
+
+    public static CartEntity toEntity(CartDto dto){
+        return CartEntity.builder()
+                .cartNo(dto.getCartNo())
+                .cartCode(dto.getItemCode())
+                .itemCode(dto.getItemCode())
+                .itemName(dto.getItemName())
+                .cartPrice(dto.getCartPrice())
+                .optionName(dto.getOptionName())
+                .itemImageUrl(dto.getItemImageUrl())
+                .cartItemAmount(dto.getCartItemAmount())
+                .cartDate(dto.getCartDate())
+                .build();
+    }
 }

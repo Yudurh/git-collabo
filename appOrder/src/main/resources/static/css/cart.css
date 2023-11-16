@@ -1,0 +1,142 @@
+#wrap {
+  width: 500px;
+  height: 1000px;
+}
+
+button {
+  border-style: none;
+}
+
+.preBtn {
+  background-color: white;
+}
+
+#header {
+  display: flex;
+  width: 100%;
+}
+
+#header_title {
+  width: 100%;
+  text-align: center;
+}
+
+#storeName {
+  background-color: black;
+  color: white;
+  width: 100%;
+  padding: 15px;
+  font-weight: bold;
+}
+
+#main {
+  width: 100%;
+}
+
+#main_content {
+  text-align: center;
+  font-size: 12.5px;
+  background-color: rgb(249, 249, 249);
+  padding: 20px;
+}
+
+#footer {
+  display: flex;
+  flex-direction: column;
+}
+
+#cartPriceBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 15px;
+  margin-top: 45px;
+}
+
+#cartTotalPrice,
+#footer .priceTxt {
+  font-size: 25px;
+  font-weight: bold;
+  color: rgb(234, 37, 37);
+}
+
+.cartIn {
+  padding: 5px;
+}
+
+.cartIn2 {
+  display: flex;
+  flex-direction: column;
+}
+
+.cartIn,
+.quantityAndPrice,
+.Btns {
+  display: flex;
+  flex-direction: row;
+}
+
+.cartPriceBox {
+  display: flex;
+  flex-direction: row;
+}
+
+.cartItemImg {
+  width: 150px;
+  height: 150px;
+}
+
+.quantityAndPrice {
+  width: 300px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.quantityAndPrice button {
+  width: 30px;
+  height: 30px;
+  border-radius: 60%;
+  background-color: black;
+  color: white;
+}
+
+.cartQuantity {
+  padding: 5px;
+}
+
+.Btns {
+  gap: 25px;
+}
+
+.cartPrice,
+.priceTxt {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+#footer_btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#footer_btn button {
+  width: 90%;
+  height: 50px;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 10px;
+  background-color: rgb(77, 41, 27);
+  color: whitesmoke;
+}
+
+.delet {
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: rgb(142, 141, 141);
+  color: whitesmoke;
+}
