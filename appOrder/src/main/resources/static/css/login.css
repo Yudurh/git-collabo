@@ -12,11 +12,11 @@
   text-align: center;
 }
 
-.login_Content{
-  display : flex;
-  flex-direction : row;
-  margin-top : 15px
-  }
+.login_Content {
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+}
 
 loginBox {
   display: flex;
@@ -31,20 +31,17 @@ label {
   font-weight: bold;
 }
 
-#btns{
+#btns {
   display: flex;
-  flex-direction : column;
-  width100%
-  }
+  flex-direction: column;
+  width: 100%;
+}
 
-  #btns button {
- font-weight: bold;
+#btns button {
   border-radius: 10px;
   background-color: rgb(77, 41, 27);
   color: whitesmoke;
-  margin-top : 10px;
-  width : 400px;
-  height : 40px;
-
-  }
-
+  margin-top: 10px;
+  width: 400px;
+  height: 40px;
+}

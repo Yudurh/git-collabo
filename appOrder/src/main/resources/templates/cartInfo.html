@@ -5,6 +5,7 @@
     <title>장바구니</title>
   </head>
   <link rel="stylesheet" href="./css/cart.css" />
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
   <body>
     <div id="wrap">
       <div id="header">
@@ -38,12 +39,17 @@
             </div>
             <div class="quantityAndPrice">
               <div class="Btns">
-                <button class="plus" onclick="plus();">+</button>
+                <button class="plus" name="plus" onclick="plus(event)">
+                  +
+                </button>
                 <div
                   class="cartQuantity"
                   th:text="${cart.cartItemAmount}"
                 ></div>
-                <button class="minus" onclick="minus();">-</button>
+                <div class="visualy-hidden"></div>
+                <button class="minus" name="minus" onclick="minus(event)">
+                  -
+                </button>
               </div>
               <div class="cartPriceBox">
                 <span
@@ -55,7 +61,12 @@
               </div>
             </div>
           </div>
-          <button class="delet">X</button>
+          <a
+            th:href="|/cartDelete?cartNo=${ cart.cartNo }|"
+            class="btn btn-danger"
+            role="button"
+            >X</a
+          >
         </div>
       </div>
       <div id="main_content">
@@ -65,8 +76,9 @@
         <div id="cartPriceBox">
           <div style="font-size: 15px">상품 금액</div>
           <!-- 타임리프 처리 -->
-
-          <span id="cartTotalPrice"></span>
+          <div>
+            <div id="cartTotalPrice"></div>
+          </div>
         </div>
         <div id="footer_btn">
           <button>주문하기</button>

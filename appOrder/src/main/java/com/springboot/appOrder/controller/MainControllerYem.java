@@ -52,7 +52,7 @@ public class MainControllerYem {
     }
 
     // ( 관리자 ) 회원 정보 수정
-    @GetMapping("memberUpdate")
+    @GetMapping("/memberUpdate")
     public String memberUpdateForm(@RequestParam String memberNo,
                                    Model model){
 
@@ -104,13 +104,21 @@ public class MainControllerYem {
         return "itemInfo";
     }
 
-    // ( 관리자 ) 장바구니 정보 조회
+    // ( 사용자 ) 장바구니 정보 조회
     @GetMapping("/cartInfo")
-    public String cartInfo(CartEntity cartEntity,
-            Model model) {
+    public String cartInfo(CartEntity cartEntity,Model model) {
         List<CartEntity> cartEntities = cartRepository.findAll();
         model.addAttribute("list", cartEntities);
         return "cartInfo";
+    }
+
+    // ( 사용자 ) 회원 정보 삭제
+    @GetMapping("/cartDelete")
+    public String cartDelete (@RequestParam Long cartNo) {
+
+        cartRepository.deleteById(cartNo);
+
+        return "redirect:/cartInfo";
     }
 
 }
