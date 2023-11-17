@@ -35,7 +35,7 @@
   gap: 10px;
 }
 
-#optionContent {
+.optionContent {
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -48,4 +48,20 @@
 
 .form-check {
   padding-left: 0;
+}
+
+#recomeMain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+#recomInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#recomInfo div {
+  margin: 5px;
 }

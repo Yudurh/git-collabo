@@ -6,4 +6,7 @@ import java.util.List;
 
 public interface OptionRepository extends JpaRepository<OptionEntity, Long> {
     List<OptionEntity> findByOptionItemCate ( String optionItemCate);
+    List<OptionEntity> findByOptionCate ( String optionCate);
+
+
 }

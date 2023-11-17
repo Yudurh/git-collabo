@@ -61,8 +61,12 @@
             >
               <div class="accordion-body" style="border: 1px solid red">
                 <div class="form-check">
-                  <span th:text=" ${option2.optionCate} " th:each="option2, status:${ option2 }"></span>
-                  <div id="optionContent"th:each="option, status:${ option }">
+                  <div th:if="${optionN > 0 }">농도</div>
+                  <div
+                    class="optionContent"
+                    th:each="option, status:${ option }"
+                    th:if="${option.optionCate == '농도'}"
+                  >
                     <input
                       type="radio"
                       class="optionName"
@@ -71,7 +75,44 @@
                       th:text=" ${option.optionName}"
                     />
                     <div
-                      id="optionPrice"
+                      class="optionPrice"
+                      th:text=" ${ option.optionPrice }  "
+                    ></div>
+                  </div>
+
+                  <div th:if="${ optionG > 0 }">꿀 추가</div>
+                  <div
+                    class="optionContent"
+                    th:each="option, status:${ option }"
+                    th:if="${option.optionCate == '꿀 추가'}"
+                  >
+                    <input
+                      type="radio"
+                      class="optionName"
+                      name="optionName"
+                      th:value="${option.optionPrice}"
+                      th:text=" ${option.optionName}"
+                    />
+                    <div
+                      class="optionPrice"
+                      th:text=" ${ option.optionPrice }"
+                    ></div>
+                  </div>
+                  <div th:if="${ optionT > 0 }">개인 텀블러 사용</div>
+                  <div
+                    class="optionContent"
+                    th:each="option, status:${ option }"
+                    th:if="${option.optionCate == '개인 텀블러 사용'}"
+                  >
+                    <input
+                      type="radio"
+                      class="optionName"
+                      name="optionName"
+                      th:value="${option.optionPrice}"
+                      th:text=" ${option.optionName}"
+                    />
+                    <div
+                      class="optionPrice"
                       th:text=" ${ option.optionPrice }"
                     ></div>
                   </div>
@@ -82,11 +123,11 @@
         </div>
         <div id="itemQuantity">
           <div id="quantityBox">
-            <button id="plus" name="plus">+</button>
+            <button class="plus" name="plus">+</button>
             <div id="quantity">1</div>
-            <button id="minus" name="minus">-</button>
+            <button class="minus" name="minus">-</button>
           </div>
-          <div id="price" th:text=" ${ itemPrice } "></div>
+          <div id="price" th:text=" |${ itemPrice }원| "></div>
           <div
             id="priceValue"
             th:text=" ${ itemPrice } "
@@ -95,22 +136,17 @@
         </div>
         <div id="recommendMemu">
           <h7>추천 메뉴</h7>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="flexRadioDefault"
-              id="flexRadioDefault2"
-            />
-            <img
-              src="https://img.79plus.co.kr/megahp/manager/upload/menu/20231025193235_1698229955914_EH9HF0a_7U.jpg"
-              width="80px"
-              th:href=" ${itemRecomImg} "
-            />
+          <div id="recomeMain">
             <div id="recomInfo">
+              <img
+                src="https://img.79plus.co.kr/megahp/manager/upload/menu/20231025193235_1698229955914_EH9HF0a_7U.jpg"
+                width="80px"
+                th:href=" ${itemRecomImg} "
+              />
               <div class="recomTitle" th:text=" ${ItemRecomName} "></div>
               <div class="recomPrice" th:text=" ${ItemRecomPrice} "></div>
             </div>
+            <div><input type="checkbox" /></div>
           </div>
         </div>
       </div>

@@ -51,7 +51,7 @@ $(document).ready(function () {
 
 //플러스 버튼 클릭시 가격변경
 $(document).ready(function () {
-  $("#plus").click(function () {
+  $(".plus").click(function () {
     let priceElement = document.getElementById("price");
     let priceValue = document.getElementById("priceValue").innerHTML;
     let quantity = document.getElementById("quantity");
@@ -61,9 +61,11 @@ $(document).ready(function () {
       priceElement.innerHTML =
         (Number(priceValue) +
           Number($("input:radio[name=optionName]:checked").val())) *
-        Number(quantity.innerHTML);
+          Number(quantity.innerHTML) +
+        "원";
     } else {
-      priceElement.innerHTML = Number(priceValue) * Number(quantity.innerHTML);
+      priceElement.innerHTML =
+        Number(priceValue) * Number(quantity.innerHTML) + "원";
     }
     console.log($("input:radio[name=optionName]").is(":checked"));
   });
@@ -72,7 +74,7 @@ $(document).ready(function () {
 // 마이너스 버튼 클릭시 가격변경
 
 $(document).ready(function () {
-  $("#minus").click(function () {
+  $(".minus").click(function () {
     let priceElement = document.getElementById("price");
     let priceValue = document.getElementById("priceValue").innerHTML;
     let quantity = document.getElementById("quantity");
@@ -82,10 +84,11 @@ $(document).ready(function () {
         priceElement.innerHTML =
           (Number(priceValue) +
             Number($("input:radio[name=optionName]:checked").val())) *
-          Number(quantity.innerHTML);
+            Number(quantity.innerHTML) +
+          "원";
       } else {
         priceElement.innerHTML =
-          Number(priceValue) * Number(quantity.innerHTML);
+          Number(priceValue) * Number(quantity.innerHTML) + "원";
       }
     }
   });

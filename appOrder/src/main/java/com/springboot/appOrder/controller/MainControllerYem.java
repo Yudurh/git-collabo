@@ -95,12 +95,30 @@ public class MainControllerYem {
         model.addAttribute("itemContent", itemEntity.getItemContent());
 
         // 퍼스널 옵션
-        List<OptionEntity> coffeeOption = optionRepository.findByOptionItemCate("커피");
+        List<OptionEntity> coffeeOption = optionRepository.findByOptionItemCate(itemEntitiy.get(0).getItemCate());
         List<OptionEntity> coffeeOption2 = optionRepository.findByOptionItemCate("커피");
         model.addAttribute("option", coffeeOption);
         model.addAttribute("option2", coffeeOption2);
 
+        int n =0;
+        int g = 0;
+        int t = 0;
+        for (int i=0; i< coffeeOption.size(); i++){
+            if (coffeeOption.get(i).getOptionCate().equals("농도")){
+                n++;
+            }else if(coffeeOption.get(i).getOptionCate().equals("꿀 추가")){
+                g++;
+            } else if (coffeeOption.get(i).getOptionCate().equals("개인 텀블러 사용")) {
+                t++;
+            }
 
+        }
+        model.addAttribute("optionN", n);
+        model.addAttribute("optionG", g);
+        model.addAttribute("optionT", t);
+        
+        
+        
         // 추천 메뉴 아이템 정보
         List<ItemEntity> itemEntitiy2 = itemRepository.findByItemRecommend(1);
         ItemEntity itemEntity2 = itemEntitiy.get(0);
@@ -114,6 +132,9 @@ public class MainControllerYem {
 
         return "itemInfo";
     }
+
+
+
 
 
 }

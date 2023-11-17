@@ -8,8 +8,9 @@
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/controller/MainControllerYem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/controller/MainControllerYem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/entity/OptionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/entity/OptionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/itemInfo.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/itemInfo.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/itemInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/itemInfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/menu.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/itemInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/itemInfo.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
