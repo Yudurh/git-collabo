@@ -3,6 +3,7 @@
   height: 1000px;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   background-color: #ffdc00;
 }
@@ -11,17 +12,39 @@
   text-align: center;
 }
 
-#idBox,
-#pwBox {
+.login_Content{
+  display : flex;
+  flex-direction : row;
+  margin-top : 15px
+  }
+
+loginBox {
   display: flex;
   flex-direction: row;
   width: 400px;
-  padding: 10px;
 }
 
 label {
-  width: 30%;
+  width: 40%;
   text-align: center;
   margin: 5px;
   font-weight: bold;
 }
+
+#btns{
+  display: flex;
+  flex-direction : column;
+  width100%
+  }
+
+  #btns button {
+ font-weight: bold;
+  border-radius: 10px;
+  background-color: rgb(77, 41, 27);
+  color: whitesmoke;
+  margin-top : 10px;
+  width : 400px;
+  height : 40px;
+
+  }
+
