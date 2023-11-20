@@ -127,9 +127,6 @@ public class MainControllerYem {
         model.addAttribute("ItemRecomPrice", itemEntity2.getItemPrice());
 
 
-
-
-
         return "itemInfo";
     }
 

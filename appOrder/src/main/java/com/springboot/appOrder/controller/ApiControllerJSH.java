@@ -1,10 +1,15 @@
 package com.springboot.appOrder.controller;
 
 import com.springboot.appOrder.dto.ItemDto;
+import com.springboot.appOrder.dto.ResultDto;
+import com.springboot.appOrder.entity.CartEntity;
 import com.springboot.appOrder.entity.ItemEntity;
 import com.springboot.appOrder.entity.ItemRepository;
+import com.springboot.appOrder.entity.MemberEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -69,6 +74,29 @@ public class ApiControllerJSH {
         map.put("itemlistDrink", listDto3);
 
         return map; //json 문자열로 리턴이 된다.
+    }
+
+    @PostMapping("/setCart")
+    public ResultDto setCart(Model model){
+
+        CartEntity newEntity = null;
+
+        ResultDto resultDto = null;
+
+        if( newEntity != null  ) {
+            //포인트 수정 성공
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(1)
+                    .build();
+        }else{
+            //포인트 수정 실패
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(0)
+                    .build();
+        }
+        return resultDto;
     }
 
 
