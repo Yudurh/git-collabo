@@ -30,17 +30,18 @@ public class MainControllerYem {
         return "first";
     }
 
+    // ( 사용자 ) 로그인창
     @GetMapping("/login")
     public String login(){
         return "login";
     }
-
+    
     @GetMapping("/main")
     public String main(){
         return "main";
     }
 
-    // ( 사용자 ) 회원 정보 조회
+    // ( 관리자 ) 회원 정보 조회
     @GetMapping("/adminMemberList")
     public String adminMemberList(Model model){
 
@@ -71,10 +72,22 @@ public class MainControllerYem {
     @GetMapping("/memberDelete")
     public String  memberDelete (@RequestParam Long memberNo,
                               Model model) {
-
+        
         memberRepository.deleteById(memberNo);
 
         return "redirect:/adminMemberList";
+    }
+
+    // ( 관리자 ) 상품 정보 조회
+    @GetMapping("/adminItemList")
+    public String adminItemList( Model model ){
+
+        List<ItemEntity> itemEntities = itemRepository.findAll();
+        model.addAttribute("list", itemEntities);
+        model.addAttribute("count", itemEntities.size());
+
+
+        return "adminItemList";
     }
 
     // (사용자) 상품 정보 조회

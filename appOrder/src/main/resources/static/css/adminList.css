@@ -1,40 +1,80 @@
-#wrap {
-  text-align: center;
+body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
-#header h2 {
-  font-weight: bold;
+#wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 1800px;
 }
 
 #header {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
-  background-color: rgb(217, 215, 215);
-  height: 100px;
+  width: 100%;
+}
+
+#header_title {
+  padding: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-left: 200px;
 }
 
 #main {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  margin-top: 50px;
+  justify-content: space-between;
+  width: 100%;
 }
 
-#aside_menu #main {
+#aside_menu {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+#aside_menu button {
+  border-style: none;
+  font-size: 19px;
+  font-weight: bold;
+  background-color: gray;
+  color: whitesmoke;
+  width: 200px;
+  height: 80px;
+}
+
+#aside_menu button:hover {
+  background-color: gray;
+  color: black;
+}
+
+#main_title {
+  text-align: center;
+  border: 1px solid black;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+
+#section {
+  width: 90%;
+  margin-right: 50px;
 }
 
 th {
-  width: 300px;
+  font-size: 14px;
 }
 
-#header_menu {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+tr {
+width: 200px
 }
 
+#member_count {
+  font-size: 15px;
+}
