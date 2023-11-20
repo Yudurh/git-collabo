@@ -76,7 +76,7 @@
                     />
                     <div
                       class="optionPrice"
-                      th:text=" ${ option.optionPrice }  "
+                      th:text="|+${option.optionPrice}| "
                     ></div>
                   </div>
 
@@ -95,7 +95,7 @@
                     />
                     <div
                       class="optionPrice"
-                      th:text=" ${ option.optionPrice }"
+                      th:text="|+${option.optionPrice}|"
                     ></div>
                   </div>
                   <div th:if="${ optionT > 0 }">개인 텀블러 사용</div>
@@ -113,7 +113,7 @@
                     />
                     <div
                       class="optionPrice"
-                      th:text=" ${ option.optionPrice }"
+                      th:text=" |+${option.optionPrice}|"
                     ></div>
                   </div>
                 </div>
@@ -144,9 +144,16 @@
                 th:href=" ${itemRecomImg} "
               />
               <div class="recomTitle" th:text=" ${ItemRecomName} "></div>
-              <div class="recomPrice" th:text=" ${ItemRecomPrice} "></div>
+              <div class="recomPrice" th:text=" |${ItemRecomPrice} 원|"></div>
             </div>
-            <div><input type="checkbox" /></div>
+            <div>
+              <input
+                type="checkbox"
+                th:value="${ItemRecomPrice}"
+                id="recomCh"
+                name="recomCh"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -154,7 +161,7 @@
       <div id="footer">
         <div id="footerInfo">
           <div id="itemPrice">상품 금액</div>
-          <div></div>
+          <div id="totalItemPrice" th:text=" |${ itemPrice }원| "></div>
         </div>
         <div id="btns">
           <button>바로 주문</button>

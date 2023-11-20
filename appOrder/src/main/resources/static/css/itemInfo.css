@@ -25,7 +25,9 @@
 #quantityBox {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
 }
 
 #btns {
@@ -64,4 +66,10 @@
 }
 #recomInfo div {
   margin: 5px;
+}
+#footerInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
 }

@@ -41,11 +41,19 @@ $(document).ready(function () {
     let priceElement = document.getElementById("price");
     let priceValue = document.getElementById("priceValue").innerHTML;
     let quantity = document.getElementById("quantity");
+    let totalPrice = document.getElementById("totalItemPrice");
 
     priceElement.innerHTML =
       (Number(priceValue) +
         Number($("input:radio[name=optionName]:checked").val())) *
-      Number(quantity.innerHTML);
+        Number(quantity.innerHTML) +
+      "원";
+
+    totalPrice.innerHTML =
+      (Number(priceValue) +
+        Number($("input:radio[name=optionName]:checked").val())) *
+        Number(quantity.innerHTML) +
+      "원";
   });
 });
 
@@ -55,6 +63,7 @@ $(document).ready(function () {
     let priceElement = document.getElementById("price");
     let priceValue = document.getElementById("priceValue").innerHTML;
     let quantity = document.getElementById("quantity");
+    let totalPrice = document.getElementById("totalItemPrice");
     quantity.innerHTML = Number(quantity.innerHTML) + 1;
 
     if ($("input:radio[name=optionName]").is(":checked") == true) {
@@ -63,11 +72,17 @@ $(document).ready(function () {
           Number($("input:radio[name=optionName]:checked").val())) *
           Number(quantity.innerHTML) +
         "원";
+      totalPrice.innerHTML =
+        (Number(priceValue) +
+          Number($("input:radio[name=optionName]:checked").val())) *
+          Number(quantity.innerHTML) +
+        "원";
     } else {
       priceElement.innerHTML =
         Number(priceValue) * Number(quantity.innerHTML) + "원";
+      totalPrice.innerHTML =
+        Number(priceValue) * Number(quantity.innerHTML) + "원";
     }
-    console.log($("input:radio[name=optionName]").is(":checked"));
   });
 });
 
@@ -78,6 +93,7 @@ $(document).ready(function () {
     let priceElement = document.getElementById("price");
     let priceValue = document.getElementById("priceValue").innerHTML;
     let quantity = document.getElementById("quantity");
+    let totalPrice = document.getElementById("totalItemPrice");
     if (quantity.innerHTML > 1) {
       quantity.innerHTML = Number(quantity.innerHTML) - 1;
       if ($("input:radio[name=optionName]").is(":checked") == true) {
@@ -86,10 +102,35 @@ $(document).ready(function () {
             Number($("input:radio[name=optionName]:checked").val())) *
             Number(quantity.innerHTML) +
           "원";
+        totalPrice.innerHTML =
+          (Number(priceValue) +
+            Number($("input:radio[name=optionName]:checked").val())) *
+            Number(quantity.innerHTML) +
+          "원";
       } else {
         priceElement.innerHTML =
           Number(priceValue) * Number(quantity.innerHTML) + "원";
+        totalPrice.innerHTML =
+          Number(priceValue) * Number(quantity.innerHTML) + "원";
       }
+    }
+  });
+});
+
+$(document).ready(function () {
+  $("#recomInfo").click(function () {
+    let priceElement = document.getElementById("price");
+    let priceValue = document.getElementById("priceValue").innerHTML;
+    let quantity = document.getElementById("quantity");
+    let totalPrice = document.getElementById("totalItemPrice");
+    let recomValue = document.getElementById("recomCh").value;
+    let realPrice = priceElement.innerHTML.replace("원", "");
+    if ($("#recomCh").is(":checked") == true) {
+      $("#recomCh").prop("checked", false);
+      totalPrice.innerHTML = Number(realPrice) + "원";
+    } else {
+      $("#recomCh").prop("checked", true);
+      totalPrice.innerHTML = Number(realPrice) + Number(recomValue) + "원";
     }
   });
 });
