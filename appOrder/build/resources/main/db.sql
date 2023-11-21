@@ -33,16 +33,18 @@ CREATE TABLE cart (
     item_name TEXT NOT NULL, -- 상품이름;
     item_image_url TEXT NOT NULL, -- 이미지
     cart_price INT(255) NOT NULL, -- 가격
-    option_name VARCHAR(255) NOT NULL DEFAULT ('해당없음'), -- 옵션이름
+    option_name_1 VARCHAR(255) NOT NULL DEFAULT ('해당없음'),
+	 option_name_2 VARCHAR(255) NOT NULL DEFAULT ('해당없음'),
+	 option_name_3 VARCHAR(255) NOT NULL DEFAULT ('해당없음'), -- 옵션이름
     cart_item_amount INT(255) NOT NULL, -- 구매갯수
     cart_date DATETIME DEFAULT NOW() -- 장바구니에 담긴 시간/날짜
 );
 
 INSERT INTO cart VALUES (NULL, '222e4567-e89b-12d3-b456-556642440113', '456e4567-e89b-12d3-a456-556642440003', '스모어 카라멜쿠키',
-'https://img.79plus.co.kr/megahp/manager/upload/menu/20231025193235_1698229955914_EH9HF0a_7U.jpg', 1100, '해당없음', 1, DEFAULT);
+'https://img.79plus.co.kr/megahp/manager/upload/menu/20231025193235_1698229955914_EH9HF0a_7U.jpg', 1100, DEFAULT, DEFAULT, DEFAULT, 1, DEFAULT);
 
 INSERT INTO cart VALUES (NULL, '333e4567-e89b-12d3-b456-556642440113', '123e4567-e89b-12d3-a456-556642440003', '왕할메가커피',
-'https://img.79plus.co.kr/megahp/manager/upload/menu/20230905185615_1693907775304_fenhtXqy4y.jpg', 2200, '해당없음', 1, DEFAULT);
+'https://img.79plus.co.kr/megahp/manager/upload/menu/20230905185615_1693907775304_fenhtXqy4y.jpg', 2200, DEFAULT, DEFAULT, DEFAULT, 1, DEFAULT);
 
 SELECT * FROM cart;
 
@@ -105,12 +107,15 @@ CREATE TABLE apporder.p_option(
 );
 
 INSERT INTO apporder.p_option VALUES(NULL, '커피', '농도', '연하게', DEFAULT);
+INSERT INTO apporder.p_option VALUES(NULL, '커피', '농도', '해당없음', DEFAULT);
 INSERT INTO apporder.p_option VALUES(NULL, '커피', '농도', '샷 추가', 500);
 INSERT INTO apporder.p_option VALUES(NULL, '커피', '농도', '2샷 추가', 1000);
 INSERT INTO apporder.p_option VALUES(NULL, '커피', '꿀 추가', '꿀 추가', 700);
+INSERT INTO apporder.p_option VALUES(NULL, '커피', '꿀 추가', '해당없음', DEFAULT);
 INSERT INTO apporder.p_option VALUES(NULL, '커피', '개인 텀블러 사용' ,'텀블러(개인컵) 사용', DEFAULT);
+INSERT INTO apporder.p_option VALUES(NULL, '커피', '개인 텀블러 사용', '해당없음', DEFAULT);
 INSERT INTO apporder.p_option VALUES(NULL, '음료수', '개인 텀블러 사용' , '텀블러(개인컵) 사용', DEFAULT);
-
+INSERT INTO apporder.p_option VALUES(NULL, '음료수', '개인 텀블러 사용' , '해당없음', DEFAULT);
 
 
 

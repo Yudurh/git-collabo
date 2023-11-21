@@ -142,7 +142,7 @@ public class MainControllerYem {
 
     // ( 사용자 ) 장바구니 정보 조회
     @GetMapping("/cartInfo")
-    public String cartInfo(CartEntity cartEntity,Model model) {
+    public String cartInfo(Model model) {
         List<CartEntity> cartEntities = cartRepository.findAll();
         model.addAttribute("list", cartEntities);
         return "cartInfo";
