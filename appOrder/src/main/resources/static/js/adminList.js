@@ -1,3 +1,4 @@
+// 공지 목록의 사이드 메뉴 (이벤트, 공지사항) 클릭 이벤트
 function toggleNoticeList() {
   var lists = document.querySelectorAll(".noticeList");
 
@@ -9,6 +10,7 @@ function toggleNoticeList() {
     }
   });
 }
+// < 페이지 이동 함수 >
 // 멤버 리스트 페이지 이동
 function click_member() {
   let menu_member = document.getElementById("menu_member");

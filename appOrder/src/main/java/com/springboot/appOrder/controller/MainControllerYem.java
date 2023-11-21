@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.swing.text.html.Option;
+import java.lang.reflect.Member;
+import java.security.PublicKey;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,15 +66,15 @@ public class MainControllerYem {
         model.addAttribute("member", memberDto);
         model.addAttribute("memberNo", memberNo);
 
-        return "adminMemberUpdate";
         // 업데이트 페이지 이동
+        return "adminMemberUpdate";
+
 
     }
 
     // ( 관리자 ) 회원 정보 삭제
     @GetMapping("/memberDelete")
-    public String  memberDelete (@RequestParam Long memberNo,
-                              Model model) {
+    public String  memberDelete (@RequestParam Long memberNo) {
         
         memberRepository.deleteById(memberNo);
 
@@ -88,6 +91,31 @@ public class MainControllerYem {
 
 
         return "adminItemList";
+    }
+
+    // ( 관리자 ) 상품 정보 수정
+    @GetMapping("/itemUpdate")
+    public String itemUpdate(@RequestParam String itemNo,
+                                 Model model){
+
+        ItemEntity itemEntity = itemRepository.findById(Long.valueOf(itemNo)).get();
+        ItemDto itemDto = ItemDto.toDto(itemEntity);
+
+        model.addAttribute("item", itemDto);
+        model.addAttribute("itemNo", itemNo);
+
+        // 업데이트 페이지 이동
+        return "adminItemUpdate";
+
+    }
+
+    // ( 관리자 ) 상품 정보 삭제
+    @GetMapping("/itemDelete")
+    public String itemDelete(@RequestParam Long itemNo){
+
+        itemRepository.deleteById(itemNo);
+
+        return "redirect:/adminItemList";
     }
 
     // (사용자) 상품 정보 조회
@@ -148,16 +176,15 @@ public class MainControllerYem {
         return "cartInfo";
     }
 
-    // ( 사용자 ) 회원 정보 삭제
+    // ( 사용자 ) 장바구니 정보 삭제
     @GetMapping("/cartDelete")
     public String cartDelete (@RequestParam Long cartNo) {
 
         cartRepository.deleteById(cartNo);
 
         return "redirect:/cartInfo";
+
     }
-
-
 
 
 }

@@ -17,7 +17,7 @@ public class ItemDto {
     private String itemName;
     private String itemContent;
     private String itemCate;
-    private Integer item_recommend;
+    private Integer itemRecommend;
     private Integer itemPrice;
     private String itemImageUrl;
     private LocalDateTime itemUpdateDatetime;
@@ -29,7 +29,7 @@ public class ItemDto {
                 .itemName(entity.getItemName())
                 .itemContent(entity.getItemContent())
                 .itemCate(entity.getItemCate())
-                .item_recommend(entity.getItemRecommend())
+                .itemRecommend(entity.getItemRecommend())
                 .itemPrice(entity.getItemPrice())
                 .itemImageUrl(entity.getItemImageUrl())
                 .itemUpdateDatetime(entity.getItemUpdateDatetime())

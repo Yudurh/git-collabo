@@ -135,6 +135,7 @@ button {
 a {
   width: 25px;
   height: 25px;
+  text-decoration: none;
   text-align: center;
   border-radius: 50%;
   background-color: rgb(142, 141, 141);

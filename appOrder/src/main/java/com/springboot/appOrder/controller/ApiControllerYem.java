@@ -1,20 +1,18 @@
 package com.springboot.appOrder.controller;
-import com.springboot.appOrder.dto.JoinDto;
-import com.springboot.appOrder.dto.LoginDto;
-import com.springboot.appOrder.dto.MemberDto;
-import com.springboot.appOrder.dto.ResultDto;
+import com.springboot.appOrder.dto.*;
 import com.springboot.appOrder.entity.*;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Order;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class ApiControllerYem {
@@ -24,6 +22,8 @@ public class ApiControllerYem {
     private CartRepository cartRepository;
     @Autowired
     private OrderRepository orderRepository;
+    @Autowired
+    private ItemRepository itemRepository;
 
     // ( 관리자 ) 로그인 폼
     @PostMapping("/loginAction")
@@ -92,7 +92,7 @@ public class ApiControllerYem {
         return resultDto;
     }
 
-    // ( 관리자 ) 회원 정보 수정
+    // ( 관리자 ) 회원 정보 수정 폼
     @PostMapping("/memberUpdateForm")
     public ResultDto memberUpdateForm(@RequestBody MemberDto memberDto) {
         MemberEntity memberEntity = MemberEntity.toMemberEntity(memberDto);
@@ -115,5 +115,61 @@ public class ApiControllerYem {
         return resultDto;
     }
 
+    // 이미지 업로드
+    @PostMapping("/upload")
+    public ResultDto upload(@RequestParam MultipartFile file) throws IOException {
+
+        String newFileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+
+        if( !file.isEmpty() ){
+            File newFile = new File(newFileName);
+            file.transferTo( newFile );
+        }else {
+            ResultDto resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(0)
+                    .build();
+
+            return resultDto;
+        }
+
+        ResultDto resultDto = ResultDto.builder()
+                .status("ok")
+                .result(1)
+                .uploadFileName(newFileName)
+                .build();
+
+        return resultDto;
+    }
+
+    // ( 관리자 ) 상품 정보 수정 폼
+
+    @PostMapping("/itemUpdateForm")
+    public ResultDto itemUpdateForm(@RequestBody ItemDto itemDto) {
+
+        itemDto.setItemImageUrl("./upload/"+itemDto.getItemImageUrl());
+
+        ItemEntity itemEntity = ItemEntity.toItemEntity(itemDto);
+
+        ItemEntity newEntity = itemRepository.save(itemEntity);
+
+        ResultDto resultDto = null;
+
+        if( newEntity != null  ) {
+            //수정 성공
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(1)
+                    .build();
+        }else{
+            //수정 실패
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(0)
+                    .build();
+        }
+
+        return resultDto;
+    }
 
 }
