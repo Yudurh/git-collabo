@@ -34,12 +34,21 @@
         <div id="itemInfo">
           <div id="itemImg">
             <img
+              id="item_img"
               src="https://img.79plus.co.kr/megahp/manager/upload/menu/20231025193235_1698229955914_EH9HF0a_7U.jpg"
               width="150px"
             />
           </div>
           <div id="itemTitle" th:text="${ itemName }"></div>
           <div id="itemContent" th:text="${ itemContent }"></div>
+          <div
+            id="itemCode"
+            class="visually-hidden"
+            th:text="${ itemCode }"
+          ></div>
+          <div id="cartCode" class="visually-hidden">
+            388cae56-28e9-434e-a3f9-05fe3502f826
+          </div>
         </div>
       </div>
       <!-- 퍼스널 옵션, 수량, 추천 메뉴 -->
@@ -75,9 +84,14 @@
                       type="radio"
                       class="optionName"
                       name="optionNameN"
+                      th:id="${option.optionName}"
                       th:value="${option.optionPrice}"
-                      th:text=" ${option.optionName}"
                     />
+                    <label
+                      th:for="${option.optionName}"
+                      th:text=" | ${option.optionName}|"
+                    ></label>
+
                     <div
                       class="optionPrice"
                       th:text="|+${option.optionPrice}| "
@@ -94,9 +108,13 @@
                       type="radio"
                       class="optionName"
                       name="optionNameG"
+                      th:id="${option.optionName}"
                       th:value="${option.optionPrice}"
-                      th:text=" ${option.optionName}"
                     />
+                    <label
+                      th:for="${option.optionName}"
+                      th:text=" | ${option.optionName}|"
+                    ></label>
                     <div
                       class="optionPrice"
                       th:text="|+${option.optionPrice}|"
@@ -112,9 +130,13 @@
                       type="radio"
                       class="optionName"
                       name="optionNameT"
+                      th:id="${option.optionName}"
                       th:value="${option.optionPrice}"
-                      th:text=" ${option.optionName}"
                     />
+                    <label
+                      th:for="${option.optionName}"
+                      th:text=" | ${option.optionName}|"
+                    ></label>
                     <div
                       class="optionPrice"
                       th:text=" |+${option.optionPrice}|"
@@ -169,7 +191,7 @@
         </div>
         <div id="btns">
           <button>바로 주문</button>
-          <button>장바구니 담기</button>
+          <button id="cartSet">장바구니 담기</button>
         </div>
       </div>
     </div>

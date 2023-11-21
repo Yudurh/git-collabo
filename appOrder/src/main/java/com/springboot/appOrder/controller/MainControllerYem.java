@@ -103,6 +103,7 @@ public class MainControllerYem {
         model.addAttribute("itemName", itemEntity.getItemName());
         model.addAttribute("itemPrice", itemEntity.getItemPrice());
         model.addAttribute("itemContent", itemEntity.getItemContent());
+        model.addAttribute("itemCode", itemEntity.getItemCode());
 
         // 퍼스널 옵션
         List<OptionEntity> coffeeOption = optionRepository.findByOptionItemCate(itemEntitiy.get(0).getItemCate());

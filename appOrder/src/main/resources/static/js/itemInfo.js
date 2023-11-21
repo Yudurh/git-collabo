@@ -143,7 +143,7 @@ $(document).ready(function () {
     }
   });
 });
-
+//추천상품 디브박스클릭시 이벤트발생
 $(document).ready(function () {
   $("#recomInfo").click(function () {
     let priceElement = document.getElementById("price");
@@ -172,6 +172,7 @@ $(document).ready(function () {
     }
   });
 });
+//추천상품 체크박스 클릭시 이벤트
 $(document).ready(function () {
   $("#recomCh").click(function () {
     let priceElement = document.getElementById("price");
@@ -194,5 +195,81 @@ $(document).ready(function () {
           Number(quantity.innerHTML) +
         "원";
     }
+  });
+});
+//아이디 생성
+function uuidv4() {
+  return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+    (
+      c ^
+      (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+    ).toString(16)
+  );
+}
+//시간 만들기
+function getKST() {
+  // 1. 현재 시간(Locale)
+  const curr = new Date();
+  console.log("현재시간(Locale) : " + curr + "<br>"); // 현재시간(Locale) : Tue May 31 2022 09:00:30
+
+  // 2. UTC 시간 계산
+  const utc = curr.getTime() + curr.getTimezoneOffset() * 60 * 1000;
+
+  // 3. UTC to KST (UTC + 9시간)
+  const KR_TIME_DIFF = 9 * 60 * 60 * 1000; //한국 시간(KST)은 UTC시간보다 9시간 더 빠르므로 9시간을 밀리초 단위로 변환.
+  const kr_curr = new Date(utc + KR_TIME_DIFF); //UTC 시간을 한국 시간으로 변환하기 위해 utc 밀리초 값에 9시간을 더함.
+
+  console.log("한국시간 : " + kr_curr); // 한국시간 : Tue May 31 2022 09:00:30 GMT+0900 (한국 표준시)
+
+  return kr_curr;
+}
+
+//카트패치함수
+$(document).ready(function () {
+  $("#cartSet").click(function () {
+    let cartCode1 = uuidv4();
+    let itemCode = document.getElementById("itemCode").innerHTML;
+    let itemName = document.getElementById("itemTitle").innerHTML;
+    let optionName1 = $("input:radio[name=optionNameN]:checked").attr("id");
+    let optionName2 = $("input:radio[name=optionNameG]:checked").attr("id");
+    let optionName3 = $("input:radio[name=optionNameT]:checked").attr("id");
+    let itemAmount = document.getElementById("quantity").innerHTML;
+    let itemImg = document.getElementById("item_img").src;
+    let cartPrice = document
+      .getElementById("totalItemPrice")
+      .innerHTML.replace("원", "");
+    let cartDate = getKST();
+
+    let cart = {
+      cartNo: 0,
+      cartCode: cartCode1,
+      itemCode: itemCode,
+      itemName: itemName,
+      optionName1: optionName1,
+      optionName2: optionName2,
+      optionName3: optionName3,
+      cartItemAmount: itemAmount,
+      itemImageUrl: itemImg,
+      cartPrice: cartPrice,
+      cartDate: cartDate,
+    };
+    fetch("/setCart", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(cart),
+    })
+      .then((response) => {
+        console.log("response:" + response);
+        return response.json();
+      }) //HTTP 응답
+      .then((json) => {
+        //{ status: "ok", result: 5 }
+        console.log("json:" + json);
+        console.log(optionName3);
+        alert("장바구니에 담겼습니다");
+      }) //실제 데이타
+      .catch((error) => {
+        console.log(error);
+      });
   });
 });

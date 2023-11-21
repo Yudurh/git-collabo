@@ -1,15 +1,14 @@
 package com.springboot.appOrder.controller;
 
+import com.springboot.appOrder.dto.CartDto;
 import com.springboot.appOrder.dto.ItemDto;
 import com.springboot.appOrder.dto.ResultDto;
-import com.springboot.appOrder.entity.CartEntity;
-import com.springboot.appOrder.entity.ItemEntity;
-import com.springboot.appOrder.entity.ItemRepository;
-import com.springboot.appOrder.entity.MemberEntity;
+import com.springboot.appOrder.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -76,10 +75,18 @@ public class ApiControllerJSH {
         return map; //json 문자열로 리턴이 된다.
     }
 
-    @PostMapping("/setCart")
-    public ResultDto setCart(Model model){
+    @Autowired
+    private CartRepository cartRepository;
 
-        CartEntity newEntity = null;
+    @PostMapping("/setCart")
+    public ResultDto setCart(@RequestBody CartDto cartDto,
+                             Model model){
+
+
+
+        CartEntity newEntity = CartEntity.toEntity(cartDto);
+        System.out.println(newEntity);
+        cartRepository.save(newEntity);
 
         ResultDto resultDto = null;
 

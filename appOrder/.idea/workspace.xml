@@ -15,11 +15,13 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/controller/ApiControllerJSH.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/controller/ApiControllerJSH.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/controller/MainControllerJSH.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/controller/MainControllerJSH.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/controller/MainControllerYem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/controller/MainControllerYem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/entity/CartEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/entity/CartEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/itemInfo.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/itemInfo.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/cartInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/cartInfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/dto/ItemDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/dto/ItemDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/entity/ItemEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/entity/ItemEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/itemInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/itemInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/itemInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/itemInfo.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
