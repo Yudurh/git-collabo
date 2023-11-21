@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19d4e1de-743c-4947-b9b8-67e50c5242a4" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/controller/ApiControllerYem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/controller/ApiControllerYem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/controller/MainControllerYem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/controller/MainControllerYem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/adminList.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/adminList.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/adminMemberList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/adminMemberList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/adminMemberUpdate.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/adminMemberUpdate.html" afterDir="false" />
-    </list>
+    <list default="true" id="19d4e1de-743c-4947-b9b8-67e50c5242a4" name="변경" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,7 +36,6 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="HTML File" />
         <option value="Class" />
       </list>
     </option>
@@ -64,13 +55,12 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/EZEN/Documents/springboot/KioskEX&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/EZEN/Documents/git-blog/git-collabo/appOrder/src/main/resources/static/font&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\EZEN\Documents\git-blog\git-collabo\appOrder\src\main\resources\static\font" />
@@ -79,7 +69,7 @@
       <recent name="com.springboot.appOrder" />
     </key>
   </component>
-  <component name="RunManager" selected="애플리케이션.AppOrderApplication">
+  <component name="RunManager">
     <configuration name="AppOrderApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.springboot.appOrder.AppOrderApplication" />
       <module name="appOrder.main" />
@@ -93,33 +83,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AppOrderApplicationTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;com.springboot.appOrder.AppOrderApplicationTests&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.AppOrderApplicationTests" />
         <item itemvalue="애플리케이션.AppOrderApplication" />
       </list>
     </recent_temporary>
