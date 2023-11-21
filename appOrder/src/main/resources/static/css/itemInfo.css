@@ -1,10 +1,10 @@
 @font-face {
   font-family: Apple-SD-Gothic-Neo-Bold;
-  src: url(http://localhost:8080/static/font/Apple-SD-Gothic-Neo-Bold.woff) format("woff");
+  src: url(./font/Apple-SD-Gothic-Neo-Bold.woff) format("woff");
   font-style: normal;
 }
 body {
-  font-family: Apple-SD-Gothic-Neo-Bold;
+  font-family: "Apple-SD-Gothic-Neo-Bold";
 }
 #wrap {
   width: 700px;

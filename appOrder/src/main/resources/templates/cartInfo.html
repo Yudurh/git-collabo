@@ -34,8 +34,12 @@
           />
           <div class="cartIn2">
             <div class="cartItemName" th:text=" ${ cart.itemName }">커피</div>
-            <div class="cartItemOption" th:text=" ${ cart.optionName }">
-              옵션
+            <div class="cartItemOption" th:text=" ${ cart.optionName1 }">
+              <div class="cartItemOption" th:text=" ${ cart.optionName2 }">
+                <div class="cartItemOption" th:text=" ${ cart.optionName3 }">
+                  옵션
+                </div>
+              </div>
             </div>
             <div class="quantityAndPrice">
               <div class="Btns">

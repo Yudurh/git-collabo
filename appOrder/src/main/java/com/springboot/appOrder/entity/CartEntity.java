@@ -31,12 +31,10 @@ public class CartEntity {
     private String optionName2;
     @Column(name = "option_name_3")
     private String optionName3;
-    @Column(name = "option_price")
+    @Column(name = "cart_price")
     private Integer cartPrice;
     @Column(name = "item_image_url")
     private String itemImageUrl;
-    @Column(name = "option_name")
-    private String optionName;
     @Column(name = "cart_item_amount")
     private Integer cartItemAmount;
     @Column(name = "cart_date")
