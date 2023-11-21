@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
-    <title>회원 목록</title>
+    <title>주문 수정</title>
   </head>
   <script src="https://code.jquery.com/jquery-latest.min.js"></script>
   <script
@@ -32,15 +32,17 @@
       <div id="main">
         <div id="aside">
           <div id="aside_menu">
-            <button
-              onclick="click_member();"
-              id="menu_member"
-              class="menu_height"
-            >
+            <button onclick="click_member();" id="menu_member">
               회원 관리
             </button>
             <button onclick="click_item();" id="menu_item">상품 관리</button>
-            <button onclick="click_order();" id="menu_order">주문 관리</button>
+            <button
+              onclick="click_order();"
+              id="menu_order"
+              class="menu_height"
+            >
+              주문 관리
+            </button>
             <button onclick="toggleNoticeList();">공지사항 관리</button>
             <div
               onclick="click_event();"
@@ -61,20 +63,20 @@
           </div>
         </div>
         <div id="section">
-          <h4 id="main_title">회원 목록</h4>
-          <div id="member_count" th:text="|총 ${count}명의 회원이 존재합니다.|">
-            총 ()명의 회원이 존재합니다.
+          <h4 id="main_title">상품 목록</h4>
+          <div id="member_count" th:text="|총 ${count}개의 주문이 존재합니다.|">
+            총 ()개의 주문이 존재합니다.
           </div>
           <table class="table table-hover table-bordered">
             <thead>
               <tr>
                 <th scope="col">번호</th>
-                <th scope="col">아이디</th>
-                <th scope="col">비밀번호</th>
-                <th scope="col">이름</th>
-                <th scope="col">역할</th>
-                <th scope="col">스탬프</th>
-                <th scope="col">가입일</th>
+                <th scope="col">주문 코드</th>
+                <th scope="col">총 금액</th>
+                <th scope="col">총 상품 개수</th>
+                <th scope="col">주문 임시번호</th>
+                <th scope="col">결제 수단</th>
+                <th scope="col">결제 시간</th>
                 <th scope="col">수정</th>
                 <th scope="col">삭제</th>
               </tr>
@@ -124,5 +126,5 @@
       </div>
     </div>
   </body>
-  <script src="./js/adminList.js"></script>
+  <script src="./adminList.js"></script>
 </html>

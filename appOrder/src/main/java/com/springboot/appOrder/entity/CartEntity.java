@@ -35,6 +35,8 @@ public class CartEntity {
     private Integer cartPrice;
     @Column(name = "item_image_url")
     private String itemImageUrl;
+    @Column(name = "option_name")
+    private String optionName;
     @Column(name = "cart_item_amount")
     private Integer cartItemAmount;
     @Column(name = "cart_date")

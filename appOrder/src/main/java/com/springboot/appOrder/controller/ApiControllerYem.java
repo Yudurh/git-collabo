@@ -3,14 +3,12 @@ import com.springboot.appOrder.dto.JoinDto;
 import com.springboot.appOrder.dto.LoginDto;
 import com.springboot.appOrder.dto.MemberDto;
 import com.springboot.appOrder.dto.ResultDto;
-import com.springboot.appOrder.entity.CartRepository;
-import com.springboot.appOrder.entity.MemberEntity;
-import com.springboot.appOrder.entity.MemberRepository;
-import com.springboot.appOrder.entity.OrderRepository;
+import com.springboot.appOrder.entity.*;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Order;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,7 +25,7 @@ public class ApiControllerYem {
     @Autowired
     private OrderRepository orderRepository;
 
-    // 로그인 폼
+    // ( 관리자 ) 로그인 폼
     @PostMapping("/loginAction")
     public ResultDto loginAction(@RequestBody LoginDto loginDto, HttpServletRequest request) {
 
@@ -65,7 +63,7 @@ public class ApiControllerYem {
         return resultDto;
     }
 
-    // 회원가입 폼
+    // ( 관리자 ) 회원가입 폼
     @PostMapping("/joinAction")
     public ResultDto joinAction(@RequestBody JoinDto joinDto) {
         System.out.println("loginId:"+joinDto.getLoginId());
@@ -94,7 +92,7 @@ public class ApiControllerYem {
         return resultDto;
     }
 
-    // 회원 정보 수정
+    // ( 관리자 ) 회원 정보 수정
     @PostMapping("/memberUpdateForm")
     public ResultDto memberUpdateForm(@RequestBody MemberDto memberDto) {
         MemberEntity memberEntity = MemberEntity.toMemberEntity(memberDto);
@@ -116,11 +114,6 @@ public class ApiControllerYem {
 
         return resultDto;
     }
-
-
-
-
-
 
 
 }
