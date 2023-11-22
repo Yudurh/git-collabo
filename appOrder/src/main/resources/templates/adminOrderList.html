@@ -39,16 +39,17 @@
             <button
               onclick="click_order();"
               id="menu_order"
-              class="menu_height"
+
             >
               주문 관리
             </button>
-            <button onclick="toggleNoticeList();">공지사항 관리</button>
+            <button onclick="toggleNoticeList();" >공지사항 관리</button>
             <div
               onclick="click_event();"
               class="noticeList"
               style="display: none"
               id="menu_event"
+              class="menu_height"
             >
               <button>이벤트</button>
             </div>
@@ -63,8 +64,8 @@
           </div>
         </div>
         <div id="section">
-          <h4 id="main_title">상품 목록</h4>
-          <div id="member_count" th:text="|총 ${count}개의 주문이 존재합니다.|">
+          <h4 id="main_title">주문 목록</h4>
+          <div id="member_count" th:text="|주문건이 ${count}개 존재합니다.|">
             총 ()개의 주문이 존재합니다.
           </div>
           <table class="table table-hover table-bordered">
