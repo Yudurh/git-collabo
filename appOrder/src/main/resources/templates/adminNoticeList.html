@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
-    <title>주문 수정</title>
+    <title>공지사항 글 목록</title>
   </head>
   <script src="https://code.jquery.com/jquery-latest.min.js"></script>
   <script
@@ -26,83 +26,67 @@
   <body>
     <div id="wrap">
       <div id="header">
-        <img src="./img/megaLogo.png" width="250px">
+        <img src="./img/megaLogo.png" width="250px" />
         <h2 id="header_title">관리자 페이지</h2>
       </div>
       <div id="main">
         <div id="aside">
           <div id="aside_menu">
-            <button
-                    onclick="click_member();"
-                    id="menu_member"
-
-            >
+            <button onclick="click_member();" id="menu_member">
               회원 관리
             </button>
             <button onclick="click_item();" id="menu_item">상품 관리</button>
-            <button onclick="click_order();" id="menu_order" class="menu_height">주문 관리</button>
+            <button onclick="click_order();" id="menu_order">주문 관리</button>
             <button onclick="toggleNoticeList();">공지사항 관리</button>
             <div
-                    onclick="click_event();"
-                    class="noticeList"
-                    style="display: none"
-                    id="menu_event"
+              onclick="click_event();"
+              class="noticeList"
+              style="display: none"
+              id="menu_event"
             >
               <button>이벤트</button>
             </div>
             <div
-                    onclick="click_notice();"
-                    class="noticeList"
-                    style="display: none"
-                    id="menu_notice"
+              onclick="click_notice();"
+              class="noticeList"
+              style="display: none"
+              id="menu_notice"
             >
-              <button href="#">공지사항</button>
+              <button href="#" class="menu_height">공지사항</button>
             </div>
           </div>
         </div>
         <div id="section">
           <h4 id="main_title">주문 목록</h4>
-          <div id="member_count" th:text="|주문 건이 ${count}개 존재합니다.|">
-            총 ()개의 주문이 존재합니다.
-          </div>
+          <div id="member_count">공지목록 < 공지사항</div>
           <table class="table table-hover table-bordered">
             <thead>
               <tr>
                 <th scope="col">번호</th>
-                <th scope="col">주문 코드</th>
-                <th scope="col">총 금액</th>
-                <th scope="col">총 상품 개수</th>
-                <th scope="col">주문 임시번호</th>
-                <th scope="col">결제 수단</th>
-                <th scope="col">주문 상태</th>
-                <th scope="col">결제 시간</th>
+                <th scope="col">제목</th>
+                <th scope="col">내용</th>
+                <th scope="col">작성자</th>
+                <th scope="col">카테고리</th>
+                <th scope="col">이미지</th>
+                <th scope="col">작성 시간</th>
                 <th scope="col">수정</th>
                 <th scope="col">삭제</th>
               </tr>
             </thead>
             <tbody>
-              <tr th:each="order, status:${ list }">
+              <tr th:each="notice, status:${ list }">
                 <!-- 타임리프 처리 -->
-                <!-- 보이지 않는 것 -->
-                <input id="cartItemCode1" type="hidden" th:value="${order.cartItemCode1}" />
-                <input id="cartItemCode2" type="hidden" th:value="${order.cartItemCode2}" />
-                <input id="cartItemCode3" type="hidden" th:value="${order.cartItemCode3}" />
-                <input id="cartItemCode4" type="hidden" th:value="${order.cartItemCode4}" />
-                <input id="cartItemCode5" type="hidden" th:value="${order.cartItemCode5}" />
-
                 <!-- 보이는 것 -->
-                <td><span th:text="${order.orderNo}"></span></td>
-                <td><span th:text="${order.orderCode}"></span></td>
-                <td><span th:text="${order.orderTotalPrice}"></span></td>
-                <td><span th:text="${order.orderTotalCount}"></span></td>
-                <td><span th:text="${order.orderNumber}"></span></td>
-                <td><span th:text="${order.orderPayType}"></span></td>
-                <td><span th:text="${order.orderState}"></span></td>
-                <td><span th:text="${order.orderDatetime}"></span></td>
-
+                <td><span th:text="${notice.noticeNo}"></span></td>
+                <td><span th:text="${notice.noticeTitle}"></span></td>
+                <td><span th:text="${notice.noticeContent}"></span></td>
+                <td><span th:text="${notice.noticeUser}"></span></td>
+                <td><span th:text="${notice.noticeCate}"></span></td>
+                <td><img  class="admin_item_img" id="imgItemImageUrl" th:src="${notice.noticeImage}" width="100px"></td>
+                <td><span th:text="${notice.noticeDatetime}"></span></td>
                 <td>
                   <a
-                    th:href="|/orderUpdate?orderNo=${ order.orderNo }|"
+                    th:href="|/noticeUpdate?noticeNo=${ notice.noticeNo }|"
                     class="btn btn-warning"
                     role="button"
                     >수정</a
@@ -110,7 +94,7 @@
                 </td>
                 <td>
                   <a
-                    th:href="|/orderDelete?orderNo=${ order.orderNo }|"
+                    th:href="|/noticeDelete?noticeNo=${ notice.noticeNo }|"
                     class="btn btn-dark"
                     role="button"
                     >삭제</a

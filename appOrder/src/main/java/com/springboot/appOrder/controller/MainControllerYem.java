@@ -3,6 +3,7 @@ package com.springboot.appOrder.controller;
 import com.springboot.appOrder.dto.*;
 import com.springboot.appOrder.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,8 @@ public class MainControllerYem {
     private OrderRepository orderRepository;
     @Autowired
     private OptionRepository optionRepository;
+    @Autowired
+    private NoticeRepository noticeRepository;
 
     @GetMapping("")
     public String first(){
@@ -47,7 +50,6 @@ public class MainControllerYem {
     // ( 관리자 ) 회원 정보 조회
     @GetMapping("/adminMemberList")
     public String adminMemberList(Model model){
-
         List<MemberEntity> memberEntities = memberRepository.findAll();
         model.addAttribute("list", memberEntities);
         model.addAttribute("count", memberEntities.size());
@@ -59,7 +61,6 @@ public class MainControllerYem {
     @GetMapping("/memberUpdate")
     public String memberUpdateForm(@RequestParam String memberNo,
                                    Model model){
-
         MemberEntity memberEntity = memberRepository.findById(Long.valueOf(memberNo)).get();
         MemberDto memberDto = MemberDto.toDto(memberEntity);
 
@@ -84,7 +85,6 @@ public class MainControllerYem {
     // ( 관리자 ) 상품 정보 조회
     @GetMapping("/adminItemList")
     public String adminItemList( Model model ){
-
         List<ItemEntity> itemEntities = itemRepository.findAll();
         model.addAttribute("list", itemEntities);
         model.addAttribute("count", itemEntities.size());
@@ -97,7 +97,6 @@ public class MainControllerYem {
     @GetMapping("/itemUpdate")
     public String itemUpdate(@RequestParam String itemNo,
                                  Model model){
-
         ItemEntity itemEntity = itemRepository.findById(Long.valueOf(itemNo)).get();
         ItemDto itemDto = ItemDto.toDto(itemEntity);
 
@@ -112,16 +111,70 @@ public class MainControllerYem {
     // ( 관리자 ) 상품 정보 삭제
     @GetMapping("/itemDelete")
     public String itemDelete(@RequestParam Long itemNo){
-
         itemRepository.deleteById(itemNo);
 
         return "redirect:/adminItemList";
     }
 
+    // ( 관리자 ) 주문 정보 조회
+    @GetMapping("/adminOrderList")
+    public String adminOrderList(Model model){
+        List<OrderEntity> orderEntities = orderRepository.findAll();
+
+        model.addAttribute( "list", orderEntities );
+        model.addAttribute( "count", orderEntities.size());
+
+        return "adminOrderList";
+    }
+
+    // ( 관리자 ) 주문 정보 수정
+    @GetMapping("/orderUpdate")
+    public String orderUpdate(@RequestParam Long orderNo,
+                              Model model){
+        OrderEntity orderEntity = orderRepository.findById(orderNo).get();
+        OrderDto orderDto = OrderDto.toDto(orderEntity);
+
+        model.addAttribute("order", orderDto);
+        model.addAttribute("orderNo", orderNo);
+
+        // 업데이트 페이지 이동
+        return "adminOrderUpdate";
+
+    }
+
+    // ( 관리자 ) 주문 정보 삭제
+    @GetMapping("/orderDelete")
+    public String orderDelete(@RequestParam Long orderNo){
+        orderRepository.deleteById(orderNo);
+
+        return "redirect:/adminOrderList";
+    }
+
+    // ( 관리자 ) 공지사항 글 조회
+    @GetMapping("/adminNoticeList")
+    public String adminNoticeList(Model model){
+        List<NoticeEntity> noticeEntities = noticeRepository.findAll();
+        model.addAttribute("list", noticeEntities);
+        return "adminNoticeList";
+    }
+
+    // ( 관리자 ) 공지사항 글 수정
+    @GetMapping("/noticeUpdate")
+    public String noticeUpdate(@RequestParam Long noticeNo,
+                               Model model){
+        NoticeEntity noticeEntity = noticeRepository.findById(noticeNo).get();
+        NoticeDto noticeDto = NoticeDto.toNoticeDto(noticeEntity);
+
+        model.addAttribute("notice", noticeDto);
+        model.addAttribute("noticeNo", noticeNo);
+
+        return "adminNoticeUpdate";
+    }
+
     // (사용자) 상품 정보 조회
     @GetMapping("/itemInfo")
     public String itemInfo(@RequestParam String itemName,
-//                           @RequestParam String itemCate,
+                           @RequestParam String itemCate,
                            Model model){
 
         // 클릭한 아이템의 정보
@@ -179,12 +232,12 @@ public class MainControllerYem {
     // ( 사용자 ) 장바구니 정보 삭제
     @GetMapping("/cartDelete")
     public String cartDelete (@RequestParam Long cartNo) {
-
         cartRepository.deleteById(cartNo);
 
         return "redirect:/cartInfo";
 
     }
+
 
 
 }

@@ -1,5 +1,6 @@
 package com.springboot.appOrder.entity;
 
+import com.springboot.appOrder.dto.OrderDto;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -18,6 +19,8 @@ public class OrderEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_no")
     private Long orderNo;
+    @Column(name = "order_code")
+    private String orderCode;
     @Column(name = "cart_item_code_1")
     private String cartItemCode1;
     @Column(name = "cart_item_code_2")
@@ -41,4 +44,22 @@ public class OrderEntity {
     @Column(name = "order_datetime")
     @DateTimeFormat(pattern = "yyyy-MM-ddTHH:mm:ss")
     private LocalDateTime orderDatetime;
+
+    public static OrderEntity toOrderEntity(OrderDto dto){
+        return OrderEntity.builder()
+                .orderNo(dto.getOrderNo())
+                .orderCode(dto.getOrderCode())
+                .cartItemCode1(dto.getCartItemCode1())
+                .cartItemCode2(dto.getCartItemCode2())
+                .cartItemCode3(dto.getCartItemCode3())
+                .cartItemCode4(dto.getCartItemCode4())
+                .cartItemCode5(dto.getCartItemCode5())
+                .orderTotalPrice(dto.getOrderTotalPrice())
+                .orderTotalCount(dto.getOrderTotalCount())
+                .orderNumber(dto.getOrderNumber())
+                .orderPayType(dto.getOrderPayType())
+                .orderState(dto.getOrderState())
+                .orderDatetime(dto.getOrderDatetime())
+                .build();
+    }
 }

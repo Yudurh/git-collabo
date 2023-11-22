@@ -70,7 +70,9 @@ public class ApiControllerYem {
         System.out.println("loginPw:"+joinDto.getLoginPw());
         System.out.println("loginName:"+joinDto.getLoginName());
 
+        // 수정된 정보 dto -> entity
         MemberEntity memberJoinEntity = MemberEntity.toJoinEntity( joinDto );
+        // 수정된 정보  repository에 저장
         MemberEntity newEntity = memberRepository.save(memberJoinEntity);
 
         ResultDto resultDto = null;
@@ -172,4 +174,29 @@ public class ApiControllerYem {
         return resultDto;
     }
 
+    // ( 관리자 ) 주문 정보 수정 폼
+    @PostMapping("/orderUpdateForm")
+    public ResultDto orderUpdateForm(@RequestBody OrderDto orderDto) {
+
+        OrderEntity orderEntity = OrderEntity.toOrderEntity(orderDto);
+        OrderEntity newEntity = orderRepository.save(orderEntity);
+
+        ResultDto resultDto = null;
+
+        if( newEntity != null  ) {
+            //수정 성공
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(1)
+                    .build();
+        }else{
+            //수정 실패
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(0)
+                    .build();
+        }
+
+        return resultDto;
+    }
 }

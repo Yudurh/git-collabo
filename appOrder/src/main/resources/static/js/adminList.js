@@ -66,7 +66,7 @@ function click_order() {
   window.location.href = "/adminOrderList";
 }
 // 이벤트 페이지 이동
-function click_order() {
+function click_event() {
   let menu_member = document.getElementById("menu_member");
   let menu_item = document.getElementById("menu_item");
   let menu_order = document.getElementById("menu_order");
@@ -84,7 +84,7 @@ function click_order() {
   window.location.href = "/adminEventList";
 }
 // 공지사항 페이지 이동
-function click_order() {
+function click_notice() {
   let menu_member = document.getElementById("menu_member");
   let menu_item = document.getElementById("menu_item");
   let menu_order = document.getElementById("menu_order");
