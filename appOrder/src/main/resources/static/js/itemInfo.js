@@ -236,7 +236,7 @@ $(document).ready(function () {
     let itemAmount = document.getElementById("quantity").innerHTML;
     let itemImg = document.getElementById("item_img").src;
     let cartPrice = document
-      .getElementById("totalItemPrice")
+      .getElementById("price")
       .innerHTML.replace("원", "");
     let cartDate = getKST();
 
@@ -265,11 +265,47 @@ $(document).ready(function () {
       .then((json) => {
         //{ status: "ok", result: 5 }
         console.log("json:" + json);
-        console.log(optionName3);
         alert("장바구니에 담겼습니다");
+      }) //실제 데이타
+      .catch((error) => {
+        console.log(error);
+      });
+    let recomItem = 0;
+    if ($("#recomCh").is(":checked") == true) {
+      recomItem = 1;
+    }
+
+    let param = {
+      itemNo: 0,
+      itemCode: 0,
+      itemName: "ds",
+      itemContent: "adqw",
+      itemCate: "adad",
+      itemRecommend: recomItem,
+      itemPrice: 0,
+      itemImageUrl: "asdd",
+      itemUpdateDatetime: cartDate,
+    };
+
+    fetch("/setCartRecom", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(param),
+    })
+      .then((response) => {
+        console.log("response:" + response);
+        return response.json();
+      }) //HTTP 응답
+      .then((json) => {
+        //{ status: "ok", result: 5 }
+        console.log("json:" + json);
       }) //실제 데이타
       .catch((error) => {
         console.log(error);
       });
   });
 });
+
+function goToCart() {
+  window.location.href = "/cartInfo";
+}

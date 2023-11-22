@@ -51,26 +51,40 @@ public class ApiControllerJSH {
                 .collect(Collectors.toList());
         map.put("itemlistRecommand", listDtoRecommend);
 
-        List<ItemEntity> listCate1 = itemRepository.findByItemCate("커피");
+        List<ItemEntity> listCate1 = itemRepository.findByItemCate("커피(HOT)");
         List<ItemDto> listDto1 = listCate1
                 .stream()
                 .map(ItemDto::toDto)
                 .collect(Collectors.toList());
-        map.put("itemlistCoffee", listDto1);
+        map.put("itemlistCoffeeH", listDto1);
 
-        List<ItemEntity> listCate2 = itemRepository.findByItemCate("디저트");
+        List<ItemEntity> listCate2 = itemRepository.findByItemCate("커피(ICE)");
         List<ItemDto> listDto2 = listCate2
                 .stream()
                 .map(ItemDto::toDto)
                 .collect(Collectors.toList());
-        map.put("itemlistDesert", listDto2);
+        map.put("itemlistCoffeeI", listDto2);
 
-        List<ItemEntity> listCate3 = itemRepository.findByItemCate("음료");
+        List<ItemEntity> listCate3 = itemRepository.findByItemCate("스무디&프라페");
         List<ItemDto> listDto3 = listCate3
                 .stream()
                 .map(ItemDto::toDto)
                 .collect(Collectors.toList());
-        map.put("itemlistDrink", listDto3);
+        map.put("itemlistSF", listDto3);
+
+        List<ItemEntity> listCate4 = itemRepository.findByItemCate("에이드&주스");
+        List<ItemDto> listDto4 = listCate4
+                .stream()
+                .map(ItemDto::toDto)
+                .collect(Collectors.toList());
+        map.put("itemlistDrink", listDto4);
+
+        List<ItemEntity> listCate5 = itemRepository.findByItemCate("디저트");
+        List<ItemDto> listDto5 = listCate5
+                .stream()
+                .map(ItemDto::toDto)
+                .collect(Collectors.toList());
+        map.put("itemlistDesert", listDto5);
 
         return map; //json 문자열로 리턴이 된다.
     }
@@ -80,6 +94,7 @@ public class ApiControllerJSH {
 
     @PostMapping("/setCart")
     public ResultDto setCart(@RequestBody CartDto cartDto,
+
                              Model model){
 
 
@@ -87,6 +102,14 @@ public class ApiControllerJSH {
         CartEntity newEntity = CartEntity.toEntity(cartDto);
         System.out.println(newEntity);
         cartRepository.save(newEntity);
+
+//        if (ItemRecommend.equals(1)){
+//            List<ItemEntity> reItem = itemRepository.findByItemRecommend(1);
+//            ItemDto reDto = ItemDto.toDto(reItem.get(0));
+//            CartEntity newEntity2 = CartEntity.ItemToCart(reDto);
+//            cartRepository.save(newEntity2);
+//        }
+//
 
         ResultDto resultDto = null;
 
@@ -106,6 +129,47 @@ public class ApiControllerJSH {
         return resultDto;
     }
 
+    @PostMapping("/setCartRecom")
+    public ResultDto setCartRecom(@RequestBody ItemDto dto,
+                             Model model){
+        List<ItemEntity> newEntity = itemRepository.findByItemRecommend(dto.getItemRecommend());
+        if (dto.getItemRecommend() == 1){
+
+            ItemDto newDto = ItemDto.toDto(newEntity.get(0));
+            CartEntity newEntityC = CartEntity.ItemToCart(newDto);
+            cartRepository.save(newEntityC);
+        }
+
+
+
+
+
+
+//        if (ItemRecommend.equals(1)){
+//            List<ItemEntity> reItem = itemRepository.findByItemRecommend(1);
+//            ItemDto reDto = ItemDto.toDto(reItem.get(0));
+//            CartEntity newEntity2 = CartEntity.ItemToCart(reDto);
+//            cartRepository.save(newEntity2);
+//        }
+//
+
+        ResultDto resultDto = null;
+
+        if( newEntity != null  ) {
+            //포인트 수정 성공
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(1)
+                    .build();
+        }else{
+            //포인트 수정 실패
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(0)
+                    .build();
+        }
+        return resultDto;
+    }
 
 
 

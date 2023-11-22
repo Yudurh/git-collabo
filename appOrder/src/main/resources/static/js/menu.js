@@ -3,7 +3,9 @@ window.addEventListener("load", function () {
 });
 
 let recommendItems = [];
-let coffeeItems = [];
+let coffeeItemsH = [];
+let coffeeItemsI = [];
+let SFItems = [];
 let dessertItems = [];
 let drinksItems = [];
 let arrayCart = [];
@@ -25,7 +27,9 @@ function fetch_itemlist() {
       //console.log("json:" + json);
 
       recommendItems = json.itemlistRecommand;
-      coffeeItems = json.itemlistCoffee;
+      coffeeItemsH = json.itemlistCoffeeH;
+      coffeeItemsI = json.itemlistCoffeeI;
+      SFItems = json.itemlistSF;
       dessertItems = json.itemlistDesert;
       drinksItems = json.itemlistDrink;
 
@@ -66,14 +70,18 @@ const itemsPerPage = 9;
 function getSelectedItems() {
   const selectedButton = document.querySelector(".nav button.selected");
 
-  if (selectedButton.id === "coffee") {
-    return coffeeItems;
+  if (selectedButton.id === "coffeeH") {
+    return coffeeItemsH;
   } else if (selectedButton.id === "recommendMenu") {
     return recommendItems;
   } else if (selectedButton.id === "dessert") {
     return dessertItems;
   } else if (selectedButton.id === "drinks") {
     return drinksItems;
+  } else if (selectedButton.id === "SF") {
+    return SFItems;
+  } else if (selectedButton.id === "coffeeI") {
+    return coffeeItemsI;
   }
 }
 
@@ -149,31 +157,7 @@ document.getElementById("recommendMenu").addEventListener("click", function () {
   acountBox();
 });
 
-//document.getElementById("burgerSet").addEventListener("click", function () {
-//  document.querySelector(".headerText").textContent = "버거 & 세트";
-//  const sectionContent = document.querySelector(".section");
-//
-//  resetButtonStyles();
-//
-//  this.classList.add("selected");
-//
-//  currentPage = 1;
-//  updateContent(burgerSetItems);
-//});
-
-//document.getElementById("happyMeal").addEventListener("click", function () {
-//  document.querySelector(".headerText").textContent = "해피밀";
-//  const sectionContent = document.querySelector(".section");
-//
-//  resetButtonStyles();
-//
-//  this.classList.add("selected");
-//
-//  currentPage = 1;
-//  updateContent(happyMealItems);
-//});
-
-document.getElementById("coffee").addEventListener("click", function () {
+document.getElementById("coffeeH").addEventListener("click", function () {
   //  document.querySelector(".headerText").textContent = "커피";
   const sectionContent = document.querySelector(".section");
 
@@ -182,7 +166,20 @@ document.getElementById("coffee").addEventListener("click", function () {
   this.classList.add("selected");
 
   currentPage = 1;
-  updateContent(coffeeItems);
+  updateContent(coffeeItemsH);
+  acountBox();
+});
+
+document.getElementById("coffeeI").addEventListener("click", function () {
+  //  document.querySelector(".headerText").textContent = "커피";
+  const sectionContent = document.querySelector(".section");
+
+  resetButtonStyles();
+
+  this.classList.add("selected");
+
+  currentPage = 1;
+  updateContent(coffeeItemsI);
   acountBox();
 });
 
@@ -209,6 +206,19 @@ document.getElementById("drinks").addEventListener("click", function () {
 
   currentPage = 1;
   updateContent(drinksItems);
+  acountBox();
+});
+
+document.getElementById("SF").addEventListener("click", function () {
+  //  document.querySelector(".headerText").textContent = "음료";
+  const sectionContent = document.querySelector(".section");
+
+  resetButtonStyles();
+
+  this.classList.add("selected");
+
+  currentPage = 1;
+  updateContent(SFItems);
   acountBox();
 });
 

@@ -29,15 +29,37 @@
   </head>
   <body>
     <div id="wrap">
+      <div class="header bg-light">
+        <div class="headerRightBox bg-light">
+          <div class="returnButtonBox">
+            <button class="btn" onclick="history.back()">
+              <img src="./Img/left-arrow.png" />
+            </button>
+          </div>
+          <button
+            onclick="goToCart()"
+            id="goToPay"
+            class="btn position-relative"
+          >
+            <img
+              src="./Img/online-shopping.png"
+              alt=""
+              height="22px"
+              width="22px"
+            />
+            <span
+              class="position-absolute top-40 start-60 badge bg-danger"
+              th:text="|${cartSize}|"
+              >99+
+            </span>
+          </button>
+        </div>
+      </div>
       <!-- 상품 이미지, 상품명, 상품 내용 -->
       <div id="header">
         <div id="itemInfo">
           <div id="itemImg">
-            <img
-              id="item_img"
-              src="https://img.79plus.co.kr/megahp/manager/upload/menu/20231025193235_1698229955914_EH9HF0a_7U.jpg"
-              width="150px"
-            />
+            <img id="item_img" th:src="${itemImageUrl}" width="150px" />
           </div>
           <div id="itemTitle" th:text="${ itemName }"></div>
           <div id="itemContent" th:text="${ itemContent }"></div>
@@ -72,7 +94,7 @@
               class="accordion-collapse collapse show"
               data-bs-parent="#accordionExample"
             >
-              <div class="accordion-body" style="border: 1px solid red">
+              <div class="accordion-body">
                 <div class="form-check">
                   <div th:if="${optionN > 0 }">농도</div>
                   <div
@@ -149,9 +171,9 @@
         </div>
         <div id="itemQuantity">
           <div id="quantityBox">
-            <button class="plus" name="plus">+</button>
-            <div id="quantity">1</div>
-            <button class="minus" name="minus">-</button>
+            <button class="plus btn btn-dark" name="plus">+</button>
+            <div id="quantity" class="m-3">1</div>
+            <button class="minus btn btn-dark" name="minus">-</button>
           </div>
           <div id="price" th:text=" |${ itemPrice }원| "></div>
           <div
@@ -164,12 +186,12 @@
           <h7>추천 메뉴</h7>
           <div id="recomeMain">
             <div id="recomInfo">
-              <img
-                src="https://img.79plus.co.kr/megahp/manager/upload/menu/20231025193235_1698229955914_EH9HF0a_7U.jpg"
-                width="80px"
-                th:href=" ${itemRecomImg} "
-              />
-              <div class="recomTitle" th:text=" ${ItemRecomName} "></div>
+              <img width="80px" th:src=" ${itemRecomImg} " />
+              <div
+                class="recomTitle"
+                id="recomTitle"
+                th:text=" ${ItemRecomName} "
+              ></div>
               <div class="recomPrice" th:text=" |${ItemRecomPrice} 원|"></div>
             </div>
             <div>
@@ -190,11 +212,17 @@
           <div id="totalItemPrice" th:text=" |${ itemPrice }원| "></div>
         </div>
         <div id="btns">
-          <button>바로 주문</button>
-          <button id="cartSet">장바구니 담기</button>
+          <button class="btn mybtn2">바로 주문</button>
+          <button id="cartSet" class="btn mybtn">장바구니 담기</button>
         </div>
       </div>
     </div>
     <script src="./js/itemInfo.js"></script>
+    <!--    <link-->
+    <!--            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"-->
+    <!--            rel="stylesheet"-->
+    <!--            integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"-->
+    <!--            crossorigin="anonymous"-->
+    <!--    />-->
   </body>
 </html>

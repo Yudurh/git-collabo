@@ -1,11 +1,13 @@
 package com.springboot.appOrder.entity;
 
 import com.springboot.appOrder.dto.CartDto;
+import com.springboot.appOrder.dto.ItemDto;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name="cart")
@@ -56,6 +58,25 @@ public class CartEntity {
                 .itemImageUrl(dto.getItemImageUrl())
                 .cartItemAmount(dto.getCartItemAmount())
                 .cartDate(dto.getCartDate())
+                .build();
+    }
+
+
+    public static CartEntity ItemToCart(ItemDto dto){
+
+        String uuidOne = String.valueOf(UUID.randomUUID());
+        return CartEntity.builder()
+                .cartNo(0L)
+                .cartCode(uuidOne)
+                .itemCode(dto.getItemCode())
+                .itemName(dto.getItemName())
+                .optionName1("해당없음")
+                .optionName2("해당없음")
+                .optionName3("해당없음")
+                .cartPrice(dto.getItemPrice())
+                .itemImageUrl(dto.getItemImageUrl())
+                .cartItemAmount(1)
+                .cartDate(LocalDateTime.now())
                 .build();
     }
 }

@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19d4e1de-743c-4947-b9b8-67e50c5242a4" name="변경" comment="" />
+    <list default="true" id="19d4e1de-743c-4947-b9b8-67e50c5242a4" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/controller/ApiControllerJSH.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/controller/ApiControllerJSH.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/controller/MainControllerYem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/controller/MainControllerYem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/entity/CartEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/entity/CartEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/itemInfo.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/itemInfo.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/menu.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/menu.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/itemInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/itemInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/itemInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/itemInfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/menu.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

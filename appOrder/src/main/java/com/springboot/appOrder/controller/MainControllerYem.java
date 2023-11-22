@@ -100,7 +100,9 @@ public class MainControllerYem {
         List<ItemEntity> itemEntitiy = itemRepository.findByItemName(itemName);
         // 메뉴 중복이 없으므로 .get(0)을 하면 원하는 커피 정보를 가져옴
         ItemEntity itemEntity = itemEntitiy.get(0);
+
         model.addAttribute("itemName", itemEntity.getItemName());
+        model.addAttribute("itemImageUrl", itemEntity.getItemImageUrl());
         model.addAttribute("itemPrice", itemEntity.getItemPrice());
         model.addAttribute("itemContent", itemEntity.getItemContent());
         model.addAttribute("itemCode", itemEntity.getItemCode());
@@ -132,11 +134,17 @@ public class MainControllerYem {
         
         // 추천 메뉴 아이템 정보
         List<ItemEntity> itemEntitiy2 = itemRepository.findByItemRecommend(1);
-        ItemEntity itemEntity2 = itemEntitiy.get(0);
+        ItemEntity itemEntity2 = itemEntitiy2.get(0);
         model.addAttribute("itemRecomImg", itemEntity2.getItemImageUrl());
         model.addAttribute("ItemRecomName", itemEntity2.getItemName());
         model.addAttribute("ItemRecomPrice", itemEntity2.getItemPrice());
 
+        List<CartEntity> cartEntities = cartRepository.findAll();
+        if (cartEntities.size()>0){
+        model.addAttribute("cartSize",cartEntities.size());
+        }else {
+            model.addAttribute("cartSize",0);
+        }
 
         return "itemInfo";
     }
