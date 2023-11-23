@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS apporder;
 CREATE DATABASE apporder;
 USE apporder;
 
---상품 정보
+-- 상품 테이블
 DROP TABLE if EXISTS item;
 CREATE TABLE item(
     item_no INT AUTO_INCREMENT NOT NULL PRIMARY KEY, -- 고유키
@@ -24,7 +24,8 @@ INSERT INTO item VALUES(NULL, '123e4567-e89b-12d3-a456-556642440003', '왕할메
 
 SELECT * FROM item;
 
---장바구니안에 들어가는 물건 한개에 대한 정보
+
+-- 장바구니 테이블
 DROP TABLE if EXISTS cart;
 CREATE TABLE cart (
     cart_no INT AUTO_INCREMENT NOT NULL PRIMARY KEY, -- 고유키
@@ -49,13 +50,13 @@ INSERT INTO cart VALUES (NULL, '333e4567-e89b-12d3-b456-556642440113', '123e4567
 SELECT * FROM cart;
 
 
--- 결제정보
+-- 주문 테이블
 DROP TABLE if EXISTS `order`;
 CREATE TABLE `order` (
     order_no INT AUTO_INCREMENT PRIMARY KEY, -- 고유키
     order_code VARCHAR(255) NOT NULL UNIQUE, -- 주문코드(UUID포맷-32자리)
       -- 구매상품 정보
-    cart_item_code_1 VARCHAR(255) NOT NULL UNIQUE, -- 상품코드1(UUID포맷-32자리)
+    cart_item_code_1 VARCHAR(255) NOT NULL UNIQUE, -- 상품코드1(UUID포맷-32자리) -> 카트 코드
     cart_item_code_2 VARCHAR(255) UNIQUE, -- 상품코드2(UUID포맷-32자리)
     cart_item_code_3 VARCHAR(255) UNIQUE, -- 상품코드3(UUID포맷-32자리)
     cart_item_code_4 VARCHAR(255) UNIQUE, -- 상품코드4(UUID포맷-32자리)
@@ -66,13 +67,20 @@ CREATE TABLE `order` (
     -- 주문자/수령자 정보
     order_number INT NOT NULL, -- 주문자 임시번호(0 ~ 999)
     -- 결제방법
-    order_pay_type INT DEFAULT(1) NOT NULL, -- 01 신용카드 또는 02 간편결제
+    order_pay_type INT DEFAULT(1) NOT NULL, -- 0 현금 또는 1 카드
     -- 주문상태
     -- 결제완료 -> 상품 준비중 -> 상품 준비완료 -> 수령 완료 or 기한후 폐기
+	 order_state VARCHAR(255) NOT NULL UNIQUE,
     order_datetime DATETIME DEFAULT NOW() -- 결제시간
 );
 
+INSERT INTO `order` VALUES (NULL, '4444e4567-e89b-12d3-b456-556642440113', '5555e4567-e89b-12d3-a456-556642441111', NULL, NULL, NULL, NULL, 5000, 2, 10, DEFAULT, '결제 완료', DEFAULT);
 
+
+SELECT * FROM `order`;
+
+
+-- 회원 테이블
 DROP TABLE if EXISTS apporder.member;
 CREATE TABLE apporder.member(
    member_no INT AUTO_INCREMENT NOT NULL PRIMARY KEY, -- 고유키
@@ -97,6 +105,7 @@ SELECT * FROM apporder.member;
 
 
 
+-- 옵션 테이블
 DROP TABLE if EXISTS apporder.p_option;
 CREATE TABLE apporder.p_option(
    option_no INT AUTO_INCREMENT NOT NULL PRIMARY KEY, -- 고유키
@@ -120,3 +129,23 @@ INSERT INTO apporder.p_option VALUES(NULL, '음료수', '개인 텀블러 사용
 
 
 SELECT * FROM apporder.p_option;
+
+
+
+-- 공지 테이블
+DROP TABLE if EXISTS notice;
+CREATE TABLE notice(
+   notice_no INT AUTO_INCREMENT NOT NULL PRIMARY KEY, -- 고유키
+   notice_cate int(255) NOT NULL DEFAULT('0'), -- 0 : 공지사항, 1 : 이벤트
+   notice_user VARCHAR(255) NOT NULL, -- 작성자
+   notice_title VARCHAR(255) NOT NULL, -- 제목
+   notice_content VARCHAR(255) NOT NULL, -- 내용
+   notice_datetime DATETIME DEFAULT NOW(), -- 작성/수정 시간
+	notice_image_url TEXT NOT NULL -- 이미지
+
+);
+
+
+INSERT INTO notice VALUES(NULL, DEFAULT, 'admin', '정수현 집념의 남자', '집념의 남자라는둥 뭐라둥', DEFAULT,'http://img.79plus.co.kr/megahp/manager/upload/bbs/202311071550131533460215.jpg' );
+
+SELECT * FROM notice;

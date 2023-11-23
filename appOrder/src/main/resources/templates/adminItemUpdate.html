@@ -81,12 +81,13 @@
         <div class="updateContent">
           <label>이미지</label>
           <div>
-            <img
-              class="admin_item_img"
-              id="imgItemImageUrl"
-              th:src="${item.itemImageUrl}"
-              width="130px"
-            />
+<!--            <img-->
+<!--              class="admin_item_img"-->
+<!--              id="imgItemImageUrl"-->
+<!--              th:value="${item.itemImageUrl}"-->
+<!--              width="130px"-->
+<!--            />-->
+            <input type="image" name="newImage" id="newImage" th:value="${item.itemImageUrl}" width="150px">
           </div>
           &nbsp;&nbsp;<button
             type="file"
@@ -95,7 +96,6 @@
           >
             변경
           </button>
-          <!--  -->
           <input
             type="file"
             style="visibility: hidden"
@@ -150,7 +150,7 @@
         <button class="btn btn-secondary" onclick="history.back();">
           취소
         </button>
-        <button class="btn btn-warning" onclick="itemUpdate();">수정</button>
+        <button class="btn btn-warning" onclick="itemUpdate();" onchange="change();">수정</button>
       </div>
     </div>
     <script src="./js/adminUpdate.js"></script>

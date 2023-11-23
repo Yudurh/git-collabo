@@ -92,42 +92,48 @@ function itemUpdate() {
   image_upload();
 }
 
-function image_upload() {
+function image_upload(){
+
   let inputItemImageUrl = document.getElementById("inputItemImageUrl");
+  let newImage = document.getElementById("newImage").value;
+  console.log(inputItemImageUrl);
+  console.log(newImage);
 
   let fileUrl = inputItemImageUrl.value; //C:\fakepath\cosmos.jpg
   let index = fileUrl.lastIndexOf("\\");
-  let fileName = fileUrl.substr(index + 1); //cosmos.jpg
+  let fileName = fileUrl.substr(index+1); //cosmos.jpg
+  console.log("fileUrl:" + fileUrl);
+  console.log("index:" + index);
   console.log("fileName:" + fileName);
 
   let form = new FormData();
   form.enctype = "multipart/form-data";
-  form.append("file", inputItemImageUrl.files[0], fileName);
+  form.append('file', inputItemImageUrl.files[0], fileName);
 
-  fetch("/upload", {
+  fetch('/upload', {
     method: "POST",
     headers: {
       //"Content-Type": "multipart/form-data"
     },
     body: form,
   })
-    .then((response) => {
-      console.log("response:" + response);
-      console.log("response:" + JSON.stringify(response));
+  .then((response) => {
+    console.log("response:" + response);
+    console.log("response:" + JSON.stringify(response));
 
-      return response.json();
-    }) //HTTP 응답
-    .then((json) => {
-      //{ status: "ok", result: 5 }
-      console.log("json:" + json);
-      console.log("json:" + JSON.stringify(json));
-      console.log("uploadFileName:" + json.uploadFileName);
+    return response.json();
+  }) //HTTP 응답
+  .then((json) => {
+    //{ status: "ok", result: 5 }
+    console.log("json:" + json);
+    console.log("json:" + JSON.stringify(json));
+    console.log("uploadFileName:" + json.uploadFileName);
 
-      func_item_updateAction_json(json.uploadFileName);
-    }) //실제 데이타
-    .catch((error) => {
-      console.log(error);
-    });
+    func_item_updateAction_json( json.uploadFileName );
+  }) //실제 데이타
+  .catch((error) => {
+    console.log(error);
+  });
 }
 
 function func_item_updateAction_json(itemImageUrl) {
@@ -261,98 +267,3 @@ function orderUpdate() {
 // 공지사항 수정
 // 이미지 업로드
 
-function imgUpdate() {
-  image_upload();
-}
-
-function image_upload() {
-  let inputItemImageUrl = document.getElementById("inputItemImageUrl");
-
-  let fileUrl = inputItemImageUrl.value; //C:\fakepath\cosmos.jpg
-  let index = fileUrl.lastIndexOf("\\");
-  let fileName = fileUrl.substr(index + 1); //cosmos.jpg
-  console.log("fileName:" + fileName);
-
-  let form = new FormData();
-  form.enctype = "multipart/form-data";
-  form.append("file", inputItemImageUrl.files[0], fileName);
-
-  fetch("/upload", {
-    method: "POST",
-    headers: {
-      //"Content-Type": "multipart/form-data"
-    },
-    body: form,
-  })
-    .then((response) => {
-      console.log("response:" + response);
-      console.log("response:" + JSON.stringify(response));
-
-      return response.json();
-    }) //HTTP 응답
-    .then((json) => {
-      //{ status: "ok", result: 5 }
-      console.log("json:" + json);
-      console.log("json:" + JSON.stringify(json));
-      console.log("uploadFileName:" + json.uploadFileName);
-
-      func_item_updateAction_json(json.uploadFileName);
-    }) //실제 데이타
-    .catch((error) => {
-      console.log(error);
-    });
-}
-
-function func_item_updateAction_json(itemImageUrl) {
-  let itemNo = document.getElementById("itemNo").value;
-  let itemCode = document.getElementById("itemCode").value;
-  let itemName = document.getElementById("inputItemName").value;
-  let itemContent = document.getElementById("inputItemContent").value;
-  let itemCate = $("#cate").val();
-  let itemRecommend = $("input:radio[name=recom]:checked").val();
-  let itemPrice = document.getElementById("inputItemPrice").value;
-  // let itemImageUrl = document.getElementById("inputItemImageUrl").value;
-  let itemUpdateDatetime = document.getElementById("itemUpdateDatetime").value;
-
-  console.log(itemRecommend);
-  console.log(itemCate);
-
-  let params = {
-    itemNo: itemNo,
-    itemCode: itemCode,
-    itemName: itemName,
-    itemContent: itemContent,
-    itemCate: itemCate,
-    itemRecommend: itemRecommend,
-    itemPrice: itemPrice,
-    itemImageUrl: itemImageUrl,
-    itemUpdateDatetime: itemUpdateDatetime,
-  };
-  console.log(JSON.stringify(params));
-
-  fetch("/itemUpdateForm", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(params),
-  })
-    .then((response) => {
-      console.log("response:" + response);
-      return response.json();
-    }) //HTTP 응답
-    .then((json) => {
-      console.log("json:" + json);
-
-      if (json.result == 1) {
-        // 상품 정보 수정 성공
-        // 다음페이지로 이동
-        alert("상품 정보를 수정하였습니다.");
-        window.location.href = "/adminItemList";
-      } else {
-        // 상품 정보 수정 실패
-        alert("상품 정보를 수정 실패했습니다.");
-      }
-    }) // 실제 데이타
-    .catch((error) => {
-      console.log(error);
-    });
-}
