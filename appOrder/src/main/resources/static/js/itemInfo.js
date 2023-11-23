@@ -37,9 +37,18 @@ function minus() {
 
 //옵션 선택시 가격변경
 $(document).ready(function () {
-  $("input:radio[name=optionNameN]")[0].checked = true;
-  $("input:radio[name=optionNameG]")[0].checked = true;
-  $("input:radio[name=optionNameT]")[0].checked = true;
+  let optionNameN = document.getElementsByName("optionNameN");
+  let optionNameG = document.getElementsByName("optionNameG");
+  let optionNameT = document.getElementsByName("optionNameT");
+  if (optionNameN.length > 0) {
+    $("input:radio[name=optionNameN]")[0].checked = true;
+  }
+  if (optionNameG.length > 0) {
+    $("input:radio[name=optionNameG]")[0].checked = true;
+  }
+  if (optionNameT.length > 0) {
+    $("input:radio[name=optionNameT]")[0].checked = true;
+  }
 
   $(".optionName").click(function () {
     let priceElement = document.getElementById("price");
@@ -47,34 +56,52 @@ $(document).ready(function () {
     let quantity = document.getElementById("quantity");
     let totalPrice = document.getElementById("totalItemPrice");
 
-    priceElement.innerHTML =
-      (Number(priceValue) +
-        Number($("input:radio[name=optionNameN]:checked").val()) +
-        Number($("input:radio[name=optionNameG]:checked").val())) *
-        Number(quantity.innerHTML) +
-      "원";
+    if (optionNameN.length > 0 && optionNameG.length > 0) {
+      priceElement.innerHTML =
+        (Number(priceValue) +
+          Number($("input:radio[name=optionNameN]:checked").val()) +
+          Number($("input:radio[name=optionNameG]:checked").val())) *
+          Number(quantity.innerHTML) +
+        "원";
 
-    if ($("#recomCh").is(":checked") == true) {
-      totalPrice.innerHTML =
-        (Number(priceValue) +
-          Number($("input:radio[name=optionNameN]:checked").val()) +
-          Number($("input:radio[name=optionNameG]:checked").val())) *
-          Number(quantity.innerHTML) +
-        Number($("#recomCh:checked").val()) +
-        "원";
+      if ($("#recomCh").is(":checked") == true) {
+        totalPrice.innerHTML =
+          (Number(priceValue) +
+            Number($("input:radio[name=optionNameN]:checked").val()) +
+            Number($("input:radio[name=optionNameG]:checked").val())) *
+            Number(quantity.innerHTML) +
+          Number($("#recomCh:checked").val()) +
+          "원";
+      } else {
+        totalPrice.innerHTML =
+          (Number(priceValue) +
+            Number($("input:radio[name=optionNameN]:checked").val()) +
+            Number($("input:radio[name=optionNameG]:checked").val())) *
+            Number(quantity.innerHTML) +
+          "원";
+      }
     } else {
-      totalPrice.innerHTML =
-        (Number(priceValue) +
-          Number($("input:radio[name=optionNameN]:checked").val()) +
-          Number($("input:radio[name=optionNameG]:checked").val())) *
-          Number(quantity.innerHTML) +
-        "원";
+      priceElement.innerHTML =
+        Number(priceValue) * Number(quantity.innerHTML) + "원";
+
+      if ($("#recomCh").is(":checked") == true) {
+        totalPrice.innerHTML =
+          Number(priceValue) * Number(quantity.innerHTML) +
+          Number($("#recomCh:checked").val()) +
+          "원";
+      } else {
+        totalPrice.innerHTML =
+          Number(priceValue) * Number(quantity.innerHTML) + "원";
+      }
     }
   });
 });
 
 //플러스 버튼 클릭시 가격변경
 $(document).ready(function () {
+  let optionNameN = document.getElementsByName("optionNameN");
+  let optionNameG = document.getElementsByName("optionNameG");
+  let optionNameT = document.getElementsByName("optionNameT");
   $(".plus").click(function () {
     let priceElement = document.getElementById("price");
     let priceValue = document.getElementById("priceValue").innerHTML;
@@ -82,42 +109,7 @@ $(document).ready(function () {
     let totalPrice = document.getElementById("totalItemPrice");
     quantity.innerHTML = Number(quantity.innerHTML) + 1;
 
-    priceElement.innerHTML =
-      (Number(priceValue) +
-        Number($("input:radio[name=optionNameN]:checked").val()) +
-        Number($("input:radio[name=optionNameG]:checked").val())) *
-        Number(quantity.innerHTML) +
-      "원";
-    if ($("#recomCh").is(":checked") == true) {
-      totalPrice.innerHTML =
-        (Number(priceValue) +
-          Number($("input:radio[name=optionNameN]:checked").val()) +
-          Number($("input:radio[name=optionNameG]:checked").val())) *
-          Number(quantity.innerHTML) +
-        Number($("#recomCh:checked").val()) +
-        "원";
-    } else {
-      totalPrice.innerHTML =
-        (Number(priceValue) +
-          Number($("input:radio[name=optionNameN]:checked").val()) +
-          Number($("input:radio[name=optionNameG]:checked").val())) *
-          Number(quantity.innerHTML) +
-        "원";
-    }
-  });
-});
-
-// 마이너스 버튼 클릭시 가격변경
-
-$(document).ready(function () {
-  $(".minus").click(function () {
-    let priceElement = document.getElementById("price");
-    let priceValue = document.getElementById("priceValue").innerHTML;
-    let quantity = document.getElementById("quantity");
-    let totalPrice = document.getElementById("totalItemPrice");
-    if (quantity.innerHTML > 1) {
-      quantity.innerHTML = Number(quantity.innerHTML) - 1;
-
+    if (optionNameN.length > 0 && optionNameG.length > 0) {
       priceElement.innerHTML =
         (Number(priceValue) +
           Number($("input:radio[name=optionNameN]:checked").val()) +
@@ -140,6 +132,72 @@ $(document).ready(function () {
             Number(quantity.innerHTML) +
           "원";
       }
+    } else {
+      priceElement.innerHTML =
+        Number(priceValue) * Number(quantity.innerHTML) + "원";
+      if ($("#recomCh").is(":checked") == true) {
+        totalPrice.innerHTML =
+          Number(priceValue) * Number(quantity.innerHTML) +
+          Number($("#recomCh:checked").val()) +
+          "원";
+      } else {
+        totalPrice.innerHTML =
+          Number(priceValue) * Number(quantity.innerHTML) + "원";
+      }
+    }
+  });
+});
+
+// 마이너스 버튼 클릭시 가격변경
+
+$(document).ready(function () {
+  let optionNameN = document.getElementsByName("optionNameN");
+  let optionNameG = document.getElementsByName("optionNameG");
+  let optionNameT = document.getElementsByName("optionNameT");
+  $(".minus").click(function () {
+    let priceElement = document.getElementById("price");
+    let priceValue = document.getElementById("priceValue").innerHTML;
+    let quantity = document.getElementById("quantity");
+    let totalPrice = document.getElementById("totalItemPrice");
+    if (quantity.innerHTML > 1) {
+      quantity.innerHTML = Number(quantity.innerHTML) - 1;
+
+      if (optionNameN.length > 0 && optionNameG.length > 0) {
+        priceElement.innerHTML =
+          (Number(priceValue) +
+            Number($("input:radio[name=optionNameN]:checked").val()) +
+            Number($("input:radio[name=optionNameG]:checked").val())) *
+            Number(quantity.innerHTML) +
+          "원";
+        if ($("#recomCh").is(":checked") == true) {
+          totalPrice.innerHTML =
+            (Number(priceValue) +
+              Number($("input:radio[name=optionNameN]:checked").val()) +
+              Number($("input:radio[name=optionNameG]:checked").val())) *
+              Number(quantity.innerHTML) +
+            Number($("#recomCh:checked").val()) +
+            "원";
+        } else {
+          totalPrice.innerHTML =
+            (Number(priceValue) +
+              Number($("input:radio[name=optionNameN]:checked").val()) +
+              Number($("input:radio[name=optionNameG]:checked").val())) *
+              Number(quantity.innerHTML) +
+            "원";
+        }
+      } else {
+        priceElement.innerHTML =
+          Number(priceValue) * Number(quantity.innerHTML) + "원";
+        if ($("#recomCh").is(":checked") == true) {
+          totalPrice.innerHTML =
+            Number(priceValue) * Number(quantity.innerHTML) +
+            Number($("#recomCh:checked").val()) +
+            "원";
+        } else {
+          totalPrice.innerHTML =
+            Number(priceValue) * Number(quantity.innerHTML) + "원";
+        }
+      }
     }
   });
 });
@@ -154,21 +212,11 @@ $(document).ready(function () {
     let realPrice = priceElement.innerHTML.replace("원", "");
     if ($("#recomCh").is(":checked") == true) {
       $("#recomCh").prop("checked", false);
-      totalPrice.innerHTML =
-        (Number(priceValue) +
-          Number($("input:radio[name=optionNameN]:checked").val()) +
-          Number($("input:radio[name=optionNameG]:checked").val())) *
-          Number(quantity.innerHTML) +
-        "원";
+      totalPrice.innerHTML = Number(realPrice) + "원";
     } else {
       $("#recomCh").prop("checked", true);
       totalPrice.innerHTML =
-        (Number(priceValue) +
-          Number($("input:radio[name=optionNameN]:checked").val()) +
-          Number($("input:radio[name=optionNameG]:checked").val())) *
-          Number(quantity.innerHTML) +
-        Number($("#recomCh:checked").val()) +
-        "원";
+        Number(realPrice) + Number($("#recomCh:checked").val()) + "원";
     }
   });
 });
@@ -179,21 +227,12 @@ $(document).ready(function () {
     let priceValue = document.getElementById("priceValue").innerHTML;
     let quantity = document.getElementById("quantity");
     let totalPrice = document.getElementById("totalItemPrice");
+    let realPrice = priceElement.innerHTML.replace("원", "");
     if ($("#recomCh").is(":checked") == true) {
       totalPrice.innerHTML =
-        (Number(priceValue) +
-          Number($("input:radio[name=optionNameN]:checked").val()) +
-          Number($("input:radio[name=optionNameG]:checked").val())) *
-          Number(quantity.innerHTML) +
-        Number($("#recomCh:checked").val()) +
-        "원";
+        Number(realPrice) + Number($("#recomCh:checked").val()) + "원";
     } else {
-      totalPrice.innerHTML =
-        (Number(priceValue) +
-          Number($("input:radio[name=optionNameN]:checked").val()) +
-          Number($("input:radio[name=optionNameG]:checked").val())) *
-          Number(quantity.innerHTML) +
-        "원";
+      totalPrice.innerHTML = Number(realPrice) + "원";
     }
   });
 });
@@ -270,39 +309,38 @@ $(document).ready(function () {
       .catch((error) => {
         console.log(error);
       });
-    let recomItem = 0;
+
+    let recomItem = 1;
     if ($("#recomCh").is(":checked") == true) {
-      recomItem = 1;
+      let param = {
+        itemNo: 0,
+        itemCode: 0,
+        itemName: "ds",
+        itemContent: "adqw",
+        itemCate: "adad",
+        itemRecommend: recomItem,
+        itemPrice: 0,
+        itemImageUrl: "asdd",
+        itemUpdateDatetime: cartDate,
+      };
+
+      fetch("/setCartRecom", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(param),
+      })
+        .then((response) => {
+          console.log("response:" + response);
+          return response.json();
+        }) //HTTP 응답
+        .then((json) => {
+          //{ status: "ok", result: 5 }
+          console.log("json:" + json);
+        }) //실제 데이타
+        .catch((error) => {
+          console.log(error);
+        });
     }
-
-    let param = {
-      itemNo: 0,
-      itemCode: 0,
-      itemName: "ds",
-      itemContent: "adqw",
-      itemCate: "adad",
-      itemRecommend: recomItem,
-      itemPrice: 0,
-      itemImageUrl: "asdd",
-      itemUpdateDatetime: cartDate,
-    };
-
-    fetch("/setCartRecom", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(param),
-    })
-      .then((response) => {
-        console.log("response:" + response);
-        return response.json();
-      }) //HTTP 응답
-      .then((json) => {
-        //{ status: "ok", result: 5 }
-        console.log("json:" + json);
-      }) //실제 데이타
-      .catch((error) => {
-        console.log(error);
-      });
   });
 });
 

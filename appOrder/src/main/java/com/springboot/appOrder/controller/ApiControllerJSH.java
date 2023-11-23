@@ -94,14 +94,44 @@ public class ApiControllerJSH {
 
     @PostMapping("/setCart")
     public ResultDto setCart(@RequestBody CartDto cartDto,
-
                              Model model){
+        List<CartEntity>searchC = cartRepository.findByItemNameAndOptionName3AndOptionName2AndOptionName1(cartDto.getItemName(),
+                cartDto.getOptionName3(),
+                cartDto.getOptionName2(),
+                cartDto.getOptionName1());
+        List<ItemEntity>searchI = itemRepository.findByItemName(cartDto.getItemName());
+
+        System.out.println("몇이냐" + searchC.size());
+        CartEntity newEntity = null;
+
+//        if (searchI.get(0).getItemCate() == "디저트"){
+//            newEntity.setOptionName1("해당없음");
+//            newEntity.setOptionName2("해당없음");
+//            newEntity.setOptionName3("해당없음");
+//            cartRepository.save(newEntity);
+//        }else {
+//            newEntity = CartEntity.toEntity(cartDto);
+//            cartRepository.save(newEntity);
+//        }
 
 
 
-        CartEntity newEntity = CartEntity.toEntity(cartDto);
-        System.out.println(newEntity);
-        cartRepository.save(newEntity);
+        if (searchC.size()>0){
+        searchC.get(0).setCartPrice(searchC.get(0).getCartPrice()+searchC.get(1).getCartPrice());
+        searchC.get(0).setCartItemAmount(searchC.get(0).getCartItemAmount()+searchC.get(1).getCartItemAmount());
+        itemRepository.deleteById(searchC.get(1).getCartNo());
+        newEntity = searchC.get(0);
+            cartRepository.save(newEntity);
+        }else {
+            newEntity = CartEntity.toEntity(cartDto);
+            cartRepository.save(newEntity);
+        }
+
+
+
+
+
+
 
 //        if (ItemRecommend.equals(1)){
 //            List<ItemEntity> reItem = itemRepository.findByItemRecommend(1);
@@ -133,12 +163,10 @@ public class ApiControllerJSH {
     public ResultDto setCartRecom(@RequestBody ItemDto dto,
                              Model model){
         List<ItemEntity> newEntity = itemRepository.findByItemRecommend(dto.getItemRecommend());
-        if (dto.getItemRecommend() == 1){
+        ItemDto newDto = ItemDto.toDto(newEntity.get(0));
+        CartEntity newEntityC = CartEntity.ItemToCart(newDto);
+        cartRepository.save(newEntityC);
 
-            ItemDto newDto = ItemDto.toDto(newEntity.get(0));
-            CartEntity newEntityC = CartEntity.ItemToCart(newDto);
-            cartRepository.save(newEntityC);
-        }
 
 
 

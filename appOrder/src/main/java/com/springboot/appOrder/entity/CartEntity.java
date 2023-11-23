@@ -64,6 +64,7 @@ public class CartEntity {
 
     public static CartEntity ItemToCart(ItemDto dto){
 
+
         String uuidOne = String.valueOf(UUID.randomUUID());
         return CartEntity.builder()
                 .cartNo(0L)
