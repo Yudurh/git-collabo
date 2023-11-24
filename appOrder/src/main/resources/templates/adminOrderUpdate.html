@@ -15,10 +15,7 @@
     integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
     crossorigin="anonymous"
   ></script>
-  <link
-    rel="stylesheet"
-    href="./css/adminItemUpdate.css"
-  />
+  <link rel="stylesheet" href="./css/adminItemUpdate.css" />
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
     rel="stylesheet"
@@ -29,7 +26,7 @@
   <body>
     <div id="wrap">
       <div id="header">
-        <img src="./img/megaLogo.png" width="400px">
+        <img src="./img/megaLogo.png" width="400px" />
       </div>
       <div id="main">
         <div id="main_header">
@@ -39,11 +36,31 @@
         <!-- 보이지 않는 것 -->
         <input id="orderNo" type="hidden" th:value="${order.orderNo}" />
         <input id="orderCode" type="hidden" th:value="${order.orderCode}" />
-        <input id="cartItemCode1" type="hidden" th:value="${order.cartItemCode1}" />
-        <input id="cartItemCode2" type="hidden" th:value="${order.cartItemCode2}" />
-        <input id="cartItemCode3" type="hidden" th:value="${order.cartItemCode3}" />
-        <input id="cartItemCode4" type="hidden" th:value="${order.cartItemCode4}" />
-        <input id="cartItemCode5" type="hidden" th:value="${order.cartItemCode5}" />
+        <input
+          id="cartItemCode1"
+          type="hidden"
+          th:value="${order.cartItemCode1}"
+        />
+        <input
+          id="cartItemCode2"
+          type="hidden"
+          th:value="${order.cartItemCode2}"
+        />
+        <input
+          id="cartItemCode3"
+          type="hidden"
+          th:value="${order.cartItemCode3}"
+        />
+        <input
+          id="cartItemCode4"
+          type="hidden"
+          th:value="${order.cartItemCode4}"
+        />
+        <input
+          id="cartItemCode5"
+          type="hidden"
+          th:value="${order.cartItemCode5}"
+        />
         <!-- 보이는 것 -->
         <div class="updateContent">
           <label>주문 임시번호</label>
@@ -100,12 +117,14 @@
             <option value="제조 완료">제조 완료</option>
           </select>
         </div>
-      <div id="footer">
-        <button class="btn btn-secondary" onclick="history.back();">
-          취소
-        </button>
-        <button class="btn btn-warning" onclick="noticeUpdate();">수정</button>
+        <div id="footer">
+          <button class="btn btn-secondary" onclick="history.back();">
+            취소
+          </button>
+          <button class="btn btn-warning" onclick="orderUpdate();">수정</button>
+        </div>
       </div>
     </div>
+    <script src="./js/adminUpdate.js"></script>
   </body>
 </html>

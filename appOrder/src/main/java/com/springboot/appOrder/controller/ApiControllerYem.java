@@ -117,16 +117,10 @@ public class ApiControllerYem {
         return resultDto;
     }
 
-    // 이미지 업로드
     @PostMapping("/upload")
     public ResultDto upload(@RequestParam MultipartFile file) throws IOException {
-
-        String newFileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
-
-        if( !file.isEmpty() ){
-            File newFile = new File(newFileName);
-            file.transferTo( newFile );
-        }else {
+        if (file.isEmpty()) {
+            // 파일이 비어있을 경우(이미지를 수정하지 않았을 경우)
             ResultDto resultDto = ResultDto.builder()
                     .status("ok")
                     .result(0)
@@ -134,6 +128,10 @@ public class ApiControllerYem {
 
             return resultDto;
         }
+
+        String newFileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+        File newFile = new File(newFileName);
+        file.transferTo(newFile);
 
         ResultDto resultDto = ResultDto.builder()
                 .status("ok")
@@ -144,53 +142,43 @@ public class ApiControllerYem {
         return resultDto;
     }
 
-    // ( 관리자 ) 상품 정보 수정 폼
 
+    // (관리자) 상품 정보 수정 폼
     @PostMapping("/itemUpdateForm")
     public ResultDto itemUpdateForm(@RequestBody ItemDto itemDto) {
-
-        itemDto.setItemImageUrl("./upload/"+itemDto.getItemImageUrl());
+        if (itemDto.getItemImageUrl().startsWith("./upload/")) {
+            // 이미지를 수정하지 않았을 경우 기존 이미지를 사용하도록 설정
+            itemDto.setItemImageUrl(itemDto.getItemImageUrl().substring(2)); // "./upload/" 제거
+        } else {
+            // 이미지를 수정했을 경우, 업로드된 새 이미지 경로로 설정
+            itemDto.setItemImageUrl("./upload/" + itemDto.getItemImageUrl());
+        }
 
         ItemEntity itemEntity = ItemEntity.toItemEntity(itemDto);
-
         ItemEntity newEntity = itemRepository.save(itemEntity);
 
-        ResultDto resultDto = null;
-
-        if( newEntity != null  ) {
-            //수정 성공
-            resultDto = ResultDto.builder()
-                    .status("ok")
-                    .result(1)
-                    .build();
-        }else{
-            //수정 실패
-            resultDto = ResultDto.builder()
-                    .status("ok")
-                    .result(0)
-                    .build();
-        }
+        ResultDto resultDto = (newEntity != null)
+                ? ResultDto.builder().status("ok").result(1).build() // 수정 성공
+                : ResultDto.builder().status("ok").result(0).build(); // 수정 실패
 
         return resultDto;
     }
 
+
     // ( 관리자 ) 주문 정보 수정 폼
     @PostMapping("/orderUpdateForm")
     public ResultDto orderUpdateForm(@RequestBody OrderDto orderDto) {
-
         OrderEntity orderEntity = OrderEntity.toOrderEntity(orderDto);
         OrderEntity newEntity = orderRepository.save(orderEntity);
 
         ResultDto resultDto = null;
 
         if( newEntity != null  ) {
-            //수정 성공
             resultDto = ResultDto.builder()
                     .status("ok")
                     .result(1)
                     .build();
         }else{
-            //수정 실패
             resultDto = ResultDto.builder()
                     .status("ok")
                     .result(0)
@@ -199,4 +187,5 @@ public class ApiControllerYem {
 
         return resultDto;
     }
+
 }

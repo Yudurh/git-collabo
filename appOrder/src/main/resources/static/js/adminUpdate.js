@@ -51,20 +51,30 @@ function memberUpdate() {
 // 상품 정보 수정 페이지에서 조회
 // ( 추천 ) 라디오 버튼 표시
 $(document).ready(function () {
-  let itemRecommend = document.getElementById("itemRecommend").value;
-  console.log(itemRecommend);
+  // Function to handle item recommendation radio button display
+  function displayRecommendation() {
+    let itemRecommend = document.getElementById("itemRecommend").value;
+    console.log(itemRecommend);
 
-  // itemRecommend = 1 ( 추천), 0 ( 비추천 )
-  if (itemRecommend == 1) {
-    // $("input:radio[name=recom]")[0] = 추천
-    $("input:radio[name=recom]")[0].checked = true;
-  } else {
-    // $("input:radio[name=recom]")[1] = 비추천
-    $("input:radio[name=recom]")[1].checked = true;
+    // itemRecommend = 1 (추천), 0 (비추천)
+    if (itemRecommend == 1) {
+      // $("input:radio[name=recom]")[0] = 추천
+      $("input:radio[name=recom]")[0].checked = true;
+    } else {
+      // $("input:radio[name=recom]")[1] = 비추천
+      $("input:radio[name=recom]")[1].checked = true;
+    }
   }
+
+  // adminItemUpdate의 수정 버튼을 누를 때만 displayRecommendation() 함수 실행
+  // 이렇게 해놓지 않으면 admin.js를 공유하는 다른 템플릿에서 오류 발생 !
+  $("#updateBtn").click(function () {
+    displayRecommendation();
+  });
 });
 
 // ( 옵션 ) 라디오 버튼 표시 -> 해야함
+
 
 // 이미지 업로드
 function onClickUpload() {
@@ -73,68 +83,62 @@ function onClickUpload() {
 }
 
 function readURL(input) {
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-    reader.onload = function (e) {
-      document.getElementById("imgItemImageUrl").src = e.target.result;
-    };
-    reader.readAsDataURL(input.files[0]);
-  } else {
-    document.getElementById("imgItemImageUrl").src = "";
-  }
-
-  let inputItemImageUrl = document.getElementById("inputItemImageUrl");
-  console.log("input:file value:" + inputItemImageUrl.value);
-  console.log("files:" + inputItemImageUrl.files[0]);
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById("imgItemImageUrl").src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        // 파일이 선택되지 않았거나 비어있는 경우, 기존 이미지를 표시
+        document.getElementById("imgItemImageUrl").src = "./upload/" + input.value;
+    }
 }
 
 function itemUpdate() {
   image_upload();
 }
 
-function image_upload(){
-
+function image_upload() {
   let inputItemImageUrl = document.getElementById("inputItemImageUrl");
-  let newImage = document.getElementById("newImage").value;
   console.log(inputItemImageUrl);
-  console.log(newImage);
 
-  let fileUrl = inputItemImageUrl.value; //C:\fakepath\cosmos.jpg
-  let index = fileUrl.lastIndexOf("\\");
-  let fileName = fileUrl.substr(index+1); //cosmos.jpg
-  console.log("fileUrl:" + fileUrl);
-  console.log("index:" + index);
-  console.log("fileName:" + fileName);
+  // 파일이 선택되었을 때만 실행
+  if (inputItemImageUrl.files && inputItemImageUrl.files[0]) {
+    let fileUrl = inputItemImageUrl.value; // C:\fakepath\cosmos.jpg
+    let fileName = getFileName(fileUrl);
+    console.log("fileUrl:" + fileUrl);
+    console.log("fileName:" + fileName);
 
-  let form = new FormData();
-  form.enctype = "multipart/form-data";
-  form.append('file', inputItemImageUrl.files[0], fileName);
+    let form = new FormData();
+    form.append("file", inputItemImageUrl.files[0], fileName);
 
-  fetch('/upload', {
-    method: "POST",
-    headers: {
-      //"Content-Type": "multipart/form-data"
-    },
-    body: form,
-  })
-  .then((response) => {
-    console.log("response:" + response);
-    console.log("response:" + JSON.stringify(response));
+    fetch("/upload", {
+      method: "POST",
+      body: form,
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log("json:" + JSON.stringify(json));
+        console.log("uploadFileName:" + json.uploadFileName);
+        func_item_updateAction_json(json.uploadFileName);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  } else {
+    // 파일이 선택되지 않았을 때의 처리
+    console.log("파일이 선택되지 않았습니다.");
 
-    return response.json();
-  }) //HTTP 응답
-  .then((json) => {
-    //{ status: "ok", result: 5 }
-    console.log("json:" + json);
-    console.log("json:" + JSON.stringify(json));
-    console.log("uploadFileName:" + json.uploadFileName);
+    // 기존 이미지 사용하도록 하거나 필요한 처리를 수행하세요.
+    let existingImageUrl = document.getElementById("imgItemImageUrl").src;
+    let existingFileName = getFileName(existingImageUrl);
 
-    func_item_updateAction_json( json.uploadFileName );
-  }) //실제 데이타
-  .catch((error) => {
-    console.log(error);
-  });
+    // 기존 이미지 파일명을 서버로 전달하는 함수 호출
+    func_item_updateAction_json(existingFileName);
+  }
 }
+
 
 function func_item_updateAction_json(itemImageUrl) {
   let itemNo = document.getElementById("itemNo").value;
@@ -147,8 +151,6 @@ function func_item_updateAction_json(itemImageUrl) {
   // let itemImageUrl = document.getElementById("inputItemImageUrl").value;
   let itemUpdateDatetime = document.getElementById("itemUpdateDatetime").value;
 
-  console.log(itemRecommend);
-  console.log(itemCate);
 
   let params = {
     itemNo: itemNo,
@@ -203,9 +205,11 @@ function orderUpdate() {
   let orderTotalCount = document.getElementById("inputOrderTotalCount").value;
   let orderNumber = document.getElementById("inputOrderNumber").value;
   // 결제 수단은 db에서 숫자로 들어감 ( 01 현금, 02 카드 )
-  let orderPayType = $("#orderPayType").val();
-  let orderState = $("#orderState").val();
+  let orderPayType = $("#payType").val();
+  let orderState = $("#payState").val();
   let orderDatetime = document.getElementById("inputOrderDatetime").value;
+
+    console.log(orderState);
 
   if (orderPayType == "현금") {
     // 현금일 때 0
@@ -215,6 +219,15 @@ function orderUpdate() {
   if (orderPayType == "카드") {
     // 카드일 때 1
     orderPayType = 1;
+  }
+
+  if ((cartItemCode2, cartItemCode3, cartItemCode4, cartItemCode5 == "")) {
+    cartItemCode2 = null;
+    cartItemCode3 = null;
+    cartItemCode4 = null;
+    cartItemCode5 = null;
+
+    console.log(cartItemCode2);
   }
 
   let params = {
@@ -267,3 +280,118 @@ function orderUpdate() {
 // 공지사항 수정
 // 이미지 업로드
 
+// 이미지 업로드
+function onClickUpload() {
+  let inputItemImageUrl = document.getElementById("inputItemImageUrl");
+  inputItemImageUrl.click();
+}
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById("imgItemImageUrl").src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        // 파일이 선택되지 않았거나 비어있는 경우, 기존 이미지를 표시
+        document.getElementById("imgItemImageUrl").src = "./upload/" + input.value;
+    }
+}
+
+function itemUpdate() {
+  image_upload();
+}
+
+function image_upload() {
+  let inputItemImageUrl = document.getElementById("inputItemImageUrl");
+  console.log(inputItemImageUrl);
+
+  // 파일이 선택되었을 때만 실행
+  if (inputItemImageUrl.files && inputItemImageUrl.files[0]) {
+    let fileUrl = inputItemImageUrl.value; // C:\fakepath\cosmos.jpg
+    let fileName = getFileName(fileUrl);
+    console.log("fileUrl:" + fileUrl);
+    console.log("fileName:" + fileName);
+
+    let form = new FormData();
+    form.append("file", inputItemImageUrl.files[0], fileName);
+
+    fetch("/upload", {
+      method: "POST",
+      body: form,
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log("json:" + JSON.stringify(json));
+        console.log("uploadFileName:" + json.uploadFileName);
+        func_item_updateAction_json(json.uploadFileName);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  } else {
+    // 파일이 선택되지 않았을 때의 처리
+    console.log("파일이 선택되지 않았습니다.");
+
+    // 기존 이미지 사용하도록 하거나 필요한 처리를 수행하세요.
+    let existingImageUrl = document.getElementById("imgItemImageUrl").src;
+    let existingFileName = getFileName(existingImageUrl);
+
+    // 기존 이미지 파일명을 서버로 전달하는 함수 호출
+    func_item_updateAction_json(existingFileName);
+  }
+}
+
+
+function func_item_updateAction_json(itemImageUrl) {
+  let itemNo = document.getElementById("itemNo").value;
+  let itemCode = document.getElementById("itemCode").value;
+  let itemName = document.getElementById("inputItemName").value;
+  let itemContent = document.getElementById("inputItemContent").value;
+  let itemCate = $("#cate").val();
+  let itemRecommend = $("input:radio[name=recom]:checked").val();
+  let itemPrice = document.getElementById("inputItemPrice").value;
+  // let itemImageUrl = document.getElementById("inputItemImageUrl").value;
+  let itemUpdateDatetime = document.getElementById("itemUpdateDatetime").value;
+
+
+  let params = {
+    itemNo: itemNo,
+    itemCode: itemCode,
+    itemName: itemName,
+    itemContent: itemContent,
+    itemCate: itemCate,
+    itemRecommend: itemRecommend,
+    itemPrice: itemPrice,
+    itemImageUrl: itemImageUrl,
+    itemUpdateDatetime: itemUpdateDatetime,
+  };
+  console.log(JSON.stringify(params));
+
+  fetch("/itemUpdateForm", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(params),
+  })
+    .then((response) => {
+      console.log("response:" + response);
+      return response.json();
+    }) //HTTP 응답
+    .then((json) => {
+      console.log("json:" + json);
+
+      if (json.result == 1) {
+        // 상품 정보 수정 성공
+        // 다음페이지로 이동
+        alert("상품 정보를 수정하였습니다.");
+        window.location.href = "/adminItemList";
+      } else {
+        // 상품 정보 수정 실패
+        alert("상품 정보를 수정 실패했습니다.");
+      }
+    }) // 실제 데이타
+    .catch((error) => {
+      console.log(error);
+    });
+}

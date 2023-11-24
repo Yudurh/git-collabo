@@ -86,9 +86,9 @@ CREATE TABLE apporder.member(
    member_no INT AUTO_INCREMENT NOT NULL PRIMARY KEY, -- 고유키
    member_id VARCHAR(255) NOT NULL UNIQUE, -- 아이디
    member_pw VARCHAR(255) NOT NULL, -- 암호
-    member_name VARCHAR(255) NOT NULL, -- 이름
-    member_role VARCHAR(255) DEFAULT('ROLE_USER') NOT NULL, -- 권한
-    member_point INT DEFAULT(0), -- 적립금
+   member_name VARCHAR(255) NOT NULL, -- 이름
+   member_role VARCHAR(255) DEFAULT('ROLE_USER') NOT NULL, -- 권한
+   member_point INT DEFAULT(0), -- 적립금
    member_join_datetime DATETIME DEFAULT NOW() -- 작성/수정 시간
 );
 
@@ -125,8 +125,6 @@ INSERT INTO apporder.p_option VALUES(NULL, '커피', '개인 텀블러 사용' ,
 INSERT INTO apporder.p_option VALUES(NULL, '커피', '개인 텀블러 사용', '해당없음', DEFAULT);
 INSERT INTO apporder.p_option VALUES(NULL, '음료수', '개인 텀블러 사용' , '텀블러(개인컵) 사용', DEFAULT);
 INSERT INTO apporder.p_option VALUES(NULL, '음료수', '개인 텀블러 사용' , '해당없음', DEFAULT);
-
-
 
 SELECT * FROM apporder.p_option;
 
