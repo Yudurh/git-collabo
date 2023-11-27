@@ -35,14 +35,13 @@
             alt="Product Image"
           />
           <div class="cartIn2">
-            <div class="cartItemName" th:text=" ${ cart.itemName }">커피</div>
-            <div class="cartItemOption" th:text=" ${ cart.optionName1 }">
-              <div class="cartItemOption" th:text=" ${ cart.optionName2 }">
-                <div class="cartItemOption" th:text=" ${ cart.optionName3 }">
-                  옵션
-                </div>
-              </div>
+            <div class="cartItemName" th:text=" ${ cart.itemName }"></div>
+            <div class="cartItemOption" th:text=" ${ cart.optionName1 }"></div>
+            <div class="cartItemOption" th:text=" ${ cart.optionName2 }"></div>
+            <div class="cartItemOption" th:text=" ${ cart.optionName3 }">
+              옵션
             </div>
+
             <div class="quantityAndPrice">
               <div class="Btns">
                 <button class="plus" name="plus" onclick="plus(event)">
@@ -52,27 +51,23 @@
                   class="cartQuantity"
                   th:text="${cart.cartItemAmount}"
                 ></div>
-                <div class="visualy-hidden"></div>
+
                 <button class="minus" name="minus" onclick="minus(event)">
                   -
                 </button>
               </div>
               <div class="cartPriceBox">
-                <span
-                  class="cartPrice"
-                  th:text="${cart.cartPrice * cart.cartItemAmount}"
-                >
-                </span>
+                <span class="cartPrice" th:text="${cart.cartPrice}"> </span>
                 <div class="priceTxt">원</div>
               </div>
             </div>
           </div>
           <a
             th:href="|/cartDelete?cartNo=${ cart.cartNo }|"
-            class="btn btn-danger"
+            class="btn"
             role="button"
-            >X</a
-          >
+            ><img src="./img/close.png"
+          /></a>
         </div>
       </div>
       <div id="main_content">

@@ -137,6 +137,6 @@ a {
   height: 25px;
   text-align: center;
   border-radius: 50%;
-  background-color: rgb(142, 141, 141);
+  /* background-color: rgb(142, 141, 141); */
   color: whitesmoke;
 }

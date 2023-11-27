@@ -95,39 +95,47 @@ public class ApiControllerJSH {
     @PostMapping("/setCart")
     public ResultDto setCart(@RequestBody CartDto cartDto,
                              Model model){
+
+        List<ItemEntity>searchI = itemRepository.findByItemName(cartDto.getItemName());
+
+
+        CartEntity newEntity = CartEntity.toEntity(cartDto);
+        CartDto newDto = cartDto;
+
+//        if (searchI.get(0).getItemCate().equals("디저트")){
+//            cartDto.setOptionName1("해당없음");
+//            cartDto.setOptionName2("해당없음");
+//            cartDto.setOptionName3("해당없음");
+//            newEntity = CartEntity.toEntity(cartDto);
+//        }else {
+//            newEntity = CartEntity.toEntity(cartDto);
+//
+//        }
+
         List<CartEntity>searchC = cartRepository.findByItemNameAndOptionName3AndOptionName2AndOptionName1(cartDto.getItemName(),
                 cartDto.getOptionName3(),
                 cartDto.getOptionName2(),
                 cartDto.getOptionName1());
-        List<ItemEntity>searchI = itemRepository.findByItemName(cartDto.getItemName());
-
-        System.out.println("몇이냐" + searchC.size());
-        CartEntity newEntity = null;
-
-//        if (searchI.get(0).getItemCate() == "디저트"){
-//            newEntity.setOptionName1("해당없음");
-//            newEntity.setOptionName2("해당없음");
-//            newEntity.setOptionName3("해당없음");
-//            cartRepository.save(newEntity);
-//        }else {
-//            newEntity = CartEntity.toEntity(cartDto);
-//            cartRepository.save(newEntity);
-//        }
-
-
 
         if (searchC.size()>0){
-        searchC.get(0).setCartPrice(searchC.get(0).getCartPrice()+searchC.get(1).getCartPrice());
-        searchC.get(0).setCartItemAmount(searchC.get(0).getCartItemAmount()+searchC.get(1).getCartItemAmount());
-        itemRepository.deleteById(searchC.get(1).getCartNo());
-        newEntity = searchC.get(0);
-            cartRepository.save(newEntity);
+
+            newDto.setCartPrice(searchC.get(0).getCartPrice()+cartDto.getCartPrice());
+            newDto.setCartItemAmount(searchC.get(0).getCartItemAmount()+cartDto.getCartItemAmount());
+            newEntity = CartEntity.toEntity(newDto);
+//            cartRepository.deleteById(searchC.get(1).getCartNo());
+            cartRepository.deleteById(searchC.get(0).getCartNo());
+
+//        searchC.get(0).setCartPrice(searchC.get(0).getCartPrice()+searchC.get(1).getCartPrice());
+//        searchC.get(0).setCartItemAmount(searchC.get(0).getCartItemAmount()+searchC.get(1).getCartItemAmount());
+//        cartRepository.deleteById(searchC.get(1).getCartNo());
+
+
         }else {
             newEntity = CartEntity.toEntity(cartDto);
-            cartRepository.save(newEntity);
+
         }
 
-
+        cartRepository.save(newEntity);
 
 
 
@@ -163,23 +171,27 @@ public class ApiControllerJSH {
     public ResultDto setCartRecom(@RequestBody ItemDto dto,
                              Model model){
         List<ItemEntity> newEntity = itemRepository.findByItemRecommend(dto.getItemRecommend());
-        ItemDto newDto = ItemDto.toDto(newEntity.get(0));
-        CartEntity newEntityC = CartEntity.ItemToCart(newDto);
-        cartRepository.save(newEntityC);
+        if (dto.getItemRecommend() == 1) {
+            List<CartEntity> searchC = cartRepository.findByItemName("초코스모어쿠키");
+            if (searchC.size() == 0){
+                ItemDto newDto = ItemDto.toDto(newEntity.get(0));
+
+                CartEntity newEntityC = CartEntity.ItemToCart(newDto);
+                cartRepository.deleteById(searchC.get(0).getCartNo());
+                cartRepository.save(newEntityC);
+
+            }else {
+                searchC.get(0).setCartPrice(searchC.get(0).getCartPrice()+2500);
+                searchC.get(0).setCartItemAmount(searchC.get(0).getCartItemAmount()+1);
+                cartRepository.deleteById(searchC.get(0).getCartNo());
+                cartRepository.save(searchC.get(0));
+            }
+
+
+        }
 
 
 
-
-
-
-
-//        if (ItemRecommend.equals(1)){
-//            List<ItemEntity> reItem = itemRepository.findByItemRecommend(1);
-//            ItemDto reDto = ItemDto.toDto(reItem.get(0));
-//            CartEntity newEntity2 = CartEntity.ItemToCart(reDto);
-//            cartRepository.save(newEntity2);
-//        }
-//
 
         ResultDto resultDto = null;
 
