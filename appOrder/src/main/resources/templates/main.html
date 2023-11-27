@@ -22,12 +22,14 @@
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
     crossorigin="anonymous"
   />
+  <link rel="stylesheet" href="/src/main/resources/static/css/main.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
   <body>
     <div id="wrap">
       <div id="header">
         <div class="ad">
           <img
-            src="https://img.79plus.co.kr/megahp/manager/upload/bbs/20231023160925_1715025414871_yvE_t77mkF.png"
+            src="/src/main/resources/static/img/광고1.jpg"
             alt=""
             id="changingImage"
           />
@@ -41,77 +43,46 @@
             <span class="name_content">님</span>
           </div>
           <div id="stempBox">
+            <img src="/src/main/resources/static/img/mug.png" />
             <a href="#">스탬프</a>
-            <span>8</span>
+            <span style="margin-right: 20px">8</span>
+            <img src="/src/main/resources/static/img/coupon.png" />
             <a href="#">쿠폰</a>
             <span>8</span>
           </div>
         </div>
         <!-- 광고 -->
         <div id="main_middel">
-          <div id="adCal">
-            <!-- 타임리프처리 -->
-            <div id="name" class="fs-4">이름님</div>
-            <div
-              id="carouselExampleControlsNoTouching"
-              class="carousel slide"
-              data-bs-ride="carousel"
-            >
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img
-                    src="https://img.79plus.co.kr/megahp/manager/upload/bbs/20231025194941_1715213291013_3HamcHrntS.jpg"
-                    class="d-block w-100 rounded"
-                    alt="..."
-                  />
-                </div>
-                <div class="carousel-item">
-                  <img
-                    src="https://img.79plus.co.kr/megahp/manager/upload/bbs/20230913165023_1711537337951_OCn043wPN8.jpg"
-                    class="d-block w-100 rounded"
-                    alt="..."
-                  />
-                </div>
-                <div class="carousel-item">
-                  <img
-                    src="https://img.79plus.co.kr/megahp/manager/upload/bbs/20231023160925_1715025414871_yvE_t77mkF.png"
-                    class="d-block w-100 rounded"
-                    alt="..."
-                  />
-                </div>
-              </div>
-              <button
-                class="carousel-control-prev"
-                type="button"
-                data-bs-target="#carouselExampleControlsNoTouching"
-                data-bs-slide="prev"
-              >
-                <span
-                  class="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button
-                class="carousel-control-next"
-                type="button"
-                data-bs-target="#carouselExampleControlsNoTouching"
-                data-bs-slide="next"
-              >
-                <span
-                  class="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
-          </div>
+          <swiper-container>
+            <swiper-slide>
+              <img
+                src="/src/main/resources/static/img/광고1.jpg"
+                width="450px"
+              />
+            </swiper-slide>
+            <swiper-slide>
+              <img
+                src="/src/main/resources/static/img/광고2.jpg"
+                width="450px"
+              />
+            </swiper-slide>
+          </swiper-container>
         </div>
         <!-- 추천메뉴 -->
         <div id="main_footer">
           <div class="nameBox">
             <span class="name">김예림</span>
             <span class="name_content">님을 위한 추천 메뉴</span>
+            <div class="slider">
+              <div class="slider-inner">
+                <div class="slider-item">1</div>
+                <div class="slider-item">2</div>
+                <div class="slider-item">3</div>
+                <div class="slider-item">4</div>
+                <div class="slider-item">5</div>
+                <div class="slider-item">6</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -125,20 +96,7 @@
     </div>
   </body>
   <script>
-    const images = [
-      "https://img.79plus.co.kr/megahp/manager/upload/bbs/20230913165023_1711537337951_OCn043wPN8.jpg",
-      "https://img.79plus.co.kr/megahp/manager/upload/bbs/20231025194941_1715213291013_3HamcHrntS.jpg",
-      "https://img.79plus.co.kr/megahp/manager/upload/bbs/20231107155045_1716333243773_ueanoLQ4LL.jpg",
-      "https://img.79plus.co.kr/megahp/manager/upload/bbs/20230926101455_1712647804005_IpbU74iRTN.png",
-      "https://img.79plus.co.kr/megahp/manager/upload/bbs/20230925152816_1712579529407_DvRmkHuE30.png",
-    ];
-    const images2 = [
-      "https://img.79plus.co.kr/megahp/manager/upload/bbs/20230913165023_1711537337951_OCn043wPN8.jpg",
-      "https://img.79plus.co.kr/megahp/manager/upload/bbs/20231025194941_1715213291013_3HamcHrntS.jpg",
-      "https://img.79plus.co.kr/megahp/manager/upload/bbs/20231107155045_1716333243773_ueanoLQ4LL.jpg",
-      "https://img.79plus.co.kr/megahp/manager/upload/bbs/20230926101455_1712647804005_IpbU74iRTN.png",
-      "https://img.79plus.co.kr/megahp/manager/upload/bbs/20230925152816_1712579529407_DvRmkHuE30.png",
-    ];
+    const images = ["/src/main/resources/static/img/광고2.jpg"];
 
     const changingImage = document.getElementById("changingImage");
     let currentIndex = 0;
@@ -148,16 +106,7 @@
       currentIndex = (currentIndex + 1) % images.length;
     }
 
-    setInterval(changeImage, 2000);
-
-    const changingImage2 = document.getElementById("changingImage2");
-    let currentIndex2 = 0;
-
-    function changeImage2() {
-      changingImage2.src = images2[currentIndex];
-      currentIndex2 = (currentIndex + 1) % images2.length;
-    }
-
-    setInterval(changeImage2, 2000);
+    setInterval(changeImage, 1000);
   </script>
+  <script src="/src/main/resources/static/js/index.js"></script>
 </html>

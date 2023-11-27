@@ -52,13 +52,13 @@
               style="display: none"
               id="menu_notice"
             >
-              <button href="#" class="menu_height">공지사항</button>
+              <button class="menu_height">공지사항</button>
             </div>
           </div>
         </div>
         <div id="section">
           <h4 id="main_title">주문 목록</h4>
-          <div id="member_count">공지목록 < 공지사항</div>
+          <span>공지목록 < 공지사항</span>
           <table class="table table-hover table-bordered">
             <thead>
               <tr>
@@ -66,7 +66,6 @@
                 <th scope="col">제목</th>
                 <th scope="col">내용</th>
                 <th scope="col">작성자</th>
-                <th scope="col">카테고리</th>
                 <th scope="col">이미지</th>
                 <th scope="col">작성 시간</th>
                 <th scope="col">수정</th>
@@ -81,7 +80,6 @@
                 <td><span th:text="${notice.noticeTitle}"></span></td>
                 <td><span th:text="${notice.noticeContent}"></span></td>
                 <td><span th:text="${notice.noticeUser}"></span></td>
-                <td><span th:text="${notice.noticeCate}"></span></td>
                 <td><img  class="admin_item_img" id="imgItemImageUrl" th:src="${notice.noticeImage}" width="100px"></td>
                 <td><span th:text="${notice.noticeDatetime}"></span></td>
                 <td>

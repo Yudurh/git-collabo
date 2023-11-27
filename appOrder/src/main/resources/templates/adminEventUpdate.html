@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
-    <title>공지사항 글 수정</title>
+    <title>이벤트 글 수정</title>
   </head>
   <script src="https://code.jquery.com/jquery-latest.min.js"></script>
   <script
@@ -21,29 +21,26 @@
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
     crossorigin="anonymous"
   />
-  <link
-    rel="stylesheet"
-    href="./css/adminNoticeUpdate.css"
-  />
+  <link rel="stylesheet" href="./css/adminNoticeUpdate.css" />
   <body>
     <div id="wrap">
       <div id="header">
         <img src="./img/megaLogo.png" width="400px" />
         <div id="header_title">
-          <h3>공지사항 수정</h3>
+          <h3>이벤트 수정</h3>
         </div>
       </div>
       <div id="main">
         <div id="main_header">
           <div class="mainContent">
-            <input id="noticeNo" type="hidden" th:value="${notice.noticeNo}" />
+            <input id="eventNo" type="hidden" th:value="${event.eventNo}" />
             <div id="title">
               <label>제목</label>
               <input
-                id="inputNoticeTitle"
-                name="inputNoticeTitle"
+                id="inputEventTitle"
+                name="inputEventTitle"
                 class="form-control"
-                th:value="${notice.noticeTitle}"
+                th:value="${event.eventTitle}"
               />
             </div>
           </div>
@@ -51,10 +48,10 @@
             <div id="user">
               <label>작성자</label>
               <input
-                id="inputNoticeUser"
-                name="inputNoticeUser"
+                id="inputEventUser"
+                name="inputEventUser"
                 class="form-control"
-                th:value="${notice.noticeUser}"
+                th:value="${event.eventUser}"
               />
             </div>
           </div>
@@ -65,10 +62,10 @@
               <label>내용</label>
               <textarea
                 class="form-control"
-                id="inputNoticeContent"
-                name="inputNoticeContent"
+                id="inputEventContent"
+                name="inputEventContent"
                 rows="3"
-                th:text="${notice.noticeContent}"
+                th:text="${event.eventContent}"
               ></textarea>
             </div>
           </div>
@@ -78,15 +75,15 @@
               <div>
                 <img
                   class="admin_item_img"
-                  id="imgNoticeImageUrl"
-                  th:src="${notice.noticeImage}"
+                  id="imgEventImageUrl"
+                  th:src="${event.eventImage}"
                   width="130px"
                 />
               </div>
               &nbsp;&nbsp;<button
                 type="file"
                 class="btn btn-dark"
-                onclick="onClickUpload2();"
+                onclick="onClickUpload3();"
                 style="width: 80px"
               >
                 변경
@@ -94,9 +91,9 @@
               <input
                 type="file"
                 style="visibility: hidden"
-                id="inputNoticeImageUrl"
-                th:value="${notice.noticeImage}"
-                onchange="readURL2(this);"
+                id="inputEventImageUrl"
+                th:value="${event.eventImage}"
+                onchange="readURL3(this);"
               />
             </div>
           </div>
@@ -106,21 +103,23 @@
             <div id="dateTime">
               <label>작성 시간</label>
               <input
-                id="inputNoticeDatetime"
-                name="inputNoticeDatetime"
+                id="inputEventDatetime"
+                name="inputEventDatetime"
                 class="form-control"
-                th:value="${notice.noticeDatetime}"
+                th:value="${event.eventDatetime}"
               />
             </div>
           </div>
         </div>
+      </div>
       <div id="footer">
         <button class="btn btn-secondary" onclick="history.back();">
           취소
         </button>
-        <button class="btn btn-warning" onclick="noticeUpdate();">수정</button>
+        <button class="btn btn-warning" onclick="eventUpdate();">수정</button>
       </div>
     </div>
+
     <script src="./js/adminUpdate.js"></script>
   </body>
 </html>

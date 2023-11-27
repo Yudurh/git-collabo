@@ -7,14 +7,9 @@ import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.swing.text.html.Option;
-import java.lang.reflect.Member;
-import java.security.PublicKey;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class MainControllerYem {
@@ -30,6 +25,8 @@ public class MainControllerYem {
     private OptionRepository optionRepository;
     @Autowired
     private NoticeRepository noticeRepository;
+    @Autowired
+    private EventRepository eventRepository;
 
     @GetMapping("")
     public String first(){
@@ -155,8 +152,21 @@ public class MainControllerYem {
     public String adminNoticeList(Model model){
         List<NoticeEntity> noticeEntities = noticeRepository.findAll();
         model.addAttribute("list", noticeEntities);
+        model.addAttribute("count", noticeEntities.size());
+
         return "adminNoticeList";
     }
+
+    // ( 관리자 ) 이벤트 글 조회
+    @GetMapping("/adminEventList")
+    public String adminEventList(Model model){
+        List<EventEntity> eventEntities = eventRepository.findAll();
+        model.addAttribute("list", eventEntities);
+        model.addAttribute("count", eventEntities.size());
+
+        return "adminEventList";
+    }
+
 
     // ( 관리자 ) 공지사항 글 수정
     @GetMapping("/noticeUpdate")
@@ -169,6 +179,37 @@ public class MainControllerYem {
         model.addAttribute("noticeNo", noticeNo);
 
         return "adminNoticeUpdate";
+    }
+
+    // ( 관리자 ) 공지사항 글 삭제
+    @GetMapping("/noticeDelete")
+    public String noticeDelete(@RequestParam Long noticeNo){
+        noticeRepository.deleteById(noticeNo);
+
+        return "redirect:/adminNoticeList";
+    }
+
+
+    // ( 관리자 ) 이벤트 글 수정
+    @GetMapping("/eventUpdate")
+    public String eventUpdate(@RequestParam Long eventNo,
+                               Model model){
+        EventEntity eventEntity = eventRepository.findById(eventNo).get();
+        EventDto eventDto = EventDto.toEventDto(eventEntity);
+
+        model.addAttribute("event", eventDto);
+        model.addAttribute("eventNo", eventNo);
+
+        return "adminEventUpdate";
+    }
+
+
+    // ( 관리자 ) 이벤트 글 삭제
+    @GetMapping("/eventDelete")
+    public String eventDelete(@RequestParam Long eventNo){
+        eventRepository.deleteById(eventNo);
+
+        return "redirect:/adminEventList";
     }
 
     // (사용자) 상품 정보 조회

@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class NoticeDto {
     private Long noticeNo;
-    private Integer noticeCate;
     private String noticeUser;
     private String noticeTitle;
     private String noticeContent;
@@ -22,7 +21,6 @@ public class NoticeDto {
     public static NoticeDto toNoticeDto(NoticeEntity entity){
         return NoticeDto.builder()
                 .noticeNo(entity.getNoticeNo())
-                .noticeCate(entity.getNoticeCate())
                 .noticeUser(entity.getNoticeUser())
                 .noticeTitle(entity.getNoticeTitle())
                 .noticeContent(entity.getNoticeContent())

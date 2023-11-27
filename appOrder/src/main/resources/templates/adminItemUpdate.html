@@ -81,7 +81,6 @@
         <div class="updateContent">
           <label>이미지</label>
           <div>
-<!--            <img  class="admin_item_img" name="" id="imgItemImageUrl" th:value="${item.itemImageUrl}" th:src="${item.itemImageUrl}" width="150px">-->
             <input
                     type="image"
                     id="imgItemImageUrl"
@@ -99,8 +98,9 @@
           </button>
           <input
             type="file"
-            style="display: none;"
+            style="visibility: hidden"
             id="inputItemImageUrl"
+            name="inputItemImageUrl"
             th:value="${item.itemImageUrl}"
             onchange="readURL(this);"
           />

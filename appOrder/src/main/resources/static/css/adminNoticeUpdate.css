@@ -14,8 +14,8 @@ body {
   padding: 30px;
 }
 
-label{
-font-weight: bold;
+label {
+  font-weight: bold;
 }
 
 #header_title {
@@ -41,8 +41,8 @@ font-weight: bold;
 }
 
 .mainContent label {
-  width: 25%;
-  margin-right: 30px;
+  width: 40%;
+  margin-right: 10px;
   text-align: center;
 }
 
@@ -69,12 +69,15 @@ textarea {
 #main_footer {
   display: flex;
   flex-direction: row;
-  justify-content: right;
-  width: 100%;
+  margin-top: 50px;
+  margin-left: 20px;
 }
 
-#dateTime label {
-  width: 50%;
+#main_footer .mainContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 #footer button {

@@ -18,8 +18,6 @@ public class NoticeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "notice_no")
     private Long noticeNo;
-    @Column(name = "notice_cate")
-    private Integer noticeCate;
     @Column(name = "notice_user")
     private String noticeUser;
     @Column(name = "notice_title")
@@ -34,7 +32,6 @@ public class NoticeEntity {
     public static NoticeEntity toNoticeEntity(NoticeDto dto){
         return NoticeEntity.builder()
                 .noticeNo(dto.getNoticeNo())
-                .noticeCate(dto.getNoticeCate())
                 .noticeUser(dto.getNoticeUser())
                 .noticeTitle(dto.getNoticeTitle())
                 .noticeContent(dto.getNoticeContent())
