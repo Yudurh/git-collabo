@@ -2,6 +2,7 @@ package com.springboot.appOrder.controller;
 
 import com.springboot.appOrder.dto.*;
 import com.springboot.appOrder.entity.*;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.lang.reflect.Member;
 import java.util.List;
 
 @Controller
@@ -39,8 +41,59 @@ public class MainControllerYem {
         return "login";
     }
     
+    // ( 사용자 ) 메인 화면
     @GetMapping("/main")
-    public String main(){
+    public String main(Model model,
+                       HttpServletRequest request){
+        // 로그인한 회원 이름, 스탬프 렌더링
+        String loginId = (String)request.getSession().getAttribute("loginId");
+        if( loginId != null ){
+            List<MemberEntity> list = memberRepository.findByMemberId(loginId);
+            if( list.size() > 0 ){
+                MemberEntity memberEntity = list.get(0);
+                model.addAttribute("memberName", memberEntity.getMemberName());
+                model.addAttribute("memberPoint", memberEntity.getMemberPoint());
+                System.out.println(memberEntity.getMemberPoint());
+            }
+        }
+
+        // 추천 메뉴 렌더링
+        List<ItemEntity> itemEntities1 = itemRepository.findByItemName("왕할메가커피");
+        List<ItemEntity> itemEntities2 = itemRepository.findByItemName("할메가커피");
+        List<ItemEntity> itemEntities3 = itemRepository.findByItemName("디카페인 헤이즐넛 아메리카노");
+        List<ItemEntity> itemEntities4 = itemRepository.findByItemName("디카페인 바닐라 아메리카노");
+        List<ItemEntity> itemEntities5 = itemRepository.findByItemName("에스프레소");
+
+        model.addAttribute("itemImageUrl1", itemEntities1.get(0).getItemImageUrl());
+        model.addAttribute("itemName1", itemEntities1.get(0).getItemName());
+        model.addAttribute("itemImageUrl2", itemEntities2.get(0).getItemImageUrl());
+        model.addAttribute("itemName2", itemEntities2.get(0).getItemName());
+        model.addAttribute("itemImageUrl3", itemEntities3.get(0).getItemImageUrl());
+        model.addAttribute("itemName3", itemEntities3.get(0).getItemName());
+        model.addAttribute("itemImageUrl4", itemEntities4.get(0).getItemImageUrl());
+        model.addAttribute("itemName4", itemEntities4.get(0).getItemName());
+        model.addAttribute("itemImageUrl5", itemEntities5.get(0).getItemImageUrl());
+        model.addAttribute("itemName5", itemEntities5.get(0).getItemName());
+
+        // 이벤트 글 렌더링
+        List<EventEntity> eventEntities1 = eventRepository.findByEventNo(1L);
+        List<EventEntity> eventEntities2 = eventRepository.findByEventNo(2L);
+        List<EventEntity> eventEntities3 = eventRepository.findByEventNo(3L);
+        List<EventEntity> eventEntities4 = eventRepository.findByEventNo(4L);
+        List<EventEntity> eventEntities5 = eventRepository.findByEventNo(5L);
+
+        model.addAttribute("eventImage1", eventEntities1.get(0).getEventImage());
+        model.addAttribute("eventTitle1", eventEntities1.get(0).getEventTitle());
+        model.addAttribute("eventImage2", eventEntities2.get(0).getEventImage());
+        model.addAttribute("eventTitle2", eventEntities2.get(0).getEventTitle());
+        model.addAttribute("eventImage3", eventEntities3.get(0).getEventImage());
+        model.addAttribute("eventTitle3", eventEntities3.get(0).getEventTitle());
+        model.addAttribute("eventImage4", eventEntities4.get(0).getEventImage());
+        model.addAttribute("eventTitle4", eventEntities4.get(0).getEventTitle());
+        model.addAttribute("eventImage5", eventEntities5.get(0).getEventImage());
+        model.addAttribute("eventTitle5", eventEntities5.get(0).getEventTitle());
+
+
         return "main";
     }
 
@@ -172,6 +225,7 @@ public class MainControllerYem {
     @GetMapping("/noticeUpdate")
     public String noticeUpdate(@RequestParam Long noticeNo,
                                Model model){
+
         NoticeEntity noticeEntity = noticeRepository.findById(noticeNo).get();
         NoticeDto noticeDto = NoticeDto.toNoticeDto(noticeEntity);
 
@@ -194,6 +248,7 @@ public class MainControllerYem {
     @GetMapping("/eventUpdate")
     public String eventUpdate(@RequestParam Long eventNo,
                                Model model){
+
         EventEntity eventEntity = eventRepository.findById(eventNo).get();
         EventDto eventDto = EventDto.toEventDto(eventEntity);
 

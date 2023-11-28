@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org/">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,31 +22,28 @@
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
     crossorigin="anonymous"
   />
-  <link rel="stylesheet" href="/src/main/resources/static/css/main.css" />
+  <link rel="stylesheet" href="./css/main.css" />
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
   <body>
     <div id="wrap">
       <div id="header">
         <div class="ad">
-          <img
-            src="/src/main/resources/static/img/광고1.jpg"
-            alt=""
-            id="changingImage"
-          />
+          <img src="./img/광고1.jpg" alt="" id="changingImage" />
         </div>
       </div>
       <div id="main">
+        <!-- 타임리프 -->
         <!-- 이름, 스탬프, 쿠폰 -->
         <div id="main_header">
           <div class="nameBox">
-            <span class="name">김예림</span>
+            <span class="name" th:text="${ memberName }">김예림</span>
             <span class="name_content">님</span>
           </div>
           <div id="stempBox">
-            <img src="/src/main/resources/static/img/mug.png" />
+            <img src="./img/mug.png" />
             <a href="#">스탬프</a>
-            <span style="margin-right: 20px">8</span>
-            <img src="/src/main/resources/static/img/coupon.png" />
+            <span style="margin-right: 20px" th:text="${ memberPoint }">8</span>
+            <img src="./img/coupon.png" />
             <a href="#">쿠폰</a>
             <span>8</span>
           </div>
@@ -55,32 +52,68 @@
         <div id="main_middel">
           <swiper-container>
             <swiper-slide>
-              <img
-                src="/src/main/resources/static/img/광고1.jpg"
-                width="450px"
-              />
+              <img src="./img/광고1.jpg" width="450px" />
             </swiper-slide>
             <swiper-slide>
-              <img
-                src="/src/main/resources/static/img/광고2.jpg"
-                width="450px"
-              />
+              <img src="./img/광고2_2.jpg" width="450px" />
             </swiper-slide>
           </swiper-container>
         </div>
         <!-- 추천메뉴 -->
         <div id="main_footer">
           <div class="nameBox">
-            <span class="name">김예림</span>
+            <span class="name" th:text="${ memberName }">김예림</span>
             <span class="name_content">님을 위한 추천 메뉴</span>
             <div class="slider">
               <div class="slider-inner">
-                <div class="slider-item">1</div>
-                <div class="slider-item">2</div>
-                <div class="slider-item">3</div>
-                <div class="slider-item">4</div>
-                <div class="slider-item">5</div>
-                <div class="slider-item">6</div>
+                <div class="slider-item">
+                  <img
+                    src="./img/추천메뉴2.jpg"
+                    width="150px"
+                    th:src="${ itemImageUrl1 }"
+                  />
+                  <div class="slider_content" th:text="${ itemName1 }">
+                  </div>
+                </div>
+                <div class="slider-item">
+                  <img
+                    src="./img/추천메뉴3.jpg"
+                    width="150px"
+                    th:src="${ itemImageUrl2 }"
+                  />
+                  <div class="slider_content" th:text="${ itemName2 }">
+                  </div>
+                </div>
+                <div class="slider-item">
+                  <img
+                    src="./img/추천메뉴4.jpg"
+                    width="150px"
+                    th:src="${ itemImageUrl3 }"
+                  />
+                  <div class="slider_content" th:text="${ itemName3 }">
+                    초코스모어쿠키
+                  </div>
+                </div>
+                <div class="slider-item">
+                  <img
+                    src="./img/추천메뉴2.jpg"
+                    width="150px"
+                    th:src="${ itemImageUrl4 }"
+                  />
+                  <div class="slider_content" th:text="${ itemName4 }">
+                    (Hot)아메리카노
+                  </div>
+                </div>
+                <div class="slider-item">
+                  <img
+                    src="./img/추천메뉴3.jpg"
+                    width="150px"
+                    th:src="${ itemImageUrl5 }"
+                  />
+                  <div class="slider_content" th:text="${ itemName5 }">
+                    왕할메가커피
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -92,11 +125,108 @@
           <span id="title">새소식</span>
           <a href="#">전체보기</a>
         </div>
+        <div id="footer_middle">
+          <div class="slider2">
+            <div class="slider-inner2">
+              <div class="slider-item2">
+                <img
+                  src="./img/이벤트글.jpg"
+                  width="150px"
+                  th:src="${ eventImage1 }"
+                />
+                <div class="slider_content2" th:text="${ eventTitle1 }">
+                  [이벤트]메가MGC커피 X CJONE, MEGA ONE DAY
+                </div>
+              </div>
+              <div class="slider-item2">
+                <img
+                  src="./img/이벤트글.jpg"
+                  width="150px"
+                  th:src="${ eventImage2 }"
+                />
+                <div class="slider_content2" th:text="${ eventTitle2 }">
+                  [이벤트]메가MGC커피 X CJONE, MEGA ONE DAY
+                </div>
+              </div>
+              <div class="slider-item2">
+                <img
+                  src="./img/이벤트글.jpg"
+                  width="150px"
+                  th:src="${ eventImage3 }"
+                />
+                <div class="slider_content2" th:text="${ eventTitle3 }">
+                  [이벤트]메가MGC커피 X CJONE, MEGA ONE DAY
+                </div>
+              </div>
+              <div class="slider-item2">
+                <img
+                  src="./img/이벤트글.jpg"
+                  width="150px"
+                  th:src="${ eventImage4 }"
+                />
+                <div class="slider_content2" th:text="${ eventTitle4 }">
+                  [이벤트]메가MGC커피 X CJONE, MEGA ONE DAY
+                </div>
+              </div>
+              <div class="slider-item2">
+                <img
+                  src="./img/이벤트글.jpg"
+                  width="150px"
+                  th:src="${ eventImage5 }"
+                />
+                <div class="slider_content2" th:text="${ eventTitle5 }">
+                  [이벤트]메가MGC커피 X CJONE, MEGA ONE DAY
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="icon">
+          <img src="./img/메가커피로고1.png" width="60px" alt=""/>
+          <div style="font-weight:bold;">쇼핑몰</div>
+        </div>
+        <div id="footer_menu">
+          <div name="menu" onclick="click_main();" class="menu_height">
+            <img
+              src="./img/home_1946436.png"
+              width="23px"
+            />
+            <div class="menu_name">메인</div>
+          </div>
+          <div class="menu">
+            <img
+              src="./img/coin_117626.png"
+              width="23px"
+            />
+            <div class="menu_name">메가선불카드</div>
+          </div>
+          <div name="menu" onclick="click_megaOrder();" class="menu">
+            <img
+              src="./img/coffee-cup_657491.png"
+              width="23px"
+            />
+            <div class="menu_name">메가오더</div>
+          </div>
+          <div class="menu">
+            <img
+              src="./img/gift-box-with-bow_66834.png"
+              width="23px"
+            />
+            <div class="menu_name">선물하기</div>
+          </div>
+          <div name="menu" onclick="click_more();" class="menu">
+            <img
+              src="./img/options_2647907.png"
+              width="23px"
+            />
+            <div class="menu_name">더보기</div>
+          </div>
+        </div>
       </div>
     </div>
   </body>
   <script>
-    const images = ["/src/main/resources/static/img/광고2.jpg"];
+    const images = ["./img/광고1.jpg", "./img/광고2_2.jpg"];
 
     const changingImage = document.getElementById("changingImage");
     let currentIndex = 0;
@@ -106,7 +236,8 @@
       currentIndex = (currentIndex + 1) % images.length;
     }
 
-    setInterval(changeImage, 1000);
+    setInterval(changeImage, 2000);
   </script>
-  <script src="/src/main/resources/static/js/index.js"></script>
+  <script src="./js/index.js"></script>
+  <script src="./js/main.js"></script>
 </html>

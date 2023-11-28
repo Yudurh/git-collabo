@@ -5,11 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19d4e1de-743c-4947-b9b8-67e50c5242a4" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/dto/EventDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/entity/EventEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/entity/EventRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/adminEventList.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/adminEventUpdate.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/dto/PointDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Img/barcode_25350.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Img/bell_10533479.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Img/coffee-cup_657491.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Img/coin_117626.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Img/gift-box-with-bow_66834.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Img/home_1946436.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Img/options_2647907.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/Img/메가커피로고1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/executionHistory/executionHistory.bin" afterDir="false" />
@@ -19,23 +24,19 @@
       <change beforePath="$PROJECT_DIR$/.gradle/8.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/templates/main.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/controller/ApiControllerYem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/controller/ApiControllerYem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/controller/MainControllerYem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/controller/MainControllerYem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/dto/NoticeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/dto/NoticeDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/entity/NoticeEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/entity/NoticeEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/entity/NoticeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/entity/NoticeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/adminList.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/adminList.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/adminNoticeUpdate.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/adminNoticeUpdate.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/adminList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/adminList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/entity/EventRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/entity/EventRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/entity/MemberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/entity/MemberRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/more.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/more.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/adminUpdate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/adminUpdate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/upload/8f5ae59b-1270-4afe-ad47-eae34144dda8_핫아메리카노.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/upload/d6882076-6b7c-46d6-9b68-41f469999789_핫아메리카노.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/adminItemUpdate.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/adminItemUpdate.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/adminNoticeList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/adminNoticeList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/adminNoticeUpdate.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/adminNoticeUpdate.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/main.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/more.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/more.html" afterDir="false" />
     </list>
@@ -69,9 +70,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Class" />
         <option value="Interface" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -93,14 +94,15 @@
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/EZEN/Documents/git-blog/git-collabo/appOrder/src/main/resources/templates",
+    "last_opened_file_path": "C:/Users/EZEN/Documents/git-blog/git-collabo/appOrder/src/main/resources/static/img",
     "settings.editor.selected.configurable": "editor.preferences.fonts.default"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\EZEN\Documents\git-blog\git-collabo\appOrder\src\main\resources\templates" />
       <recent name="C:\Users\EZEN\Documents\git-blog\git-collabo\appOrder\src\main\resources\static\img" />
+      <recent name="C:\Users\EZEN\Documents\git-blog\git-collabo\appOrder\src\main\resources\static\js" />
+      <recent name="C:\Users\EZEN\Documents\git-blog\git-collabo\appOrder\src\main\resources\templates" />
       <recent name="C:\Users\EZEN\Documents\git-blog\git-collabo\appOrder\src\main\resources\static\font" />
     </key>
     <key name="MoveFile.RECENT_KEYS">

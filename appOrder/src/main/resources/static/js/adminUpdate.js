@@ -454,7 +454,7 @@ function image_upload3() {
     let existingFileName = getFileName(existingImageUrl);
 
     // 기존 이미지 파일명을 서버로 전달하는 함수 호출
-    func_notice_updateAction_json(existingFileName);
+    func_event_updateAction_json(existingFileName);
   }
 }
 
