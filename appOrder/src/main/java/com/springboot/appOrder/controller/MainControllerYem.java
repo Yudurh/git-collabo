@@ -86,7 +86,6 @@ public class MainControllerYem {
         model.addAttribute("list", itemEntities);
         model.addAttribute("count", itemEntities.size());
 
-
         return "adminItemList";
     }
 

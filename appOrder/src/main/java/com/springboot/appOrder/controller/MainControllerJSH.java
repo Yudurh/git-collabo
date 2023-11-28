@@ -36,5 +36,12 @@ public class MainControllerJSH {
     }
 
 
+    @GetMapping("/order_1")
+    public String order( Model model ){
+        List<CartEntity>entities = cartRepository.findAll();
+        model.addAttribute("list",entities);
+
+        return "/order_1";
+    }
 
 }
