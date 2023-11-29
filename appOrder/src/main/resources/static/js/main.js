@@ -37,3 +37,9 @@ function click_more() {
 
   window.location.href = "/more";
 }
+
+// 쇼핑몰 아이콘 클릭시, 쇼핑몰 사이트로 이동
+function click_icon() {
+  let element = document.getElementById("icon");
+  window.location.href = "https://www.megamgccoffee.co.kr/";
+}

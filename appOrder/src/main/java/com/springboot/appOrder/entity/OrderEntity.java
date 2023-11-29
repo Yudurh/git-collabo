@@ -39,8 +39,6 @@ public class OrderEntity {
     private Integer orderNumber;
     @Column(name = "order_pay_type")
     private Integer orderPayType;
-    @Column(name = "order_state")
-    private String orderState;
     @Column(name = "order_datetime")
     @DateTimeFormat(pattern = "yyyy-MM-ddTHH:mm:ss")
     private LocalDateTime orderDatetime;
@@ -58,7 +56,6 @@ public class OrderEntity {
                 .orderTotalCount(dto.getOrderTotalCount())
                 .orderNumber(dto.getOrderNumber())
                 .orderPayType(dto.getOrderPayType())
-                .orderState(dto.getOrderState())
                 .orderDatetime(dto.getOrderDatetime())
                 .build();
     }

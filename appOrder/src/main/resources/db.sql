@@ -167,6 +167,15 @@ CREATE TABLE event(
 );
 
 INSERT INTO event VALUES(NULL,'admin', '[이벤트]메가MGC커피 X CJONE, MEGA ONE DAY', '이벤트글',
-DEFAULT, '이벤트글.jpg');
+DEFAULT, 'http://img.79plus.co.kr/megahp/manager/upload/bbs/202311071550131533460215.jpg');
+INSERT INTO event VALUES(NULL,'admin', '[이벤트]겨울시즌 오픈기념 이벤트', '이벤트글',
+DEFAULT, 'http://img.79plus.co.kr/megahp/manager/upload/bbs/202310260947041163410733.jpg');
+INSERT INTO event VALUES(NULL,'admin', '[이벤트]메가MGC커피 X 카카오페이, 5,000원 결제시 500원 즉시 할인!', '이벤트글',
+DEFAULT, 'http://img.79plus.co.kr/megahp/manager/upload/bbs/202310231602261447755798.png');
+INSERT INTO event VALUES(NULL,'admin', '[이벤트]9~12월 메가MGC커피 X 하나페이 적립 EVENT', '이벤트글',
+DEFAULT, 'http://img.79plus.co.kr/megahp/manager/upload/bbs/20230925152421656240179.jpg');
+INSERT event VALUES(NULL,'admin', '[이벤트]메가MGC커피 X 우주패스 가입 혜택 EVENT(10/1~)', '이벤트글',
+DEFAULT, 'http://img.79plus.co.kr/megahp/manager/upload/bbs/2023092515271929366099.png');
+
 
 SELECT * FROM event;

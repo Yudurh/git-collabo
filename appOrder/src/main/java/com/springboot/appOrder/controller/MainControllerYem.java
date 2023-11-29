@@ -53,7 +53,9 @@ public class MainControllerYem {
                 MemberEntity memberEntity = list.get(0);
                 model.addAttribute("memberName", memberEntity.getMemberName());
                 model.addAttribute("memberPoint", memberEntity.getMemberPoint());
-                System.out.println(memberEntity.getMemberPoint());
+                System.out.println("point: " + memberEntity.getMemberPoint());
+                model.addAttribute("coupon", memberEntity.getMemberPoint()/10);
+                model.addAttribute("memberPoint", memberEntity.getMemberPoint()%10);
             }
         }
 
@@ -334,6 +336,20 @@ public class MainControllerYem {
 
     }
 
+    // ( 사용자 ) 스탬프
+    @GetMapping("/stamp")
+    public String stamp(Model model,
+                        HttpServletRequest request){
+        String loginId = (String)request.getSession().getAttribute("loginId");
+        if( loginId != null ){
+            List<MemberEntity> list = memberRepository.findByMemberId(loginId);
+            if( list.size() > 0 ){
+                MemberEntity memberEntity = list.get(0);
+                model.addAttribute("stamp", memberEntity.getMemberPoint()%10);
+                System.out.println("stamp: " + memberEntity.getMemberPoint()%10);
+            }
+        }
 
-
+        return "stamp";
+    }
 }

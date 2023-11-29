@@ -212,7 +212,6 @@ function orderUpdate() {
   let orderNumber = document.getElementById("inputOrderNumber").value;
   // 결제 수단은 db에서 숫자로 들어감 ( 01 현금, 02 카드 )
   let orderPayType = $("#payType").val();
-  let orderState = $("#payState").val();
   let orderDatetime = document.getElementById("inputOrderDatetime").value;
 
   console.log(orderState);
@@ -248,7 +247,6 @@ function orderUpdate() {
     orderTotalCount: orderTotalCount,
     orderNumber: orderNumber,
     orderPayType: orderPayType,
-    orderState: orderState,
     orderDatetime: orderDatetime,
   };
 

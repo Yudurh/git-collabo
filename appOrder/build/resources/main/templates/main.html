@@ -41,11 +41,11 @@
           </div>
           <div id="stempBox">
             <img src="./img/mug.png" />
-            <a href="#">스탬프</a>
-            <span style="margin-right: 20px" th:text="${ memberPoint }">8</span>
+            <a href="/stamp">스탬프</a>
+            <span style="margin-right: 20px" th:text="${ memberPoint }"></span>
             <img src="./img/coupon.png" />
             <a href="#">쿠폰</a>
-            <span>8</span>
+            <span th:text="${ coupon }"></span>
           </div>
         </div>
         <!-- 광고 -->
@@ -72,8 +72,7 @@
                     width="150px"
                     th:src="${ itemImageUrl1 }"
                   />
-                  <div class="slider_content" th:text="${ itemName1 }">
-                  </div>
+                  <div class="slider_content" th:text="${ itemName1 }"></div>
                 </div>
                 <div class="slider-item">
                   <img
@@ -81,8 +80,7 @@
                     width="150px"
                     th:src="${ itemImageUrl2 }"
                   />
-                  <div class="slider_content" th:text="${ itemName2 }">
-                  </div>
+                  <div class="slider_content" th:text="${ itemName2 }"></div>
                 </div>
                 <div class="slider-item">
                   <img
@@ -181,44 +179,29 @@
             </div>
           </div>
         </div>
-        <div id="icon">
-          <img src="./img/메가커피로고1.png" width="60px" alt=""/>
-          <div style="font-weight:bold;">쇼핑몰</div>
+        <div id="icon" onclick="click_icon();">
+          <img src="./img/메가커피로고1.png" width="60px" alt="" />
+          <div style="font-weight: bold">쇼핑몰</div>
         </div>
         <div id="footer_menu">
           <div name="menu" onclick="click_main();" class="menu_height">
-            <img
-              src="./img/home_1946436.png"
-              width="23px"
-            />
+            <img src="./img/home_1946436.png" width="23px" />
             <div class="menu_name">메인</div>
           </div>
           <div class="menu">
-            <img
-              src="./img/coin_117626.png"
-              width="23px"
-            />
+            <img src="./img/coin_117626.png" width="23px" />
             <div class="menu_name">메가선불카드</div>
           </div>
           <div name="menu" onclick="click_megaOrder();" class="menu">
-            <img
-              src="./img/coffee-cup_657491.png"
-              width="23px"
-            />
+            <img src="./img/coffee-cup_657491.png" width="23px" />
             <div class="menu_name">메가오더</div>
           </div>
           <div class="menu">
-            <img
-              src="./img/gift-box-with-bow_66834.png"
-              width="23px"
-            />
+            <img src="./img/gift-box-with-bow_66834.png" width="23px" />
             <div class="menu_name">선물하기</div>
           </div>
           <div name="menu" onclick="click_more();" class="menu">
-            <img
-              src="./img/options_2647907.png"
-              width="23px"
-            />
+            <img src="./img/options_2647907.png" width="23px" />
             <div class="menu_name">더보기</div>
           </div>
         </div>
@@ -238,6 +221,6 @@
 
     setInterval(changeImage, 2000);
   </script>
-  <script src="./js/index.js"></script>
+  <script src="./js/slider.js"></script>
   <script src="./js/main.js"></script>
 </html>

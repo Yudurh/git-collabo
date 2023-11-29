@@ -23,7 +23,6 @@ public class OrderDto {
     private Integer orderTotalCount;
     private Integer orderNumber;
     private Integer orderPayType;
-    private String orderState;
     @DateTimeFormat(pattern = "yyyy-MM-ddTHH:mm:ss")
     private LocalDateTime orderDatetime;
 
@@ -40,7 +39,6 @@ public class OrderDto {
                 .orderTotalCount(entity.getOrderTotalCount())
                 .orderNumber(entity.getOrderNumber())
                 .orderPayType(entity.getOrderPayType())
-                .orderState(entity.getOrderState())
                 .orderDatetime(entity.getOrderDatetime())
                 .build();
     }
