@@ -43,7 +43,9 @@
                 >
                   <div id="acText" class="d-flex justify-content-between">
                     <div class="fw-bold">주문상품</div>
-                    <div class="mx-2">뭐뭐몇개</div>
+                    <div class="mx-2" th:text="|${first} 외 ${size}개의 상품|">
+                      뭐뭐몇개
+                    </div>
                   </div>
                 </button>
               </h2>
@@ -54,20 +56,48 @@
               >
                 <div class="accordion-body" th:each=" cart, status: ${ list } ">
                   <div class="cartIn2">
-                    <div class="cartItemName" th:text=" ${ cart.itemName }"></div>
-                    <div class="cartItemOption" th:text=" ${ cart.optionName1 }"></div>
-                    <div class="cartItemOption" th:text=" ${ cart.optionName2 }"></div>
-                    <div class="cartItemOption" th:text=" ${ cart.optionName3 }"></div>
-                    <div class="quantityAndPrice">
+                    <div class="cartLeft">
+                      <div>
+                        <img
+                          th:src="${cart.itemImageUrl}"
+                          width="150px"
+                          height="150px"
+                        />
+                      </div>
+                      <div class="leftC">
+                        <div
+                          class="visually-hidden"
+                          name="itemCode"
+                          th:text="${cart.itemCode}"
+                        ></div>
+                        <div
+                          class="cartItemName"
+                          th:text=" ${ cart.itemName }"
+                        ></div>
+                        <div
+                          class="cartItemOption"
+                          th:text=" ${ cart.optionName1 }"
+                        ></div>
+                        <div
+                          class="cartItemOption"
+                          th:text=" ${ cart.optionName2 }"
+                        ></div>
+                        <div
+                          class="cartItemOption"
+                          th:text=" ${ cart.optionName3 }"
+                        ></div>
+                      </div>
+                    </div>
+                    <div class="cartRight">
                       <div class="Btns">
                         <div
-                                class="cartQuantity"
-                                th:text="${cart.cartItemAmount}"
+                          class="cartQuantity"
+                          th:text="|${cart.cartItemAmount}개|"
                         ></div>
                       </div>
                       <div class="cartPriceBox">
-                        <span class="cartPrice" th:text="${cart.cartPrice}"> </span>
-                        <div class="priceTxt">원</div>
+                        <span class="cartPrice" th:text="|${cart.cartPrice}원|">
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -109,42 +139,44 @@
           <div class="fw-bold">결제선택</div>
           <div id="payRadio">
             <div>
-              <input type="radio" name="pay"  />
-              <label >네이버페이</label>
+              <input type="radio" name="pay" value="1" />
+              <label>네이버페이</label>
             </div>
             <div>
-              <input type="radio" name="pay"  />
-              <label >카카오페이</label>
+              <input type="radio" name="pay" value="2" />
+              <label>카카오페이</label>
             </div>
             <div>
-              <input type="radio" name="pay"  />
-              <label >현금</label>
+              <input type="radio" name="pay" value="3" />
+              <label>현금</label>
             </div>
             <div>
-              <input type="radio" name="pay"  />
-              <label >카드</label>
+              <input type="radio" name="pay" value="4" />
+              <label>카드</label>
             </div>
           </div>
 
           <div id="payPrice">
             <div>
               <div>상품금액</div>
-              <div></div>
+              <div id="pPrice"></div>
             </div>
             <div>
               <div>할인금액</div>
-              <div></div>
+              <div id="dPrice"></div>
             </div>
             <div>
               <div>결제금액</div>
-              <div></div>
+              <div id="total"></div>
+              <div class="visually-hidden" id="totalValue"></div>
             </div>
           </div>
         </div>
       </div>
       <div id="footer">
-        <div>결재하기</div>
+        <div id="order">결재하기</div>
       </div>
     </div>
+    <script src="./js/order.js"></script>
   </body>
 </html>

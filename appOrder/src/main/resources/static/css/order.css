@@ -31,6 +31,15 @@
 #acText {
   width: 700px;
 }
+.cartIn2 {
+  display: flex;
+  justify-content: space-between;
+}
+.cartLeft {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
 #pleaseT {
   width: 300px;

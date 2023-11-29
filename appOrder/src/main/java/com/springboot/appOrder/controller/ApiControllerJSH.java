@@ -2,6 +2,7 @@ package com.springboot.appOrder.controller;
 
 import com.springboot.appOrder.dto.CartDto;
 import com.springboot.appOrder.dto.ItemDto;
+import com.springboot.appOrder.dto.OrderDto;
 import com.springboot.appOrder.dto.ResultDto;
 import com.springboot.appOrder.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -211,6 +212,35 @@ public class ApiControllerJSH {
         return resultDto;
     }
 
+
+    @Autowired
+    private OrderRepository orderRepository;
+    @PostMapping("/setOrder")
+    public ResultDto setOrder(@RequestBody OrderDto dto,
+                                  Model model){
+
+        OrderEntity newEntity = OrderEntity.toEntity(dto);
+        orderRepository.save(newEntity);
+
+
+
+        ResultDto resultDto = null;
+
+        if( newEntity != null  ) {
+            //포인트 수정 성공
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(1)
+                    .build();
+        }else{
+            //포인트 수정 실패
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(0)
+                    .build();
+        }
+        return resultDto;
+    }
 
 
 }

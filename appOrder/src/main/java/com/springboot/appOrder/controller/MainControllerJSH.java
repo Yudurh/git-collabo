@@ -40,8 +40,11 @@ public class MainControllerJSH {
     public String order( Model model ){
         List<CartEntity>entities = cartRepository.findAll();
         model.addAttribute("list",entities);
-
+        model.addAttribute("size",entities.size()-1);
+        model.addAttribute("first",entities.get(0).getItemName());
         return "/order_1";
     }
+
+
 
 }
