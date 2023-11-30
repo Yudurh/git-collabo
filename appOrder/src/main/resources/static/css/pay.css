@@ -1,0 +1,56 @@
+body {
+  width: 500px;
+  background-color: aliceblue;
+}
+#header {
+  background-color: white;
+  margin: 10px;
+  padding: 10px;
+}
+#topNav {
+  display: flex;
+  justify-content: space-between;
+  width: 58%;
+}
+#topNar {
+  background-color: darkgray;
+  border-radius: 5px;
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
+#marketInfo {
+  text-align: center;
+}
+#main {
+  background-color: white;
+  margin: 10px;
+  padding: 10px;
+}
+.cartIn2 {
+  width: 100%;
+  display: flex;
+}
+.cartLeft {
+  width: 100%;
+  display: flex;
+}
+.leftC {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.cartRight {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+#footer {
+  background-color: white;
+  margin: 10px;
+  padding: 10px;
+}
+.sort {
+  display: flex;
+  justify-content: space-between;
+}

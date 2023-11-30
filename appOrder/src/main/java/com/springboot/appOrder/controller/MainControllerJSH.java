@@ -2,6 +2,8 @@ package com.springboot.appOrder.controller;
 
 import com.springboot.appOrder.entity.CartEntity;
 import com.springboot.appOrder.entity.CartRepository;
+import com.springboot.appOrder.entity.OrderEntity;
+import com.springboot.appOrder.entity.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,6 +47,19 @@ public class MainControllerJSH {
         return "/order_1";
     }
 
+    @Autowired
+    private OrderRepository orderRepository;
+    @GetMapping("/pay")
+    public String pay( Model model ){
+        List<CartEntity>entities = cartRepository.findAll();
+        List<OrderEntity>order = orderRepository.findAll();
+        model.addAttribute("list",entities);
+        model.addAttribute("payType",order.get(0).getOrderPayType());
+        model.addAttribute("orderP",order.get(0).getOrderTotalPrice());
+        model.addAttribute("orderN",order.get(0).getOrderNumber());
+        model.addAttribute("orderD",order.get(0).getOrderDatetime());
+        return "/pay";
+    }
 
 
 }

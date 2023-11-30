@@ -39,7 +39,7 @@ public class OrderEntity {
     @Column(name = "order_number")
     private Integer orderNumber;
     @Column(name = "order_pay_type")
-    private Integer orderPayType;
+    private String orderPayType;
     @Column(name = "order_datetime")
     @DateTimeFormat(pattern = "yyyy-MM-ddTHH:mm:ss")
     private LocalDateTime orderDatetime;

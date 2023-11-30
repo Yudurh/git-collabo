@@ -22,7 +22,7 @@ public class OrderDto {
     private Integer orderTotalPrice;
     private Integer orderTotalCount;
     private Integer orderNumber;
-    private Integer orderPayType;
+    private String  orderPayType;
     @DateTimeFormat(pattern = "yyyy-MM-ddTHH:mm:ss")
     private LocalDateTime orderDatetime;
 

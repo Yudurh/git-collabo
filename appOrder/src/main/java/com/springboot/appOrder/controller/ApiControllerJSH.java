@@ -241,6 +241,34 @@ public class ApiControllerJSH {
         }
         return resultDto;
     }
+    @PostMapping("/delData")
+    public ResultDto delData(Model model){
+        cartRepository.deleteAll();
+        orderRepository.deleteAll();
+
+
+        OrderEntity newEntity = null;
+        ResultDto resultDto = null;
+
+        if( newEntity != null  ) {
+            //포인트 수정 성공
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(1)
+                    .build();
+        }else{
+            //포인트 수정 실패
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(0)
+                    .build();
+        }
+        return resultDto;
+    }
+
+
+
+
 
 
 }
