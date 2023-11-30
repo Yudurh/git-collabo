@@ -214,7 +214,6 @@ function orderUpdate() {
   let orderPayType = $("#payType").val();
   let orderDatetime = document.getElementById("inputOrderDatetime").value;
 
-  console.log(orderState);
 
   if (orderPayType == "현금") {
     // 현금일 때 0

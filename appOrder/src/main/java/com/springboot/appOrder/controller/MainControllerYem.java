@@ -68,14 +68,19 @@ public class MainControllerYem {
 
         model.addAttribute("itemImageUrl1", itemEntities1.get(0).getItemImageUrl());
         model.addAttribute("itemName1", itemEntities1.get(0).getItemName());
+        model.addAttribute("itemContent1", itemEntities1.get(0).getItemContent());
         model.addAttribute("itemImageUrl2", itemEntities2.get(0).getItemImageUrl());
         model.addAttribute("itemName2", itemEntities2.get(0).getItemName());
+        model.addAttribute("itemContent2", itemEntities2.get(0).getItemContent());
         model.addAttribute("itemImageUrl3", itemEntities3.get(0).getItemImageUrl());
         model.addAttribute("itemName3", itemEntities3.get(0).getItemName());
+        model.addAttribute("itemContent3", itemEntities3.get(0).getItemContent());
         model.addAttribute("itemImageUrl4", itemEntities4.get(0).getItemImageUrl());
         model.addAttribute("itemName4", itemEntities4.get(0).getItemName());
+        model.addAttribute("itemContent4", itemEntities4.get(0).getItemContent());
         model.addAttribute("itemImageUrl5", itemEntities5.get(0).getItemImageUrl());
         model.addAttribute("itemName5", itemEntities5.get(0).getItemName());
+        model.addAttribute("itemContent5", itemEntities5.get(0).getItemContent());
 
         // 이벤트 글 렌더링
         List<EventEntity> eventEntities1 = eventRepository.findByEventNo(1L);
@@ -351,5 +356,14 @@ public class MainControllerYem {
         }
 
         return "stamp";
+    }
+
+    @GetMapping("/newsEvent")
+    public String newsEvent( Model model ){
+
+        List<EventEntity> eventEntity = eventRepository.findAll();
+        model.addAttribute("list", eventEntity);
+
+        return "/newsEvent";
     }
 }

@@ -4,102 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>스탬프</title>
-    <style>
-      @font-face {
-        font-family: "SUITE-Regular";
-        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2")
-          format("woff2");
-        font-weight: 400;
-        font-style: normal;
-      }
-
-      #wrap {
-        font-family: "SUITE-Regular";
-        width: 500px;
-        height: 1000px;
-      }
-
-      #header_menu {
-        width: 100%;
-        height: 40px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 18px;
-      }
-
-      #header_menu img {
-        margin: 0px 10px;
-      }
-
-      #menu_title {
-        font-size: 20px;
-        font-weight: bold;
-      }
-
-      #main_menu {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        width: 100%;
-        max-width: 10px 15px;
-      }
-
-      #stamp_see {
-        border: 1px solid darkgray;
-        border-radius: 50px;
-        background-color: white;
-        width: 110px;
-        height: 30px;
-      }
-
-      #footer_title {
-        font-size: 16px;
-        font-weight: bold;
-      }
-
-      #footer_content {
-        margin-top: 6px;
-      }
-
-      #footer {
-        background-color: rgb(229, 228, 228);
-        padding: 15px;
-        width: 100%;
-      }
-
-      .content {
-        font-size: 14px;
-      }
-
-      #main {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 40px;
-      }
-
-      #main_content {
-        margin-top: 20px;
-        width: 358px;
-        height: 150px;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        border-radius: 10px;
-        background-color: #ffdc00;
-        gap: 2px;
-        padding: 10px;
-      }
-    </style>
   </head>
+  <link rel="stylesheet" href="./css/stamp.css" />
   <body>
     <div id="wrap">
       <div id="header">
         <div id="header_menu">
-          <img src="./img/angle-left_10513349.png" width="20px" height="20px" />
+          <img
+            src="./img/angle-left_10513349.png"
+            width="20px"
+            height="20px"
+            onclick="back()"
+          />
           <div id="stamp_count">스탬프</div>
           <img src="./img/reload_7747989.png" width="20px" height="20px" />
         </div>
@@ -132,54 +48,59 @@
         </div>
       </div>
     </div>
-    <script>
-      let stampCount = document.getElementById("stamp");
-      let count = Number(stampCount.innerHTML) % 10;
-      console.log(count);
-      let emptyCount = 10 - count;
-      console.log(emptyCount);
-
-      for (let i = 1; i <= count; i++) {
-        addStamp();
-      }
-
-      for (let i = 1; i <= emptyCount; i++) {
-        addEmpty();
-      }
-
-      function addStamp() {
-        const mainContent = document.getElementById("main_content");
-        const stamp = document.createElement("div");
-        stamp.classList.add("stamp");
-
-        // 이미지를 스탬프에 추가하는 부분을 수정해야 합니다.
-        let stampShape = `<img src="./img/메가커피로고1.png" width="60px" height="60px" style="border-radius: 50%; margin: 5px" />`;
-        stamp.innerHTML = stampShape;
-        mainContent.appendChild(stamp);
-      }
-
-      function addEmpty() {
-        const mainContent = document.getElementById("main_content");
-        const empty = document.createElement("div");
-        empty.classList.add("empty");
-
-        let emptyShape = `<div 
-        clss="shape" 
-        style="width: 60px;
-        height: 60px;
-        background-color: darkgray;
-        opacity: 0.7;
-        border-radius: 50%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        margin:5px;"
-        >빈</div>`;
-        empty.innerHTML = emptyShape;
-
-        mainContent.appendChild(empty);
-      }
-    </script>
   </body>
+  <script>
+    let stampCount = document.getElementById("stamp");
+    let count = Number(stampCount.innerHTML) % 10;
+    console.log(count);
+    let emptyCount = 10 - count;
+    console.log(emptyCount);
+
+    for (let i = 1; i <= count; i++) {
+      addStamp();
+    }
+
+    for (let i = 1; i <= emptyCount; i++) {
+      addEmpty();
+    }
+
+    function addStamp() {
+      const mainContent = document.getElementById("main_content");
+      const stamp = document.createElement("div");
+      stamp.classList.add("stamp");
+
+      // 이미지를 스탬프에 추가하는 부분을 수정해야 합니다.
+      let stampShape = `<img src="./img/메가커피로고1.png" width="60px" height="60px" style="border-radius: 50%; margin: 5px" />`;
+      stamp.innerHTML = stampShape;
+      mainContent.appendChild(stamp);
+    }
+
+    function addEmpty() {
+      const mainContent = document.getElementById("main_content");
+      const empty = document.createElement("div");
+      empty.classList.add("empty");
+
+      let emptyShape = `<div
+      clss="shape"
+      style="width: 60px;
+      height: 60px;
+      background-color: darkgray;
+      opacity: 0.7;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin:5px;"
+      >빈</div>`;
+      empty.innerHTML = emptyShape;
+
+      mainContent.appendChild(empty);
+    }
+
+    // 메인 페이지로 이동
+    function back() {
+      window.history.back();
+    }
+  </script>
 </html>
