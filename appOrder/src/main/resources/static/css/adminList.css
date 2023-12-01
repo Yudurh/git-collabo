@@ -42,7 +42,7 @@ body {
 
 #aside_menu button {
   border-style: none;
-  font-size: 19px;
+  font-size: 16px;
   font-weight: bold;
   background-color: gray;
   color: whitesmoke;
@@ -69,10 +69,15 @@ body {
 
 th {
   font-size: 14px;
+  text-align: center;
 }
 
 tr {
-width: 200px
+  width: 200px
+
+}
+
+td {
 }
 
 #member_count {

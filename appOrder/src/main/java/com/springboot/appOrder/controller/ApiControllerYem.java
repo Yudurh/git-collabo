@@ -1,20 +1,18 @@
 package com.springboot.appOrder.controller;
-import com.springboot.appOrder.dto.JoinDto;
-import com.springboot.appOrder.dto.LoginDto;
-import com.springboot.appOrder.dto.MemberDto;
-import com.springboot.appOrder.dto.ResultDto;
+import com.springboot.appOrder.dto.*;
 import com.springboot.appOrder.entity.*;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Order;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class ApiControllerYem {
@@ -24,6 +22,12 @@ public class ApiControllerYem {
     private CartRepository cartRepository;
     @Autowired
     private OrderRepository orderRepository;
+    @Autowired
+    private ItemRepository itemRepository;
+    @Autowired
+    private NoticeRepository noticeRepository;
+    @Autowired
+    private EventRepository eventRepository;
 
     // ( 관리자 ) 로그인 폼
     @PostMapping("/loginAction")
@@ -70,7 +74,9 @@ public class ApiControllerYem {
         System.out.println("loginPw:"+joinDto.getLoginPw());
         System.out.println("loginName:"+joinDto.getLoginName());
 
+        // 수정된 정보 dto -> entity
         MemberEntity memberJoinEntity = MemberEntity.toJoinEntity( joinDto );
+        // 수정된 정보  repository에 저장
         MemberEntity newEntity = memberRepository.save(memberJoinEntity);
 
         ResultDto resultDto = null;
@@ -92,7 +98,7 @@ public class ApiControllerYem {
         return resultDto;
     }
 
-    // ( 관리자 ) 회원 정보 수정
+    // ( 관리자 ) 회원 정보 수정 폼
     @PostMapping("/memberUpdateForm")
     public ResultDto memberUpdateForm(@RequestBody MemberDto memberDto) {
         MemberEntity memberEntity = MemberEntity.toMemberEntity(memberDto);
@@ -111,6 +117,119 @@ public class ApiControllerYem {
                     .result(0)
                     .build();
         }
+
+        return resultDto;
+    }
+
+    @PostMapping("/upload")
+    public ResultDto upload(@RequestParam MultipartFile file) throws IOException {
+        if (file.isEmpty()) {
+            // 파일이 비어있을 경우(이미지를 수정하지 않았을 경우)
+            ResultDto resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(0)
+                    .build();
+
+            return resultDto;
+        }
+
+        String newFileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+        File newFile = new File(newFileName);
+        file.transferTo(newFile);
+
+        ResultDto resultDto = ResultDto.builder()
+                .status("ok")
+                .result(1)
+                .uploadFileName(newFileName)
+                .build();
+
+        return resultDto;
+    }
+
+
+    // (관리자) 상품 정보 수정 폼
+    @PostMapping("/itemUpdateForm")
+    public ResultDto itemUpdateForm(@RequestBody ItemDto itemDto) {
+        if (itemDto.getItemImageUrl().startsWith("./upload/")) {
+            // 이미지를 수정하지 않았을 경우 기존 이미지를 사용하도록 설정
+            itemDto.setItemImageUrl(itemDto.getItemImageUrl().substring(2)); // "./upload/" 제거
+        } else {
+            // 이미지를 수정했을 경우, 업로드된 새 이미지 경로로 설정
+            itemDto.setItemImageUrl("./upload/" + itemDto.getItemImageUrl());
+        }
+
+        ItemEntity itemEntity = ItemEntity.toItemEntity(itemDto);
+        ItemEntity newEntity = itemRepository.save(itemEntity);
+
+        ResultDto resultDto = (newEntity != null)
+                ? ResultDto.builder().status("ok").result(1).build() // 수정 성공
+                : ResultDto.builder().status("ok").result(0).build(); // 수정 실패
+
+        return resultDto;
+    }
+
+
+    // ( 관리자 ) 주문 정보 수정 폼
+    @PostMapping("/orderUpdateForm")
+    public ResultDto orderUpdateForm(@RequestBody OrderDto orderDto) {
+        OrderEntity orderEntity = OrderEntity.toOrderEntity(orderDto);
+        OrderEntity newEntity = orderRepository.save(orderEntity);
+
+        ResultDto resultDto = null;
+
+        if( newEntity != null  ) {
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(1)
+                    .build();
+        }else{
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(0)
+                    .build();
+        }
+
+        return resultDto;
+    }
+
+    // ( 관리자 ) 공지 정보 수정 폼
+    @PostMapping("/noticeUpdateForm")
+    public ResultDto noticeUpdateForm(@RequestBody NoticeDto noticeDto) {
+        if (noticeDto.getNoticeImage().startsWith("./upload/")) {
+            // 이미지를 수정하지 않았을 경우 기존 이미지를 사용하도록 설정
+            noticeDto.setNoticeImage(noticeDto.getNoticeImage().substring(2)); // "./upload/" 제거
+        } else {
+            // 이미지를 수정했을 경우, 업로드된 새 이미지 경로로 설정
+            noticeDto.setNoticeImage("./upload/" + noticeDto.getNoticeImage());
+        }
+
+        NoticeEntity noticeEntity = NoticeEntity.toNoticeEntity(noticeDto);
+        NoticeEntity newEntity = noticeRepository.save(noticeEntity);
+
+        ResultDto resultDto = (newEntity != null)
+                ? ResultDto.builder().status("ok").result(1).build() // 수정 성공
+                : ResultDto.builder().status("ok").result(0).build(); // 수정 실패
+
+        return resultDto;
+    }
+
+    // ( 관리자 ) 이벤트 정보 수정 폼
+    @PostMapping("/eventUpdateForm")
+    public ResultDto eventUpdateForm(@RequestBody EventDto eventDto) {
+        if (eventDto.getEventImage().startsWith("./upload/")) {
+            // 이미지를 수정하지 않았을 경우 기존 이미지를 사용하도록 설정
+            eventDto.setEventImage(eventDto.getEventImage().substring(2)); // "./upload/" 제거
+        } else {
+            // 이미지를 수정했을 경우, 업로드된 새 이미지 경로로 설정
+            eventDto.setEventImage("./upload/" + eventDto.getEventImage());
+        }
+
+        EventEntity eventEntity = EventEntity.toEventEntity(eventDto);
+        EventEntity newEntity = eventRepository.save(eventEntity);
+
+        ResultDto resultDto = (newEntity != null)
+                ? ResultDto.builder().status("ok").result(1).build() // 수정 성공
+                : ResultDto.builder().status("ok").result(0).build(); // 수정 실패
 
         return resultDto;
     }

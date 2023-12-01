@@ -86,7 +86,7 @@
                 <td><span th:text="${item.itemCate}"></span></td>
                 <td><span th:text="${item.itemRecommend}"></span></td>
                 <td><span th:text="${item.itemPrice}"></span></td>
-                <td><img  class="admin_item_img" id="imgItemImageUrl" th:src="${item.itemImageUrl}" width="150px"></td>
+                <td><img  class="admin_item_img" id="imgItemImageUrl" th:src="${item.itemImageUrl}" width="100px"></td>
                 <td><span th:text="${item.itemUpdateDatetime}"></span></td>
                 <td>
                   <a
@@ -98,7 +98,7 @@
                 </td>
                 <td>
                   <a
-                    th:href="|/itemDelete?memberNo=${ item.itemNo }|"
+                    th:href="|/itemDelete?itemNo=${ item.itemNo }|"
                     class="btn btn-dark"
                     role="button"
                     >삭제</a

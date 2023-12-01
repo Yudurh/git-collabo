@@ -22,8 +22,12 @@
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
     crossorigin="anonymous"
   />
-  <link rel="stylesheet" href="./css/more.css" />
+  <link
+    rel="stylesheet"
+    href="./css/more.css"
+  />
 
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
   <body>
     <div id="wrap">
       <div id="header">
@@ -34,87 +38,73 @@
       <div id="main">
         <div id="adCal">
           <!-- 타임리프처리 -->
-          <div id="name" class="fs-4">이름님</div>
-          <div
-            id="carouselExampleControlsNoTouching"
-            class="carousel slide"
-            data-bs-ride="carousel"
-          >
-            <div class="carousel-inner">
-              <div class="carousel-item active">
+          <span id="memberName" class="fs-5" th:text="${ memberName }"></span>
+          <span class="fs-5">님</span>
+          <div id="ad">
+            <swiper-container>
+              <swiper-slide>
                 <img
-                  src="https://img.79plus.co.kr/megahp/manager/upload/bbs/20231025194941_1715213291013_3HamcHrntS.jpg"
-                  class="d-block w-100 rounded"
-                  alt="..."
+                  src="./img/광고2_2.jpg"
+                  width="400px"
                 />
-              </div>
-              <div class="carousel-item">
+              </swiper-slide>
+              <swiper-slide>
                 <img
-                  src="https://img.79plus.co.kr/megahp/manager/upload/bbs/20230913165023_1711537337951_OCn043wPN8.jpg"
-                  class="d-block w-100 rounded"
-                  alt="..."
+                  src="./img/메가커피_광고2.jpg"
+                  width="400px"
                 />
-              </div>
-              <div class="carousel-item">
-                <img
-                  src="https://img.79plus.co.kr/megahp/manager/upload/bbs/20231023160925_1715025414871_yvE_t77mkF.png"
-                  class="d-block w-100 rounded"
-                  alt="..."
-                />
-              </div>
-            </div>
-            <button
-              class="carousel-control-prev"
-              type="button"
-              data-bs-target="#carouselExampleControlsNoTouching"
-              data-bs-slide="prev"
-            >
-              <span
-                class="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button
-              class="carousel-control-next"
-              type="button"
-              data-bs-target="#carouselExampleControlsNoTouching"
-              data-bs-slide="next"
-            >
-              <span
-                class="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="visually-hidden">Next</span>
-            </button>
+              </swiper-slide>
+            </swiper-container>
           </div>
         </div>
         <div id="membership" class="list">
-          <div class="text-secondary fs-6">맴버십</div>
-          <a href="">스탬프</a>
-          <a href="">쿠폰</a>
-          <a href="">외부멤버십</a>
+          <div class="listTitle">맴버십</div>
+          <a href="/stamp">스탬프</a>
+          <a href="/coupon">쿠폰</a>
         </div>
         <div id="order" class="list">
-          <div class="text-secondary fs-6">주문</div>
-          <a href="">메가 오더</a>
-          <a href="">주문 내역</a>
-          <a href="">선물하기</a>
-          <a href="">메가선불카드</a>
-          <a href="">간편카드 관리</a>
-          <a href="">상품권 대량 구매 신청</a>
+          <div class="listTitle">주문</div>
+          <a href="/menu">메가 오더</a>
+          <a
+            href="https://event.multicon.co.kr/survey/megacoffee_b2b?pid=vMhY17LbBfZiMJek8dYI1A%3D%3D&curr_time=1701321895&uid=7840293006574191"
+            >상품권 대량 구매 신청</a
+          >
         </div>
         <div id="news" class="list">
-          <div class="text-secondary fs-6">새소식</div>
-          <a href="">이벤트</a>
+          <div class="listTitle">새소식</div>
+          <a href="/newsEvent">이벤트</a>
           <a href="">공지사항</a>
         </div>
         <div id="terms" class="list">
-          <div class="text-secondary fs-6">약관 및 정책</div>
+          <div class="listTitle">약관 및 정책</div>
           <a href="">이용약관</a>
         </div>
       </div>
-      <div id="nav"></div>
+      <div id="nav">
+        <div id="footer_menu">
+          <div name="menu" onclick="click_main();" class="menu">
+            <img src="./img/home_1946436.png" width="23px" />
+            <div class="menu_name">메인</div>
+          </div>
+          <div class="menu">
+            <img src="./img/coin_117626.png" width="23px" />
+            <div class="menu_name">메가선불카드</div>
+          </div>
+          <div name="menu" onclick="click_megaOrder();" class="menu">
+            <img src="./img/coffee-cup_657491.png" width="23px" />
+            <div class="menu_name">메가오더</div>
+          </div>
+          <div class="menu">
+            <img src="./img/gift-box-with-bow_66834.png" width="23px" />
+            <div class="menu_name">선물하기</div>
+          </div>
+          <div name="menu" onclick="click_more();" class="menu_height">
+            <img src="./img/options_2647907.png" width="23px" />
+            <div class="menu_name">더보기</div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
+  <script src="./js/main.js"></script>
 </html>
