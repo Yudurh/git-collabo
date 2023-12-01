@@ -279,32 +279,24 @@ $(document).ready(function () {
       .innerHTML.replace("원", "");
     let cartDate = getKST();
 
-
-    if($("#recomCh").is(":checked") == true && itemName == "초코스모어쿠키"){
-
-    itemAmount = Number(itemAmount)+1
-    cartPrice = Number(cartPrice)+2500
+    if ($("#recomCh").is(":checked") == true && itemName == "초코스모어쿠키") {
+      itemAmount = Number(itemAmount) + 1;
+      cartPrice = Number(cartPrice) + 2500;
     }
 
-
     let cart = {
-          cartNo: 0,
-          cartCode: cartCode1,
-          itemCode: itemCode,
-          itemName: itemName,
-          optionName1: optionName1,
-          optionName2: optionName2,
-          optionName3: optionName3,
-          cartItemAmount: itemAmount,
-          itemImageUrl: itemImg,
-          cartPrice: cartPrice,
-          cartDate: cartDate,
-        };
-
-
-
-
-
+      cartNo: 0,
+      cartCode: cartCode1,
+      itemCode: itemCode,
+      itemName: itemName,
+      optionName1: optionName1,
+      optionName2: optionName2,
+      optionName3: optionName3,
+      cartItemAmount: itemAmount,
+      itemImageUrl: itemImg,
+      cartPrice: cartPrice,
+      cartDate: cartDate,
+    };
 
     fetch("/setCart", {
       method: "POST",
@@ -324,10 +316,11 @@ $(document).ready(function () {
         console.log(error);
       });
 
-    let recomItem = 0;
-    if ($("#recomCh").is(":checked") == true) {
-    recomItem = 1;
-    }
+    setTimeout(function () {
+      let recomItem = 0;
+      if ($("#recomCh").is(":checked") == true) {
+        recomItem = 1;
+      }
 
       let param = {
         itemNo: 0,
@@ -357,7 +350,7 @@ $(document).ready(function () {
         .catch((error) => {
           console.log(error);
         });
-
+    }, 1);
   });
 });
 

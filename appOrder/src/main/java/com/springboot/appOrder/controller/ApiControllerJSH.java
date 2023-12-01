@@ -103,15 +103,7 @@ public class ApiControllerJSH {
         CartEntity newEntity = CartEntity.toEntity(cartDto);
         CartDto newDto = cartDto;
 
-//        if (searchI.get(0).getItemCate().equals("디저트")){
-//            cartDto.setOptionName1("해당없음");
-//            cartDto.setOptionName2("해당없음");
-//            cartDto.setOptionName3("해당없음");
-//            newEntity = CartEntity.toEntity(cartDto);
-//        }else {
-//            newEntity = CartEntity.toEntity(cartDto);
-//
-//        }
+
 
         List<CartEntity>searchC = cartRepository.findByItemNameAndOptionName3AndOptionName2AndOptionName1(cartDto.getItemName(),
                 cartDto.getOptionName3(),
@@ -176,10 +168,11 @@ public class ApiControllerJSH {
             List<CartEntity> searchC = cartRepository.findByItemName("초코스모어쿠키");
             if (searchC.size() == 0){
                 ItemDto newDto = ItemDto.toDto(newEntity.get(0));
-
                 CartEntity newEntityC = CartEntity.ItemToCart(newDto);
+
                 cartRepository.deleteById(searchC.get(0).getCartNo());
                 cartRepository.save(newEntityC);
+
 
             }else {
                 searchC.get(0).setCartPrice(searchC.get(0).getCartPrice()+2500);
@@ -219,7 +212,7 @@ public class ApiControllerJSH {
     public ResultDto setOrder(@RequestBody OrderDto dto,
                                   Model model){
 
-        OrderEntity newEntity = OrderEntity.toEntity(dto);
+        OrderEntity newEntity = OrderEntity.toOrderEntity(dto);
         orderRepository.save(newEntity);
 
 

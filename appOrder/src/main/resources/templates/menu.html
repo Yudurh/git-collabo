@@ -11,7 +11,7 @@
       <div class="wrap">
         <div class="header bg-light">
           <div class="headerRightBox bg-light">
-            <div class="returnButtonBox">
+            <div class="returnButtonBox" onclick="goToBack()">
               <img src="./Img/left-arrow.png" />
             </div>
             <div class="headerTextBox">
@@ -45,18 +45,15 @@
         <div class="cartBox">
           <div class="goToBox">
             <button onclick="goToBack()" id="goToBack">의정부역점</button>
-            <button
-              onclick="goToPay()"
-              id="goToPay"
-              class="btn position-relative"
-            >
+            <div onclick="goToPay()" id="goToPay" class="btn position-relative">
               <img src="./Img/icons8-cart-30.png" alt="" />
               <span class="visually-hidden">unread messages</span>
               <span
                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                th:text="|${cart}+|">99+
+                th:text="|${cart}+|"
+                >99+
               </span>
-            </button>
+            </div>
           </div>
         </div>
       </div>

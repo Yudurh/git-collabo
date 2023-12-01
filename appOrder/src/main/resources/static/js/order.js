@@ -24,8 +24,6 @@ $(document).ready(function () {
   let itemCode4 = 0;
   let itemCode5 = 0;
 
-  console.log(itemCode[2].innerHTML);
-
   for (let i = 0; i < itemCode.length; i++) {
     console.log(itemCode[i]);
     if (i == 0) {
@@ -42,7 +40,7 @@ $(document).ready(function () {
   }
   console.log(itemCode1);
 
-  $("#order").click(function () {
+  $("#footer").click(function () {
     let pay = $("input:radio[name=pay]:checked").val();
 
     let param = {
@@ -72,7 +70,8 @@ $(document).ready(function () {
       .then((json) => {
         //{ status: "ok", result: 5 }
         console.log("json:" + json);
-        alert("장바구니에 담겼습니다");
+        alert("결제되었습니다");
+        window.location.href = "/pay";
       }) //실제 데이타
       .catch((error) => {
         console.log(error);
