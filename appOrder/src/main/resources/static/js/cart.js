@@ -65,12 +65,6 @@ function minus(event) {
   }
 }
 
-function confirmtest() {
-  var confirmflag = confrim(
-    "장바구니에 담긴 상품이 없습니다. 상품목록 화면으로 이동합니다."
-  );
-  if (confirmflag) {
-    //확인 버튼 클릭 true
-    window.location.href = "/menu";
-  }
+function goToPay(){
+window.location.href="/order_1"
 }

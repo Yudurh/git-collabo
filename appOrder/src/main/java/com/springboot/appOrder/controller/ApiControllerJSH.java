@@ -7,10 +7,7 @@ import com.springboot.appOrder.dto.ResultDto;
 import com.springboot.appOrder.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -98,7 +95,7 @@ public class ApiControllerJSH {
                              Model model){
 
         List<ItemEntity>searchI = itemRepository.findByItemName(cartDto.getItemName());
-
+        List<CartEntity> searchS = cartRepository.findByItemName("초코스모어쿠키");
 
         CartEntity newEntity = CartEntity.toEntity(cartDto);
         CartDto newDto = cartDto;
@@ -115,32 +112,18 @@ public class ApiControllerJSH {
             newDto.setCartPrice(searchC.get(0).getCartPrice()+cartDto.getCartPrice());
             newDto.setCartItemAmount(searchC.get(0).getCartItemAmount()+cartDto.getCartItemAmount());
             newEntity = CartEntity.toEntity(newDto);
-//            cartRepository.deleteById(searchC.get(1).getCartNo());
+
             cartRepository.deleteById(searchC.get(0).getCartNo());
-
-//        searchC.get(0).setCartPrice(searchC.get(0).getCartPrice()+searchC.get(1).getCartPrice());
-//        searchC.get(0).setCartItemAmount(searchC.get(0).getCartItemAmount()+searchC.get(1).getCartItemAmount());
-//        cartRepository.deleteById(searchC.get(1).getCartNo());
-
 
         }else {
             newEntity = CartEntity.toEntity(cartDto);
 
         }
 
+
+
         cartRepository.save(newEntity);
 
-
-
-
-
-//        if (ItemRecommend.equals(1)){
-//            List<ItemEntity> reItem = itemRepository.findByItemRecommend(1);
-//            ItemDto reDto = ItemDto.toDto(reItem.get(0));
-//            CartEntity newEntity2 = CartEntity.ItemToCart(reDto);
-//            cartRepository.save(newEntity2);
-//        }
-//
 
         ResultDto resultDto = null;
 
@@ -170,10 +153,19 @@ public class ApiControllerJSH {
                 ItemDto newDto = ItemDto.toDto(newEntity.get(0));
                 CartEntity newEntityC = CartEntity.ItemToCart(newDto);
 
-                cartRepository.deleteById(searchC.get(0).getCartNo());
-                cartRepository.save(newEntityC);
-
-
+                if(newEntityC.getCartItemAmount()==1){
+                    newEntityC.setCartPrice(newEntityC.getCartPrice()+2500);
+                    newEntityC.setCartItemAmount(newEntityC.getCartItemAmount()+1);
+                    cartRepository.save(newEntityC);
+                    List<CartEntity> searchC2 = cartRepository.findByItemName("초코스모어쿠키");
+                    cartRepository.deleteById(searchC2.get(0).getCartNo());
+                }
+                else {
+                    newEntityC.setCartPrice(newEntityC.getCartPrice()+2500);
+                    newEntityC.setCartItemAmount(newEntityC.getCartItemAmount()+1);
+                    cartRepository.save(newEntityC);
+                    cartRepository.deleteById(searchC.get(0).getCartNo());
+                }
             }else {
                 searchC.get(0).setCartPrice(searchC.get(0).getCartPrice()+2500);
                 searchC.get(0).setCartItemAmount(searchC.get(0).getCartItemAmount()+1);
@@ -259,7 +251,30 @@ public class ApiControllerJSH {
         return resultDto;
     }
 
+    @RequestMapping("/order_21")
+    public ResultDto order2(@RequestBody CartDto dto, Model model){
 
+        CartEntity newEntity = CartEntity.toEntity(dto);
+
+        model.addAttribute("cart",newEntity);
+        model.addAttribute("first",newEntity.getItemName());
+
+        ResultDto resultDto = null;
+        if( newEntity != null  ) {
+            //포인트 수정 성공
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(1)
+                    .build();
+        }else{
+            //포인트 수정 실패
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(0)
+                    .build();
+        }
+        return resultDto;
+    }
 
 
 

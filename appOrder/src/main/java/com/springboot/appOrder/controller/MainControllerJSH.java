@@ -1,5 +1,6 @@
 package com.springboot.appOrder.controller;
 
+import com.springboot.appOrder.dto.CartDto;
 import com.springboot.appOrder.entity.CartEntity;
 import com.springboot.appOrder.entity.CartRepository;
 import com.springboot.appOrder.entity.OrderEntity;
@@ -12,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -64,6 +68,12 @@ public class MainControllerJSH {
         model.addAttribute("first",entities.get(0).getItemName());
         return "/order_1";
     }
+
+    @GetMapping("/order_2")
+    public String order2( Model model ){
+        return "order_2";
+    }
+
 
     @Autowired
     private OrderRepository orderRepository;
