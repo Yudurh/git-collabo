@@ -1,0 +1,88 @@
+body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#wrap {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 1000px;
+  border: 1px solid rgb(158, 157, 157);
+  padding: 30px;
+}
+
+label {
+  font-weight: bold;
+}
+
+#header_title {
+  padding: 20px;
+  margin: 30px 0px;
+}
+
+#main_header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#title,
+#user,
+#content,
+#dateTime {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0px;
+}
+
+.mainContent label {
+  width: 40%;
+  margin-right: 10px;
+  text-align: center;
+}
+
+#content {
+  display: flex;
+  flex-direction: row;
+}
+
+#image {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+#content label {
+  margin-right: 0px;
+  width: 10%;
+}
+
+textarea {
+  height: 200px;
+}
+
+#main_footer {
+  display: flex;
+  flex-direction: row;
+  margin-top: 50px;
+  margin-left: 20px;
+}
+
+#main_footer .mainContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#footer button {
+  width: 250px;
+  height: 50px;
+  margin: 60px 10px;
+  font-weight: bold;
+}

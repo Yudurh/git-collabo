@@ -4,6 +4,9 @@ import com.springboot.appOrder.entity.CartEntity;
 import com.springboot.appOrder.entity.CartRepository;
 import com.springboot.appOrder.entity.OrderEntity;
 import com.springboot.appOrder.entity.OrderRepository;
+import com.springboot.appOrder.entity.MemberEntity;
+import com.springboot.appOrder.entity.MemberRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +19,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MainControllerJSH {
     @Autowired
-    CartRepository cartRepository;
+    private CartRepository cartRepository;
+    @Autowired
+    private MemberRepository memberRepository;
+
     @GetMapping("/menu")
     public String menu(Model model){
         List<CartEntity>entities = cartRepository.findAll();
@@ -26,7 +32,19 @@ public class MainControllerJSH {
         return "/menu";
     }
     @GetMapping("/more")
-    public String more(){
+
+    // ( 사용자 ) 더보기 화면
+    public String more(HttpServletRequest request,
+                       Model model){
+        String loginId = (String)request.getSession().getAttribute("loginId");
+        if( loginId != null ) {
+            List<MemberEntity> list = memberRepository.findByMemberId(loginId);
+            if (list.size() > 0) {
+                MemberEntity memberEntity = list.get(0);
+                model.addAttribute("memberName", memberEntity.getMemberName());
+            }
+        }
+
         return "more";
     }
 

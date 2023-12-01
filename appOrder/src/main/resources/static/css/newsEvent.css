@@ -1,0 +1,94 @@
+@font-face {
+  font-family: "SUITE-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+#wrap {
+  width: 500px;
+  height: 1250px;
+  font-family: "SUITE-Regular";
+}
+
+#header_menu {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+}
+
+#header_menu img {
+  margin: 0px 10px;
+}
+
+#main_title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+#main a {
+  text-decoration: none;
+  color: black;
+  font-size: 17px;
+  margin-left: 20px;
+  margin-bottom: 30px;
+}
+
+#main_menu {
+  border-bottom: 1px solid darkgray;
+  padding: 7px;
+}
+
+.main_middel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0px;
+  gap: 20px;
+}
+
+#main_content {
+  width: 80%;
+}
+
+.eventImage {
+  height: 20px;
+  overflow: hidden;
+}
+
+.eventImage img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.eventTitle {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5px;
+}
+
+.eventDateTime {
+  font-size: 15px;
+  margin-left: 5px;
+}
+
+#footer {
+  background-color: rgb(244, 244, 244);
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu_height {
+  border-bottom: 4px solid black;
+  border-radius: 3px;
+}

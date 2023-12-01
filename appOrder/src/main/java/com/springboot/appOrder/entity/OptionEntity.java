@@ -1,6 +1,5 @@
 package com.springboot.appOrder.entity;
 
-import com.springboot.appOrder.dto.MemberDto;
 import com.springboot.appOrder.dto.OptionDto;
 import jakarta.persistence.*;
 import lombok.*;

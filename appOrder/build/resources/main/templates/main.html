@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org/">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,96 +22,337 @@
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
     crossorigin="anonymous"
   />
+  <link rel="stylesheet" href="./css/main.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
   <body>
     <div id="wrap">
       <div id="header">
         <div class="ad">
-          <img
-            src="https://img.79plus.co.kr/megahp/manager/upload/bbs/20231023160925_1715025414871_yvE_t77mkF.png"
-            alt=""
-            id="changingImage"
-          />
+          <img src="./img/광고1.jpg" alt="" id="changingImage" />
         </div>
       </div>
       <div id="main">
+        <!-- 타임리프 -->
         <!-- 이름, 스탬프, 쿠폰 -->
         <div id="main_header">
           <div class="nameBox">
-            <span class="name">김예림</span>
+            <span class="name" th:text="${ memberName }">김예림</span>
             <span class="name_content">님</span>
           </div>
           <div id="stempBox">
-            <a href="#">스탬프</a>
-            <span>8</span>
+            <img src="./img/mug.png" />
+            <a href="/stamp">스탬프</a>
+            <span style="margin-right: 20px" th:text="${ memberPoint }"></span>
+            <img src="./img/coupon.png" />
             <a href="#">쿠폰</a>
-            <span>8</span>
+            <span th:text="${ coupon }"></span>
           </div>
         </div>
         <!-- 광고 -->
         <div id="main_middel">
-          <div id="adCal">
-            <!-- 타임리프처리 -->
-            <div id="name" class="fs-4">이름님</div>
-            <div
-              id="carouselExampleControlsNoTouching"
-              class="carousel slide"
-              data-bs-ride="carousel"
-            >
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img
-                    src="https://img.79plus.co.kr/megahp/manager/upload/bbs/20231025194941_1715213291013_3HamcHrntS.jpg"
-                    class="d-block w-100 rounded"
-                    alt="..."
-                  />
-                </div>
-                <div class="carousel-item">
-                  <img
-                    src="https://img.79plus.co.kr/megahp/manager/upload/bbs/20230913165023_1711537337951_OCn043wPN8.jpg"
-                    class="d-block w-100 rounded"
-                    alt="..."
-                  />
-                </div>
-                <div class="carousel-item">
-                  <img
-                    src="https://img.79plus.co.kr/megahp/manager/upload/bbs/20231023160925_1715025414871_yvE_t77mkF.png"
-                    class="d-block w-100 rounded"
-                    alt="..."
-                  />
-                </div>
-              </div>
-              <button
-                class="carousel-control-prev"
-                type="button"
-                data-bs-target="#carouselExampleControlsNoTouching"
-                data-bs-slide="prev"
-              >
-                <span
-                  class="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button
-                class="carousel-control-next"
-                type="button"
-                data-bs-target="#carouselExampleControlsNoTouching"
-                data-bs-slide="next"
-              >
-                <span
-                  class="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
-          </div>
+          <swiper-container>
+            <swiper-slide>
+              <img src="./img/광고1.jpg" width="450px" />
+            </swiper-slide>
+            <swiper-slide>
+              <img src="./img/광고2_2.jpg" width="450px" />
+            </swiper-slide>
+          </swiper-container>
         </div>
         <!-- 추천메뉴 -->
         <div id="main_footer">
           <div class="nameBox">
-            <span class="name">김예림</span>
+            <span class="name" th:text="${ memberName }">김예림</span>
             <span class="name_content">님을 위한 추천 메뉴</span>
+            <div class="slider">
+              <div class="slider-inner">
+                <div
+                  class="slider-item"
+                  data-toggle="modal"
+                  data-target="#exampleModal1"
+                  onclick="openModal(1);"
+                >
+                  <img
+                    src="./img/angle-left_10513349.png"
+                    width="150px"
+                    th:src="${ itemImageUrl1 }"
+                  />
+                  <!-- 추천메뉴1 모달창 -->
+                  <div
+                    class="modal fade"
+                    id="exampleModal1"
+                    tabindex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <img width="150px" th:src="${ itemImageUrl1 }" />
+                          <div class="modal-main">
+                            <div
+                              class="itemName"
+                              th:text="${ itemName1 }"
+                            ></div>
+                            <div
+                              class="itemContent"
+                              th:text="${ itemContent1 }"
+                            ></div>
+                            <div class="modal-btn">
+                              <button class="order">
+                                <img
+                                  src="./img/whitecoffee.png"
+                                  width="30px"
+                                  style="margin-bottom: 5px"
+                                />
+                                주문하기
+                              </button>
+                              <button class="gift">
+                                <img
+                                  src="./img/whitegift.png"
+                                  width="30px"
+                                  style="margin-bottom: 5px"
+                                />
+                                선물하기
+                              </button>
+                            </div>
+                          </div>
+                          <div class="modal-footer" data-bs-dismiss="modal">
+                            닫기
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="slider_content" th:text="${ itemName1 }"></div>
+                </div>
+                <div
+                  class="slider-item"
+                  data-toggle="modal"
+                  data-target="#exampleModal2"
+                  onclick="openModal(2);"
+                >
+                  <img width="150px" th:src="${ itemImageUrl2 }" />
+                  <div
+                    class="modal fade"
+                    id="exampleModal2"
+                    tabindex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <img width="150px" th:src="${ itemImageUrl2 }" />
+                          <div class="modal-main">
+                            <div
+                              class="itemName"
+                              th:text="${ itemName2 }"
+                            ></div>
+                            <div
+                              class="itemContent"
+                              th:text="${ itemContent2 }"
+                            ></div>
+                            <div class="modal-btn">
+                              <button class="order">
+                                <img
+                                  src="./img/whitecoffee.png"
+                                  width="30px"
+                                  style="margin-bottom: 5px"
+                                />
+                                주문하기
+                              </button>
+                              <button class="gift">
+                                <img
+                                  src="./img/whitegift.png"
+                                  width="30px"
+                                  style="margin-bottom: 5px"
+                                />
+                                선물하기
+                              </button>
+                            </div>
+                          </div>
+                          <div class="modal-footer" data-bs-dismiss="modal">
+                            닫기
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="slider_content" th:text="${ itemName2 }"></div>
+                </div>
+                <div
+                  class="slider-item"
+                  data-toggle="modal"
+                  data-target="#exampleModal3"
+                  onclick="openModal(3);"
+                >
+                  <img width="150px" th:src="${ itemImageUrl3 }" />
+                  <div
+                    class="modal fade"
+                    id="exampleModal3"
+                    tabindex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <img width="150px" th:src="${ itemImageUrl3 }" />
+                          <div class="modal-main">
+                            <div
+                              class="itemName"
+                              th:text="${ itemName3 }"
+                            ></div>
+                            <div
+                              class="itemContent"
+                              th:text="${ itemContent3 }"
+                            ></div>
+                            <div class="modal-btn">
+                              <button class="order">
+                                <img
+                                  src="./img/whitecoffee.png"
+                                  width="30px"
+                                  style="margin-bottom: 5px"
+                                />
+                                주문하기
+                              </button>
+                              <button class="gift">
+                                <img
+                                  src="./img/whitegift.png"
+                                  width="30px"
+                                  style="margin-bottom: 5px"
+                                />
+                                선물하기
+                              </button>
+                            </div>
+                          </div>
+                          <div class="modal-footer" data-bs-dismiss="modal">
+                            닫기
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="slider_content" th:text="${ itemName3 }">
+                    초코스모어쿠키
+                  </div>
+                </div>
+                <div
+                  class="slider-item"
+                  data-toggle="modal"
+                  data-target="#exampleModal4"
+                  onclick="openModal(4);"
+                >
+                  <img width="150px" th:src="${ itemImageUrl4 }" />
+                  <div
+                    class="modal fade"
+                    id="exampleModal4"
+                    tabindex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <img width="150px" th:src="${ itemImageUrl4 }" />
+                          <div class="modal-main">
+                            <div
+                              class="itemName"
+                              th:text="${ itemName4 }"
+                            ></div>
+                            <div
+                              class="itemContent"
+                              th:text="${ itemContent4 }"
+                            ></div>
+                            <div class="modal-btn">
+                              <button class="order">
+                                <img
+                                  src="./img/whitecoffee.png"
+                                  width="30px"
+                                  style="margin-bottom: 5px"
+                                />
+                                주문하기
+                              </button>
+                              <button class="gift">
+                                <img
+                                  src="./img/whitegift.png"
+                                  width="30px"
+                                  style="margin-bottom: 5px"
+                                />
+                                선물하기
+                              </button>
+                            </div>
+                          </div>
+                          <div class="modal-footer" data-bs-dismiss="modal">
+                            닫기
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="slider_content" th:text="${ itemName4 }"></div>
+                </div>
+                <div
+                  class="slider-item"
+                  data-toggle="modal"
+                  data-target="#exampleModal5"
+                  onclick="openModal(5);"
+                >
+                  <img width="150px" th:src="${ itemImageUrl5 }" />
+                  <div
+                    class="modal fade"
+                    id="exampleModal5"
+                    tabindex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <img width="150px" th:src="${ itemImageUrl5 }" />
+                          <div class="modal-main">
+                            <div
+                              class="itemName"
+                              th:text="${ itemName5 }"
+                            ></div>
+                            <div
+                              class="itemContent"
+                              th:text="${ itemContent5 }"
+                            ></div>
+                            <div class="modal-btn">
+                              <button class="order">
+                                <img
+                                  src="./img/whitecoffee.png"
+                                  width="30px"
+                                  style="margin-bottom: 5px"
+                                />
+                                주문하기
+                              </button>
+                              <button class="gift">
+                                <img
+                                  src="./img/whitegift.png"
+                                  width="30px"
+                                  style="margin-bottom: 5px"
+                                />
+                                선물하기
+                              </button>
+                            </div>
+                          </div>
+                          <div class="modal-footer" data-bs-dismiss="modal">
+                            닫기
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="slider_content" th:text="${ itemName5 }">
+                    왕할메가커피
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -119,26 +360,95 @@
       <div id="footer">
         <div id="footer_header">
           <span id="title">새소식</span>
-          <a href="#">전체보기</a>
+          <a href="/newsEvent">전체보기</a>
+        </div>
+        <div id="footer_middle">
+          <div class="slider2">
+            <div class="slider-inner2">
+              <div class="slider-item2">
+                <img
+                  src="./img/이벤트글.jpg"
+                  width="150px"
+                  th:src="${ eventImage1 }"
+                />
+                <div class="slider_content2" th:text="${ eventTitle1 }">
+                  [이벤트]메가MGC커피 X CJONE, MEGA ONE DAY
+                </div>
+              </div>
+              <div class="slider-item2">
+                <img
+                  src="./img/이벤트글.jpg"
+                  width="150px"
+                  th:src="${ eventImage2 }"
+                />
+                <div class="slider_content2" th:text="${ eventTitle2 }">
+                  [이벤트]메가MGC커피 X CJONE, MEGA ONE DAY
+                </div>
+              </div>
+              <div class="slider-item2">
+                <img
+                  src="./img/이벤트글.jpg"
+                  width="150px"
+                  th:src="${ eventImage3 }"
+                />
+                <div class="slider_content2" th:text="${ eventTitle3 }">
+                  [이벤트]메가MGC커피 X CJONE, MEGA ONE DAY
+                </div>
+              </div>
+              <div class="slider-item2">
+                <img
+                  src="./img/이벤트글.jpg"
+                  width="150px"
+                  th:src="${ eventImage4 }"
+                />
+                <div class="slider_content2" th:text="${ eventTitle4 }">
+                  [이벤트]메가MGC커피 X CJONE, MEGA ONE DAY
+                </div>
+              </div>
+              <div class="slider-item2">
+                <img
+                  src="./img/이벤트글.jpg"
+                  width="150px"
+                  th:src="${ eventImage5 }"
+                />
+                <div class="slider_content2" th:text="${ eventTitle5 }">
+                  [이벤트]메가MGC커피 X CJONE, MEGA ONE DAY
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="icon" onclick="click_icon();">
+          <img src="./img/메가커피로고1.png" width="60px" alt="" />
+          <div style="font-weight: bold">쇼핑몰</div>
+        </div>
+        <div id="footer_menu">
+          <div name="menu" onclick="click_main();" class="menu_height">
+            <img src="./img/home_1946436.png" width="23px" />
+            <div class="menu_name">메인</div>
+          </div>
+          <div class="menu">
+            <img src="./img/coin_117626.png" width="23px" />
+            <div class="menu_name">메가선불카드</div>
+          </div>
+          <div name="menu" onclick="click_megaOrder();" class="menu">
+            <img src="./img/coffee-cup_657491.png" width="23px" />
+            <div class="menu_name">메가오더</div>
+          </div>
+          <div class="menu">
+            <img src="./img/gift-box-with-bow_66834.png" width="23px" />
+            <div class="menu_name">선물하기</div>
+          </div>
+          <div name="menu" onclick="click_more();" class="menu">
+            <img src="./img/options_2647907.png" width="23px" />
+            <div class="menu_name">더보기</div>
+          </div>
         </div>
       </div>
     </div>
   </body>
   <script>
-    const images = [
-      "https://img.79plus.co.kr/megahp/manager/upload/bbs/20230913165023_1711537337951_OCn043wPN8.jpg",
-      "https://img.79plus.co.kr/megahp/manager/upload/bbs/20231025194941_1715213291013_3HamcHrntS.jpg",
-      "https://img.79plus.co.kr/megahp/manager/upload/bbs/20231107155045_1716333243773_ueanoLQ4LL.jpg",
-      "https://img.79plus.co.kr/megahp/manager/upload/bbs/20230926101455_1712647804005_IpbU74iRTN.png",
-      "https://img.79plus.co.kr/megahp/manager/upload/bbs/20230925152816_1712579529407_DvRmkHuE30.png",
-    ];
-    const images2 = [
-      "https://img.79plus.co.kr/megahp/manager/upload/bbs/20230913165023_1711537337951_OCn043wPN8.jpg",
-      "https://img.79plus.co.kr/megahp/manager/upload/bbs/20231025194941_1715213291013_3HamcHrntS.jpg",
-      "https://img.79plus.co.kr/megahp/manager/upload/bbs/20231107155045_1716333243773_ueanoLQ4LL.jpg",
-      "https://img.79plus.co.kr/megahp/manager/upload/bbs/20230926101455_1712647804005_IpbU74iRTN.png",
-      "https://img.79plus.co.kr/megahp/manager/upload/bbs/20230925152816_1712579529407_DvRmkHuE30.png",
-    ];
+    const images = ["./img/광고1.jpg", "./img/광고2_2.jpg"];
 
     const changingImage = document.getElementById("changingImage");
     let currentIndex = 0;
@@ -150,14 +460,11 @@
 
     setInterval(changeImage, 2000);
 
-    const changingImage2 = document.getElementById("changingImage2");
-    let currentIndex2 = 0;
-
-    function changeImage2() {
-      changingImage2.src = images2[currentIndex];
-      currentIndex2 = (currentIndex + 1) % images2.length;
+    function openModal(modalNumber) {
+      // 해당 모달 열기
+      $(`#exampleModal${modalNumber}`).modal("show");
     }
-
-    setInterval(changeImage2, 2000);
   </script>
+  <script src="./js/slider.js"></script>
+  <script src="./js/main.js"></script>
 </html>

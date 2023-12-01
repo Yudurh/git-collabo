@@ -32,39 +32,37 @@
       <div id="main">
         <div id="aside">
           <div id="aside_menu">
-            <button onclick="click_member();" id="menu_member">
+            <button
+                    onclick="click_member();"
+                    id="menu_member"
+
+            >
               회원 관리
             </button>
             <button onclick="click_item();" id="menu_item">상품 관리</button>
-            <button
-              onclick="click_order();"
-              id="menu_order"
-              class="menu_height"
-            >
-              주문 관리
-            </button>
+            <button onclick="click_order();" id="menu_order" class="menu_height">주문 관리</button>
             <button onclick="toggleNoticeList();">공지사항 관리</button>
             <div
-              onclick="click_event();"
-              class="noticeList"
-              style="display: none"
-              id="menu_event"
+                    onclick="click_event();"
+                    class="noticeList"
+                    style="display: none"
+                    id="menu_event"
             >
               <button>이벤트</button>
             </div>
             <div
-              onclick="click_notice();"
-              class="noticeList"
-              style="display: none"
-              id="menu_notice"
+                    onclick="click_notice();"
+                    class="noticeList"
+                    style="display: none"
+                    id="menu_notice"
             >
               <button href="#">공지사항</button>
             </div>
           </div>
         </div>
         <div id="section">
-          <h4 id="main_title">상품 목록</h4>
-          <div id="member_count" th:text="|총 ${count}개의 주문이 존재합니다.|">
+          <h4 id="main_title">주문 목록</h4>
+          <div id="member_count" th:text="|주문 건이 ${count}개 존재합니다.|">
             총 ()개의 주문이 존재합니다.
           </div>
           <table class="table table-hover table-bordered">
@@ -82,17 +80,27 @@
               </tr>
             </thead>
             <tbody>
-              <tr th:each="member, status:${ list }">
-                <td><span th:text="${member.memberNo}"></span></td>
-                <td><span th:text="${member.memberId}"></span></td>
-                <td><span th:text="${member.memberPw}"></span></td>
-                <td><span th:text="${member.memberName}"></span></td>
-                <td><span th:text="${member.memberRole}"></span></td>
-                <td><span th:text="${member.memberPoint}"></span></td>
-                <td><span th:text="${member.memberJoinDatetime}"></span></td>
+              <tr th:each="order, status:${ list }">
+                <!-- 타임리프 처리 -->
+                <!-- 보이지 않는 것 -->
+                <input id="cartItemCode1" type="hidden" th:value="${order.cartItemCode1}" />
+                <input id="cartItemCode2" type="hidden" th:value="${order.cartItemCode2}" />
+                <input id="cartItemCode3" type="hidden" th:value="${order.cartItemCode3}" />
+                <input id="cartItemCode4" type="hidden" th:value="${order.cartItemCode4}" />
+                <input id="cartItemCode5" type="hidden" th:value="${order.cartItemCode5}" />
+
+                <!-- 보이는 것 -->
+                <td><span th:text="${order.orderNo}"></span></td>
+                <td><span th:text="${order.orderCode}"></span></td>
+                <td><span th:text="${order.orderTotalPrice}"></span></td>
+                <td><span th:text="${order.orderTotalCount}"></span></td>
+                <td><span th:text="${order.orderNumber}"></span></td>
+                <td><span th:text="${order.orderPayType}"></span></td>
+                <td><span th:text="${order.orderDatetime}"></span></td>
+
                 <td>
                   <a
-                    th:href="|/memberUpdate?memberNo=${ member.memberNo }|"
+                    th:href="|/orderUpdate?orderNo=${ order.orderNo }|"
                     class="btn btn-warning"
                     role="button"
                     >수정</a
@@ -100,7 +108,7 @@
                 </td>
                 <td>
                   <a
-                    th:href="|/memberDelete?memberNo=${ member.memberNo }|"
+                    th:href="|/orderDelete?orderNo=${ order.orderNo }|"
                     class="btn btn-dark"
                     role="button"
                     >삭제</a
@@ -126,5 +134,5 @@
       </div>
     </div>
   </body>
-  <script src="./adminList.js"></script>
+  <script src="./js/adminList.js"></script>
 </html>

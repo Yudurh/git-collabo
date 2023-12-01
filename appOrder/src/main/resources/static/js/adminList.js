@@ -1,3 +1,4 @@
+// 공지 목록의 사이드 메뉴 (이벤트, 공지사항) 클릭 이벤트
 function toggleNoticeList() {
   var lists = document.querySelectorAll(".noticeList");
 
@@ -9,6 +10,7 @@ function toggleNoticeList() {
     }
   });
 }
+// < 페이지 이동 함수 >
 // 멤버 리스트 페이지 이동
 function click_member() {
   let menu_member = document.getElementById("menu_member");
@@ -64,7 +66,7 @@ function click_order() {
   window.location.href = "/adminOrderList";
 }
 // 이벤트 페이지 이동
-function click_order() {
+function click_event() {
   let menu_member = document.getElementById("menu_member");
   let menu_item = document.getElementById("menu_item");
   let menu_order = document.getElementById("menu_order");
@@ -82,7 +84,7 @@ function click_order() {
   window.location.href = "/adminEventList";
 }
 // 공지사항 페이지 이동
-function click_order() {
+function click_notice() {
   let menu_member = document.getElementById("menu_member");
   let menu_item = document.getElementById("menu_item");
   let menu_order = document.getElementById("menu_order");

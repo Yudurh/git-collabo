@@ -44,6 +44,10 @@ body {
   width: 30%;
 }
 
+.updateContent button{
+  height: 40px;
+}
+
 .radios {
   display: flex;
   align-items: center;

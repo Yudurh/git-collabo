@@ -10,4 +10,5 @@ import lombok.*;
 public class ResultDto {
     String status;
     int result;
+    String uploadFileName;
 }

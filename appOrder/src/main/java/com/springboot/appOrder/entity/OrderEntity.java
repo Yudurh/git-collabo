@@ -44,7 +44,7 @@ public class OrderEntity {
     @DateTimeFormat(pattern = "yyyy-MM-ddTHH:mm:ss")
     private LocalDateTime orderDatetime;
 
-    public static OrderEntity toEntity(OrderDto dto){
+    public static OrderEntity toOrderEntity(OrderDto dto){
         return OrderEntity.builder()
                 .orderNo(dto.getOrderNo())
                 .orderCode(dto.getOrderCode())
@@ -60,6 +60,4 @@ public class OrderEntity {
                 .orderDatetime(dto.getOrderDatetime())
                 .build();
     }
-
-
 }
