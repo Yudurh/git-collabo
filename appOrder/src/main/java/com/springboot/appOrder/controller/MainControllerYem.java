@@ -69,15 +69,20 @@ public class MainControllerYem {
         model.addAttribute("itemImageUrl1", itemEntities1.get(0).getItemImageUrl());
         model.addAttribute("itemName1", itemEntities1.get(0).getItemName());
         model.addAttribute("itemContent1", itemEntities1.get(0).getItemContent());
+//        model.addAttribute("itemNo1", itemEntities1.get(0).getItemNo());
+
         model.addAttribute("itemImageUrl2", itemEntities2.get(0).getItemImageUrl());
         model.addAttribute("itemName2", itemEntities2.get(0).getItemName());
         model.addAttribute("itemContent2", itemEntities2.get(0).getItemContent());
+
         model.addAttribute("itemImageUrl3", itemEntities3.get(0).getItemImageUrl());
         model.addAttribute("itemName3", itemEntities3.get(0).getItemName());
         model.addAttribute("itemContent3", itemEntities3.get(0).getItemContent());
+
         model.addAttribute("itemImageUrl4", itemEntities4.get(0).getItemImageUrl());
         model.addAttribute("itemName4", itemEntities4.get(0).getItemName());
         model.addAttribute("itemContent4", itemEntities4.get(0).getItemContent());
+
         model.addAttribute("itemImageUrl5", itemEntities5.get(0).getItemImageUrl());
         model.addAttribute("itemName5", itemEntities5.get(0).getItemName());
         model.addAttribute("itemContent5", itemEntities5.get(0).getItemContent());
@@ -172,6 +177,13 @@ public class MainControllerYem {
         return "redirect:/adminItemList";
     }
 
+    // ( 관리자 ) 상품 등록
+    @GetMapping("/itemRegister")
+    public String itemRegister(Model model){
+        // 등록 페이지 이동
+        return "adminItemRegi";
+    }
+
     // ( 관리자 ) 주문 정보 조회
     @GetMapping("/adminOrderList")
     public String adminOrderList(Model model){
@@ -214,6 +226,20 @@ public class MainControllerYem {
         model.addAttribute("count", noticeEntities.size());
 
         return "adminNoticeList";
+    }
+
+    // ( 관리자 ) 공지사항 등록
+    @GetMapping("/noticeRegister")
+    public String noticeRegister(Model model){
+        // 등록 페이지 이동
+        return "adminNoticeRegi";
+    }
+
+    // ( 관리자 ) 이벤트 글 등록
+    @GetMapping("/eventRegister")
+    public String eventRegister(Model model){
+        // 등록 페이지 이동
+        return "adminEventRegi";
     }
 
     // ( 관리자 ) 이벤트 글 조회
@@ -276,7 +302,6 @@ public class MainControllerYem {
     // (사용자) 상품 정보 조회
     @GetMapping("/itemInfo")
     public String itemInfo(@RequestParam String itemName,
-                           @RequestParam String itemCate,
                            Model model){
 
         // 클릭한 아이템의 정보
@@ -373,5 +398,14 @@ public class MainControllerYem {
         model.addAttribute("list", eventEntity);
 
         return "/newsEvent";
+    }
+
+    @GetMapping("/newsNotice")
+    public String newsNotice( Model model ){
+
+        List<NoticeEntity> noticeEntity = noticeRepository.findAll();
+        model.addAttribute("list", noticeEntity);
+
+        return "/newsNotice";
     }
 }

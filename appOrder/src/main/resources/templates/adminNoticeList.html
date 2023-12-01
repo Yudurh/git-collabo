@@ -58,7 +58,10 @@
         </div>
         <div id="section">
           <h4 id="main_title">주문 목록</h4>
-          <span>공지목록 < 공지사항</span>
+          <div id="smallTitle">
+            <span>공지목록 < 공지사항</span>
+            <a href="/noticeRegister" class="btn btn-secondary">등록</a>
+          </div>
           <table class="table table-hover table-bordered">
             <thead>
               <tr>
@@ -80,7 +83,14 @@
                 <td><span th:text="${notice.noticeTitle}"></span></td>
                 <td><span th:text="${notice.noticeContent}"></span></td>
                 <td><span th:text="${notice.noticeUser}"></span></td>
-                <td><img  class="admin_item_img" id="imgItemImageUrl" th:src="${notice.noticeImage}" width="100px"></td>
+                <td>
+                  <img
+                    class="admin_item_img"
+                    id="imgItemImageUrl"
+                    th:src="${notice.noticeImage}"
+                    width="100px"
+                  />
+                </td>
                 <td><span th:text="${notice.noticeDatetime}"></span></td>
                 <td>
                   <a

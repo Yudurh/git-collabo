@@ -1,56 +1,4 @@
-// < 회원 정보 수정 >
-// 수정한 회원 정보 전달
-function memberUpdate() {
-  let memberId = document.getElementById("inputMemberId").value;
-  let memberPw = document.getElementById("inputMemberPw").value;
-  let memberName = document.getElementById("inputMemberName").value;
-  let memberRole = document.getElementById("inputMemberRole").value;
-  let memberPoint = document.getElementById("inputMemberPoint").value;
-  let memberNo = document.getElementById("memberNo").value;
-  let memberJoinDatetime = document.getElementById("memberJoinDatetime").value;
-
-  let params = {
-    memberId: memberId,
-    memberPw: memberPw,
-    memberName: memberName,
-    memberRole: memberRole,
-    memberPoint: memberPoint,
-    memberNo: memberNo,
-    memberJoinDatetime: memberJoinDatetime,
-  };
-  console.log(JSON.stringify(params));
-
-  fetch("/memberUpdateForm", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(params),
-  })
-    .then((response) => {
-      console.log("response:" + response);
-      console.log("response:" + JSON.stringify(response));
-      return response.json();
-    }) //HTTP 응답
-    .then((json) => {
-      console.log("json:" + json);
-      console.log("response:" + JSON.stringify(json));
-
-      if (json.result == 1) {
-        //회원 정보 수정 성공
-        //다음페이지로 이동
-        alert("회원 정보를 수정하였습니다.");
-        window.location.href = "/adminMemberList";
-      } else {
-        //회원 정보 수정 성공
-        alert("회원 정보를 수정 실패했습니다.");
-      }
-    }) //실제 데이타
-    .catch((error) => {
-      console.log(error);
-    });
-}
-
-// < 상품 정보 수정 >
-// 상품 정보 수정 페이지에서 조회
+// < 상품 등록 >
 // ( 추천 ) 라디오 버튼 표시
 $(document).ready(function () {
   // Function to handle item recommendation radio button display
@@ -75,8 +23,6 @@ $(document).ready(function () {
   });
 });
 
-// ( 옵션 ) 라디오 버튼 표시 -> 해야함
-
 // item 이미지 업로드
 function onClickUpload() {
   let inputItemImageUrl = document.getElementById("inputItemImageUrl");
@@ -96,7 +42,7 @@ function readURL(input) {
   }
 }
 
-function itemUpdate() {
+function itemRegi() {
   image_upload();
 }
 
@@ -122,7 +68,7 @@ function image_upload() {
       .then((json) => {
         console.log("json:" + JSON.stringify(json));
         console.log("uploadFileName:" + json.uploadFileName);
-        func_item_updateAction_json(json.uploadFileName);
+        func_item_registerAction_json(json.uploadFileName);
       })
       .catch((error) => {
         console.log(error);
@@ -136,7 +82,7 @@ function image_upload() {
     let existingFileName = getFileName(existingImageUrl);
 
     // 기존 이미지 파일명을 서버로 전달하는 함수 호출
-    func_item_updateAction_json(existingFileName);
+    func_item_registerAction_json(existingFileName);
   }
 }
 
@@ -146,8 +92,8 @@ function getFileName(input) {
   return input.replace(/.*[\/\\]/, "");
 }
 
-// 수정한 정보 전달
-function func_item_updateAction_json(itemImageUrl) {
+// 상품 전달
+function func_item_registerAction_json(itemImageUrl) {
   let itemNo = document.getElementById("itemNo").value;
   let itemCode = document.getElementById("itemCode").value;
   let itemName = document.getElementById("inputItemName").value;
@@ -169,9 +115,9 @@ function func_item_updateAction_json(itemImageUrl) {
     itemImageUrl: itemImageUrl,
     itemUpdateDatetime: itemUpdateDatetime,
   };
-  console.log(JSON.stringify(params));
+  console.log("등록 내용: " + JSON.stringify(params));
 
-  fetch("/itemUpdateForm", {
+  fetch("/itemRegiForm", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(params),
@@ -186,11 +132,11 @@ function func_item_updateAction_json(itemImageUrl) {
       if (json.result == 1) {
         // 상품 정보 수정 성공
         // 다음페이지로 이동
-        alert("상품 정보를 수정하였습니다.");
+        alert("상품을 등록하였습니다.");
         window.location.href = "/adminItemList";
       } else {
         // 상품 정보 수정 실패
-        alert("상품 정보를 수정 실패했습니다.");
+        alert("상품 등록을 실패했습니다.");
       }
     }) // 실제 데이타
     .catch((error) => {
@@ -198,88 +144,7 @@ function func_item_updateAction_json(itemImageUrl) {
     });
 }
 
-// 수정한 주문 정보 전달
-function orderUpdate() {
-  let orderNo = document.getElementById("orderNo").value;
-  let orderCode = document.getElementById("orderCode").value;
-  let cartItemCode1 = document.getElementById("cartItemCode1").value;
-  let cartItemCode2 = document.getElementById("cartItemCode2").value;
-  let cartItemCode3 = document.getElementById("cartItemCode3").value;
-  let cartItemCode4 = document.getElementById("cartItemCode4").value;
-  let cartItemCode5 = document.getElementById("cartItemCode5").value;
-  let orderTotalPrice = document.getElementById("inputOrderTotalPrice").value;
-  let orderTotalCount = document.getElementById("inputOrderTotalCount").value;
-  let orderNumber = document.getElementById("inputOrderNumber").value;
-  // 결제 수단은 db에서 숫자로 들어감 ( 01 현금, 02 카드 )
-  let orderPayType = $("#payType").val();
-  let orderDatetime = document.getElementById("inputOrderDatetime").value;
-
-  if (orderPayType == "현금") {
-    // 현금일 때 0
-    orderPayType = 0;
-  }
-
-  if (orderPayType == "카드") {
-    // 카드일 때 1
-    orderPayType = 1;
-  }
-
-  if ((cartItemCode2, cartItemCode3, cartItemCode4, cartItemCode5 == "")) {
-    cartItemCode2 = null;
-    cartItemCode3 = null;
-    cartItemCode4 = null;
-    cartItemCode5 = null;
-
-    console.log(cartItemCode2);
-  }
-
-  let params = {
-    orderNo: orderNo,
-    orderCode: orderCode,
-    cartItemCode1: cartItemCode1,
-    cartItemCode2: cartItemCode2,
-    cartItemCode3: cartItemCode3,
-    cartItemCode4: cartItemCode4,
-    cartItemCode5: cartItemCode5,
-    orderTotalPrice: orderTotalPrice,
-    orderTotalCount: orderTotalCount,
-    orderNumber: orderNumber,
-    orderPayType: orderPayType,
-    orderDatetime: orderDatetime,
-  };
-
-  console.log(JSON.stringify(params));
-
-  fetch("/orderUpdateForm", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(params),
-  })
-    .then((response) => {
-      console.log("response:" + response);
-      console.log("response:" + JSON.stringify(response));
-      return response.json();
-    }) // HTTP 응답
-    .then((json) => {
-      console.log("json:" + json);
-      console.log("response:" + JSON.stringify(json));
-
-      if (json.result == 1) {
-        // 주문 정보 수정 성공
-        // 다음페이지로 이동
-        alert("주문 정보를 수정하였습니다.");
-        window.location.href = "/adminOrderList";
-      } else {
-        // 주문 정보 수정 성공
-        alert("주문 정보 수정 실패했습니다.");
-      }
-    }) // 실제 데이타
-    .catch((error) => {
-      console.log(error);
-    });
-}
-
-// < 공지사항 글 수정 >
+// < 공지사항 글 등록 >
 // 이미지 업로드
 function onClickUpload2() {
   let inputNoticeImageUrl = document.getElementById("inputNoticeImageUrl");
@@ -300,7 +165,7 @@ function readURL2(input) {
   }
 }
 
-function noticeUpdate() {
+function noticeRegister() {
   image_upload2();
 }
 
@@ -326,7 +191,7 @@ function image_upload2() {
       .then((json) => {
         console.log("json:" + JSON.stringify(json));
         console.log("uploadFileName:" + json.uploadFileName);
-        func_notice_updateAction_json(json.uploadFileName);
+        func_notice_registerAction_json(json.uploadFileName);
       })
       .catch((error) => {
         console.log(error);
@@ -340,16 +205,20 @@ function image_upload2() {
     let existingFileName = getFileName(existingImageUrl);
 
     // 기존 이미지 파일명을 서버로 전달하는 함수 호출
-    func_notice_updateAction_json(existingFileName);
+    func_notice_registerAction_json(existingFileName);
   }
 }
 
-function func_notice_updateAction_json(noticeImage) {
+function func_notice_registerAction_json(noticeImage) {
   let noticeNo = document.getElementById("noticeNo").value;
   let noticeTitle = document.getElementById("inputNoticeTitle").value;
   let noticeUser = document.getElementById("inputNoticeUser").value;
   let noticeContent = document.getElementById("inputNoticeContent").value;
   let noticeDatetime = document.getElementById("noticeDatetime").value;
+
+  if (noticeDatetime == "") {
+    noticeDatetime = new Date();
+  }
 
   let params = {
     noticeNo: noticeNo,
@@ -359,9 +228,10 @@ function func_notice_updateAction_json(noticeImage) {
     noticeDatetime: noticeDatetime,
     noticeImage: noticeImage,
   };
+
   console.log(JSON.stringify(params));
 
-  fetch("/noticeUpdateForm", {
+  fetch("/noticeRegiForm", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(params),
@@ -376,11 +246,11 @@ function func_notice_updateAction_json(noticeImage) {
       if (json.result == 1) {
         // 공지 정보 수정 성공
         // 다음 페이지 이동
-        alert("공지 정보를 수정하였습니다.");
+        alert("공지 글을 등록하였습니다.");
         window.location.href = "/adminNoticeList";
       } else {
         // 공지 정보 수정 실패
-        alert("공지 정보를 수정 실패했습니다.");
+        alert("공지 글 등록을 실패했습니다.");
       }
     }) // 실제 데이타
     .catch((error) => {
@@ -388,7 +258,7 @@ function func_notice_updateAction_json(noticeImage) {
     });
 }
 
-// < 이벤트 글 수정 >
+// < 이벤트 글 등록 >
 // 이미지 업로드
 function onClickUpload3() {
   let inputEventImageUrl = document.getElementById("inputEventImageUrl");
@@ -434,7 +304,7 @@ function image_upload3() {
       .then((json) => {
         console.log("json:" + JSON.stringify(json));
         console.log("uploadFileName:" + json.uploadFileName);
-        func_event_updateAction_json(json.uploadFileName);
+        func_event_registerAction_json(json.uploadFileName);
       })
       .catch((error) => {
         console.log(error);
@@ -448,16 +318,20 @@ function image_upload3() {
     let existingFileName = getFileName(existingImageUrl);
 
     // 기존 이미지 파일명을 서버로 전달하는 함수 호출
-    func_event_updateAction_json(existingFileName);
+    func_event_registerAction_json(existingFileName);
   }
 }
 
-function func_event_updateAction_json(eventImage) {
+function func_event_registerAction_json(eventImage) {
   let eventNo = document.getElementById("eventNo").value;
   let eventTitle = document.getElementById("inputEventTitle").value;
   let eventUser = document.getElementById("inputEventUser").value;
   let eventContent = document.getElementById("inputEventContent").value;
   let eventDatetime = document.getElementById("eventDatetime").value;
+
+  if (eventDatetime == "") {
+    eventDatetime = new Date();
+  }
 
   let params = {
     eventNo: eventNo,
@@ -469,7 +343,7 @@ function func_event_updateAction_json(eventImage) {
   };
   console.log(JSON.stringify(params));
 
-  fetch("/eventUpdateForm", {
+  fetch("/eventRegiForm", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(params),

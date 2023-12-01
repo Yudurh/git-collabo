@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>새소식-이벤트</title>
+    <title>새소식-공지사항</title>
   </head>
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <script
@@ -40,22 +40,26 @@
         <div id="main_header">
           <div id="main_title">새소식</div>
           <div id="main_menu">
-            <button class="menu_height" id="news_event" onclick="newsEvent()">
-              이벤트
+            <button id="news_event" onclick="newsEvent()">이벤트</button>
+            <button id="news_notice" class="menu_height" onclick="newsNotice()">
+              공지사항
             </button>
-            <button id="news_notice" onclick="newsNotice()">공지사항</button>
           </div>
         </div>
         <div class="main_middel">
-          <div id="main_content" th:each=" event, status: ${ list } ">
+          <div id="main_content" th:each=" notice, status: ${ list } ">
             <div class="contentBox">
               <div class="eventImage">
-                <img src="./img/이벤트글.jpg" th:src="${ event.eventImage }" />
+                <img
+                  src="./img/이벤트글.jpg"
+                  th:src="${ notice.noticeImage }"
+                />
               </div>
-              <div class="eventTitle" th:text="${ event.eventTitle }"></div>
-              <div class="eventDateTime" th:text="${ event.eventDatetime }">
-                2023/11/30
-              </div>
+              <div class="eventTitle" th:text="${ notice.noticeTitle }"></div>
+              <div
+                class="eventDateTime"
+                th:text="${ notice.noticeDatetime }"
+              ></div>
             </div>
           </div>
         </div>

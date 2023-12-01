@@ -22,11 +22,16 @@
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
     crossorigin="anonymous"
   />
+  <link
+    rel="stylesheet"
+    href="/appOrder/src/main/resources/static/css/adminList.css"
+  />
+
   <link rel="stylesheet" href="./css/adminList.css" />
   <body>
     <div id="wrap">
       <div id="header">
-        <img src="./img/megaLogo.png" width="250px">
+        <img src="./img/megaLogo.png" width="250px" />
         <h2 id="header_title">관리자 페이지</h2>
       </div>
       <div id="main">
@@ -60,8 +65,14 @@
         </div>
         <div id="section">
           <h4 id="main_title">상품 목록</h4>
-          <div id="member_count" th:text="|총 ${count}개의 상품이 존재합니다.|">
-            총 ()개의 상품이 존재합니다.
+          <div id="smallTitle">
+            <div
+              id="member_count"
+              th:text="|총 ${count}개의 상품이 존재합니다.|"
+            >
+              총 ()개의 상품이 존재합니다.
+            </div>
+            <a href="/itemRegister" class="btn btn-secondary">등록</a>
           </div>
           <table class="table table-hover table-bordered">
             <thead>
@@ -86,7 +97,14 @@
                 <td><span th:text="${item.itemCate}"></span></td>
                 <td><span th:text="${item.itemRecommend}"></span></td>
                 <td><span th:text="${item.itemPrice}"></span></td>
-                <td><img  class="admin_item_img" id="imgItemImageUrl" th:src="${item.itemImageUrl}" width="100px"></td>
+                <td>
+                  <img
+                    class="admin_item_img"
+                    id="imgItemImageUrl"
+                    th:src="${item.itemImageUrl}"
+                    width="100px"
+                  />
+                </td>
                 <td><span th:text="${item.itemUpdateDatetime}"></span></td>
                 <td>
                   <a

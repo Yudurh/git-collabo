@@ -178,7 +178,6 @@ public class ApiControllerJSH {
                 ItemDto newDto = ItemDto.toDto(newEntity.get(0));
 
                 CartEntity newEntityC = CartEntity.ItemToCart(newDto);
-                cartRepository.deleteById(searchC.get(0).getCartNo());
                 cartRepository.save(newEntityC);
 
             }else {
@@ -219,7 +218,7 @@ public class ApiControllerJSH {
     public ResultDto setOrder(@RequestBody OrderDto dto,
                                   Model model){
 
-        OrderEntity newEntity = OrderEntity.toEntity(dto);
+        OrderEntity newEntity = OrderEntity.toOrderEntity(dto);
         orderRepository.save(newEntity);
 
 
