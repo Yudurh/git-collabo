@@ -11,8 +11,6 @@ body {
   height: 1000px;
   display: flex;
   flex-direction: column;
-
-  border: 1px solid black;
 }
 .accordion-button:not(.collapsed) {
   background-color: white;
@@ -20,6 +18,24 @@ body {
 
 #header {
   text-align: center;
+}
+.header {
+  z-index: 1;
+  position: sticky;
+  top: 0px;
+  background-color: white;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.headerRightBox {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 10px 0px 10px;
+  background-color: white;
 }
 
 #header,
@@ -57,7 +73,6 @@ body {
 }
 
 .form-check {
-  padding-left: 0;
 }
 
 #recomeMain {
@@ -80,4 +95,22 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
+}
+.mybtn {
+  width: 25%;
+  height: 48px;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 5px;
+  background-color: rgb(77, 41, 27);
+  color: whitesmoke;
+}
+.mybtn2 {
+  width: 25%;
+  height: 48px;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 5px;
+  background-color: rgb(231, 224, 218);
+  color: rgb(77, 41, 27);
 }

@@ -1,15 +1,15 @@
 package com.springboot.appOrder.controller;
 
+import com.springboot.appOrder.dto.CartDto;
 import com.springboot.appOrder.dto.ItemDto;
+import com.springboot.appOrder.dto.OrderDto;
 import com.springboot.appOrder.dto.ResultDto;
-import com.springboot.appOrder.entity.CartEntity;
-import com.springboot.appOrder.entity.ItemEntity;
-import com.springboot.appOrder.entity.ItemRepository;
-import com.springboot.appOrder.entity.MemberEntity;
+import com.springboot.appOrder.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -52,34 +52,103 @@ public class ApiControllerJSH {
                 .collect(Collectors.toList());
         map.put("itemlistRecommand", listDtoRecommend);
 
-        List<ItemEntity> listCate1 = itemRepository.findByItemCate("커피");
+        List<ItemEntity> listCate1 = itemRepository.findByItemCate("커피(HOT)");
         List<ItemDto> listDto1 = listCate1
                 .stream()
                 .map(ItemDto::toDto)
                 .collect(Collectors.toList());
-        map.put("itemlistCoffee", listDto1);
+        map.put("itemlistCoffeeH", listDto1);
 
-        List<ItemEntity> listCate2 = itemRepository.findByItemCate("디저트");
+        List<ItemEntity> listCate2 = itemRepository.findByItemCate("커피(ICE)");
         List<ItemDto> listDto2 = listCate2
                 .stream()
                 .map(ItemDto::toDto)
                 .collect(Collectors.toList());
-        map.put("itemlistDesert", listDto2);
+        map.put("itemlistCoffeeI", listDto2);
 
-        List<ItemEntity> listCate3 = itemRepository.findByItemCate("음료");
+        List<ItemEntity> listCate3 = itemRepository.findByItemCate("스무디&프라페");
         List<ItemDto> listDto3 = listCate3
                 .stream()
                 .map(ItemDto::toDto)
                 .collect(Collectors.toList());
-        map.put("itemlistDrink", listDto3);
+        map.put("itemlistSF", listDto3);
+
+        List<ItemEntity> listCate4 = itemRepository.findByItemCate("에이드&주스");
+        List<ItemDto> listDto4 = listCate4
+                .stream()
+                .map(ItemDto::toDto)
+                .collect(Collectors.toList());
+        map.put("itemlistDrink", listDto4);
+
+        List<ItemEntity> listCate5 = itemRepository.findByItemCate("디저트");
+        List<ItemDto> listDto5 = listCate5
+                .stream()
+                .map(ItemDto::toDto)
+                .collect(Collectors.toList());
+        map.put("itemlistDesert", listDto5);
 
         return map; //json 문자열로 리턴이 된다.
     }
 
-    @PostMapping("/setCart")
-    public ResultDto setCart(Model model){
+    @Autowired
+    private CartRepository cartRepository;
 
-        CartEntity newEntity = null;
+    @PostMapping("/setCart")
+    public ResultDto setCart(@RequestBody CartDto cartDto,
+                             Model model){
+
+        List<ItemEntity>searchI = itemRepository.findByItemName(cartDto.getItemName());
+
+
+        CartEntity newEntity = CartEntity.toEntity(cartDto);
+        CartDto newDto = cartDto;
+
+//        if (searchI.get(0).getItemCate().equals("디저트")){
+//            cartDto.setOptionName1("해당없음");
+//            cartDto.setOptionName2("해당없음");
+//            cartDto.setOptionName3("해당없음");
+//            newEntity = CartEntity.toEntity(cartDto);
+//        }else {
+//            newEntity = CartEntity.toEntity(cartDto);
+//
+//        }
+
+        List<CartEntity>searchC = cartRepository.findByItemNameAndOptionName3AndOptionName2AndOptionName1(cartDto.getItemName(),
+                cartDto.getOptionName3(),
+                cartDto.getOptionName2(),
+                cartDto.getOptionName1());
+
+        if (searchC.size()>0){
+
+            newDto.setCartPrice(searchC.get(0).getCartPrice()+cartDto.getCartPrice());
+            newDto.setCartItemAmount(searchC.get(0).getCartItemAmount()+cartDto.getCartItemAmount());
+            newEntity = CartEntity.toEntity(newDto);
+//            cartRepository.deleteById(searchC.get(1).getCartNo());
+            cartRepository.deleteById(searchC.get(0).getCartNo());
+
+//        searchC.get(0).setCartPrice(searchC.get(0).getCartPrice()+searchC.get(1).getCartPrice());
+//        searchC.get(0).setCartItemAmount(searchC.get(0).getCartItemAmount()+searchC.get(1).getCartItemAmount());
+//        cartRepository.deleteById(searchC.get(1).getCartNo());
+
+
+        }else {
+            newEntity = CartEntity.toEntity(cartDto);
+
+        }
+
+        cartRepository.save(newEntity);
+
+
+
+
+
+//        if (ItemRecommend.equals(1)){
+//            List<ItemEntity> reItem = itemRepository.findByItemRecommend(1);
+//            ItemDto reDto = ItemDto.toDto(reItem.get(0));
+//            CartEntity newEntity2 = CartEntity.ItemToCart(reDto);
+//            cartRepository.save(newEntity2);
+//        }
+//
 
         ResultDto resultDto = null;
 
@@ -98,6 +167,106 @@ public class ApiControllerJSH {
         }
         return resultDto;
     }
+
+    @PostMapping("/setCartRecom")
+    public ResultDto setCartRecom(@RequestBody ItemDto dto,
+                             Model model){
+        List<ItemEntity> newEntity = itemRepository.findByItemRecommend(dto.getItemRecommend());
+        if (dto.getItemRecommend() == 1) {
+            List<CartEntity> searchC = cartRepository.findByItemName("초코스모어쿠키");
+            if (searchC.size() == 0){
+                ItemDto newDto = ItemDto.toDto(newEntity.get(0));
+
+                CartEntity newEntityC = CartEntity.ItemToCart(newDto);
+                cartRepository.deleteById(searchC.get(0).getCartNo());
+                cartRepository.save(newEntityC);
+
+            }else {
+                searchC.get(0).setCartPrice(searchC.get(0).getCartPrice()+2500);
+                searchC.get(0).setCartItemAmount(searchC.get(0).getCartItemAmount()+1);
+                cartRepository.deleteById(searchC.get(0).getCartNo());
+                cartRepository.save(searchC.get(0));
+            }
+
+
+        }
+
+
+
+
+        ResultDto resultDto = null;
+
+        if( newEntity != null  ) {
+            //포인트 수정 성공
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(1)
+                    .build();
+        }else{
+            //포인트 수정 실패
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(0)
+                    .build();
+        }
+        return resultDto;
+    }
+
+
+    @Autowired
+    private OrderRepository orderRepository;
+    @PostMapping("/setOrder")
+    public ResultDto setOrder(@RequestBody OrderDto dto,
+                                  Model model){
+
+        OrderEntity newEntity = OrderEntity.toEntity(dto);
+        orderRepository.save(newEntity);
+
+
+
+        ResultDto resultDto = null;
+
+        if( newEntity != null  ) {
+            //포인트 수정 성공
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(1)
+                    .build();
+        }else{
+            //포인트 수정 실패
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(0)
+                    .build();
+        }
+        return resultDto;
+    }
+    @PostMapping("/delData")
+    public ResultDto delData(Model model){
+        cartRepository.deleteAll();
+        orderRepository.deleteAll();
+
+
+        OrderEntity newEntity = null;
+        ResultDto resultDto = null;
+
+        if( newEntity != null  ) {
+            //포인트 수정 성공
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(1)
+                    .build();
+        }else{
+            //포인트 수정 실패
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(0)
+                    .build();
+        }
+        return resultDto;
+    }
+
+
 
 
 

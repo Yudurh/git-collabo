@@ -46,7 +46,7 @@ public class ItemEntity {
                         .itemName(itemDto.getItemName())
                         .itemContent(itemDto.getItemContent())
                         .itemCate(itemDto.getItemCate())
-                        .itemRecommend(itemDto.getItem_recommend())
+                        .itemRecommend(itemDto.getItemRecommend())
                         .itemPrice(itemDto.getItemPrice())
                         .itemImageUrl(itemDto.getItemImageUrl())
                         .itemUpdateDatetime(itemDto.getItemUpdateDatetime())

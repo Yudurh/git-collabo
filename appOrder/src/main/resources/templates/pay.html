@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Document</title>
+  </head>
+  <link rel="stylesheet" href="./css/pay.css" />
+  <body>
+    <div id="wrap">
+      <div id="header">
+        <div id="topNav">
+          <div><img src="./Img/close.png" /></div>
+          <div>주문확인</div>
+        </div>
+        <div id="topNar">
+          1시간 이내에 찾아가지 않으실 경우 품질 및 보관 문제로 폐기 될 수
+          있습니다.
+        </div>
+        <div id="marketInfo">
+          <div>의정부역점</div>
+          <div th:text="|주문번호 ${orderN}|">주문번호</div>
+          <div th:text="${orderD}">날짜</div>
+          <div>로딩바</div>
+        </div>
+      </div>
+      <div id="main">
+        <div id="cartInfo" th:each=" cart, status: ${ list }">
+          <div class="cartIn2">
+            <div class="cartLeft">
+              <div>
+                <img
+                  th:src="${cart.itemImageUrl}"
+                  width="150px"
+                  height="150px"
+                />
+              </div>
+              <div class="leftC">
+                <div class="cartItemName" th:text=" ${ cart.itemName }"></div>
+                <div
+                  class="cartItemOption"
+                  th:text=" ${ cart.optionName1 }"
+                ></div>
+                <div
+                  class="cartItemOption"
+                  th:text=" ${ cart.optionName2 }"
+                ></div>
+                <div
+                  class="cartItemOption"
+                  th:text=" ${ cart.optionName3 }"
+                ></div>
+                <div class="cartRight">
+                  <div class="Btns">
+                    <div
+                      class="cartQuantity"
+                      th:text="|${cart.cartItemAmount}개|"
+                    ></div>
+                  </div>
+                  <div class="cartPriceBox">
+                    <span
+                      class="cartPrice"
+                      name="itemPrice"
+                      th:text="|${cart.cartPrice} 원|"
+                    >
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="footer">
+        <div id="price">
+          <div class="sort">
+            <div>결제수단</div>
+            <div th:text="${payType}">ㅁㄴㅇ</div>
+          </div>
+          <div class="sort">
+            <div>상품금액</div>
+            <div id="cartPrice">123</div>
+          </div>
+          <div class="sort">
+            <div>할인금액</div>
+            <div id="dPrice">123</div>
+          </div>
+          <div class="sort">
+            <div>결제금액</div>
+            <div th:text="${orderP}">123</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./js/pay.js"></script>
+</html>
