@@ -201,28 +201,20 @@
   flex-direction: column;
 }
 
-.modal-header {
-  display: block;
-  padding: 0px;
-}
-
-.modal-dialog {
-  text-align: center;
-  width: 300px;
-}
-
 .itemName {
   font-weight: bold;
+  font-size: 16px;
 }
 
 .itemName,
 .itemContent {
   margin-bottom: 10px;
+
 }
 
 .modal-content {
   left: 120px;
-  bottom: -200px;
+  bottom: -88px;
 }
 
 .modal-content.hidden {
@@ -240,7 +232,6 @@
   border: 1px solid rgb(77, 41, 27);
   border-radius: 10px;
   background-color: rgb(77, 41, 27);
-  width: 200px;
   height: 130px;
   display: flex;
   flex-direction: column;
@@ -252,24 +243,31 @@
 
 .modal-footer {
   display: flex;
-  flex-shrink: 0;
-  flex-wrap: wrap;
+  flex-direction: center;
   align-items: center;
   justify-content: center;
   width: 100%;
   background-color: rgb(167, 160, 157);
   border: 1px solid rgb(167, 160, 157);
-  border-top: none;
-  border-bottom: none;
   font-weight: bold;
+  bottom: 0px;
 }
 
 .itemContent {
-  padding: 5px;
+  font-size: 14px;
 }
 
 .modal-content {
-  border: 5px solid rebeccapurple;
-  width: 400px;
-  height: 500px;
+  border: 1px solid darkgray;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.modal-content button{
+ width: 135px;
+ height: 130px;
 }

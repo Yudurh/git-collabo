@@ -80,19 +80,23 @@
                   />
                   <div class="slider_content" th:text="${ itemName1 }"></div>
                 </div>
-                <div class="slider-item">
+                <div class="slider-item"
+                     th:onclick="openModal([[${itemName1}]],[[${itemImageUrl1}]],[[${itemContent1}]])">
                   <img width="150px" th:src="${ itemImageUrl2 }" />
                   <div class="slider_content" th:text="${ itemName2 }"></div>
                 </div>
-                <div class="slider-item">
+                <div class="slider-item"
+                     th:onclick="openModal([[${itemName1}]],[[${itemImageUrl1}]],[[${itemContent1}]])">
                   <img width="150px" th:src="${ itemImageUrl3 }" />
                   <div class="slider_content" th:text="${ itemName3 }"></div>
                 </div>
-                <div class="slider-item">
+                <div class="slider-item"
+                     th:onclick="openModal([[${itemName1}]],[[${itemImageUrl1}]],[[${itemContent1}]])">
                   <img width="150px" th:src="${ itemImageUrl4 }" />
                   <div class="slider_content" th:text="${ itemName4 }"></div>
                 </div>
-                <div class="slider-item">
+                <div class="slider-item"
+                     th:onclick="openModal([[${itemName1}]],[[${itemImageUrl1}]],[[${itemContent1}]])">
                   <img width="150px" th:src="${ itemImageUrl5 }" />
                   <div class="slider_content" th:text="${ itemName5 }"></div>
                 </div>

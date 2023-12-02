@@ -57,15 +57,17 @@ function changeImage() {
 
 setInterval(changeImage, 2000);
 
-function openModal(imageUrl, itemName, itemContent) {
-  console.log("정보: " + imageUrl + itemName + itemContent);
+// 모달창 기능 구현
+function openModal(itemName, itemImageUrl, itemContent) {
+// 아이템 이름, 이미지, 내용을 잘 가지고 오는지 확인
+  console.log("정보: " + itemImageUrl + itemName + itemContent);
   const modal = document.createElement("div");
   modal.className = "modal";
 
-  // 모달 내용 설정
+  // 모달 html 설정
   const modalContent = `
     <div class="modal-content">
-      <img src="${imageUrl}" alt="${itemName}" width="150px" />
+      <img src="${itemImageUrl}"  width="130px" style="margin: 10px;" />
       <div class="itemName">${itemName}</div>
       <div class="itemContent">${itemContent}</div>
       <div class="modal-btn">
@@ -82,15 +84,14 @@ function openModal(imageUrl, itemName, itemContent) {
     </div>
   `;
 
-  // 모달 창에 내용 추가
   modal.innerHTML = modalContent;
 
-  // 모달 창을 body에 추가
+  // 모달 창을 body에 뿌리기
   document.body.appendChild(modal);
 }
 
+// 모달 창 닫기 버튼 기능 구현
 function closeModal() {
-  // 모달 창을 닫음
   const modal = document.querySelector(".modal");
   document.body.removeChild(modal);
 }
