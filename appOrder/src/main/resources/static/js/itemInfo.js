@@ -282,6 +282,7 @@ $(document).ready(function () {
     if ($("#recomCh").is(":checked") == true && itemName == "초코스모어쿠키") {
       itemAmount = Number(itemAmount) + 1;
       cartPrice = Number(cartPrice) + 2500;
+      console.log("이프문 들어감")
     }
 
     let cart = {
@@ -316,7 +317,7 @@ $(document).ready(function () {
         console.log(error);
       });
 
-    setTimeout(function () {
+
       let recomItem = 0;
       if ($("#recomCh").is(":checked") == true) {
         recomItem = 1;
@@ -350,7 +351,7 @@ $(document).ready(function () {
         .catch((error) => {
           console.log(error);
         });
-    }, 1);
+
   });
 });
 
@@ -385,8 +386,8 @@ $(document).ready(function () {
       cartPrice: cartPrice,
       cartDate: cartDate,
     };
-    fetch("/order_21", {
-      method: "get",
+    fetch("/setOrder_2", {
+      method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(cart),
     })
@@ -396,7 +397,7 @@ $(document).ready(function () {
       }) //HTTP 응답
       .then((json) => {
         //{ status: "ok", result: 5 }
-
+        window.location.href="/order_2"
         alert("바로결제");
       }) //실제 데이타
       .catch((error) => {

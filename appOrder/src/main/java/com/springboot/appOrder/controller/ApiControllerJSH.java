@@ -157,22 +157,25 @@ public class ApiControllerJSH {
                     newEntityC.setCartPrice(newEntityC.getCartPrice()+2500);
                     newEntityC.setCartItemAmount(newEntityC.getCartItemAmount()+1);
                     cartRepository.save(newEntityC);
-                    List<CartEntity> searchC2 = cartRepository.findByItemName("초코스모어쿠키");
-                    cartRepository.deleteById(searchC2.get(0).getCartNo());
+
+
                 }
                 else {
                     newEntityC.setCartPrice(newEntityC.getCartPrice()+2500);
                     newEntityC.setCartItemAmount(newEntityC.getCartItemAmount()+1);
                     cartRepository.save(newEntityC);
-                    cartRepository.deleteById(searchC.get(0).getCartNo());
+
                 }
             }else {
                 searchC.get(0).setCartPrice(searchC.get(0).getCartPrice()+2500);
                 searchC.get(0).setCartItemAmount(searchC.get(0).getCartItemAmount()+1);
-                cartRepository.deleteById(searchC.get(0).getCartNo());
+
                 cartRepository.save(searchC.get(0));
             }
-
+            List<CartEntity> searchC2 = cartRepository.findByItemName("초코스모어쿠키");
+            if (searchC2.size()>1){
+                cartRepository.deleteById(searchC2.get(0).getCartNo());
+            }
 
         }
 
@@ -251,13 +254,15 @@ public class ApiControllerJSH {
         return resultDto;
     }
 
-    @RequestMapping("/order_21")
+    @Autowired
+    private Cart2Repository cart2Repository;
+    @RequestMapping("/setOrder_2")
     public ResultDto order2(@RequestBody CartDto dto, Model model){
 
-        CartEntity newEntity = CartEntity.toEntity(dto);
+        Cart2Entity newEntity = Cart2Entity.toEntity(dto);
+        cart2Repository.save(newEntity);
 
-        model.addAttribute("cart",newEntity);
-        model.addAttribute("first",newEntity.getItemName());
+
 
         ResultDto resultDto = null;
         if( newEntity != null  ) {
