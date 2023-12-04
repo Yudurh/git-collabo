@@ -213,8 +213,9 @@
 }
 
 .modal-content {
-  left: 120px;
-  bottom: -88px;
+  top: 250px;
+  left: 85px;
+  position: none;
 }
 
 .modal-content.hidden {

@@ -59,7 +59,7 @@ setInterval(changeImage, 2000);
 
 // 모달창 기능 구현
 function openModal(itemName, itemImageUrl, itemContent) {
-// 아이템 이름, 이미지, 내용을 잘 가지고 오는지 확인
+  // 아이템 이름, 이미지, 내용을 잘 가지고 오는지 확인
   console.log("정보: " + itemImageUrl + itemName + itemContent);
   const modal = document.createElement("div");
   modal.className = "modal";
@@ -72,7 +72,7 @@ function openModal(itemName, itemImageUrl, itemContent) {
       <div class="itemContent">${itemContent}</div>
       <div class="modal-btn">
         <button class="order">
-          <img src="./img/whitecoffee.png" width="30px" style="margin-bottom: 5px" />
+          <img src="./img/whitecoffee.png" width="30px" style="margin-bottom: 5px" onclick="closeModal()" />
           주문하기
         </button>
         <button class="gift">
@@ -94,4 +94,8 @@ function openModal(itemName, itemImageUrl, itemContent) {
 function closeModal() {
   const modal = document.querySelector(".modal");
   document.body.removeChild(modal);
+}
+
+function magaOrder() {
+  window.location.href = "/store";
 }
