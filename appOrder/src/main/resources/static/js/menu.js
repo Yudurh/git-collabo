@@ -337,3 +337,7 @@ function acountBox() {
 function func_item_update(itemName) {
   window.location.href = "/itemInfo?itemName=" + itemName;
 }
+
+function goToStore(){
+   window.location.href = "/store"
+}

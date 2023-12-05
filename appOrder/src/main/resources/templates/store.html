@@ -36,16 +36,16 @@
       width: 500px;
       height: 1250px;
       font-family: "SUITE-Regular";
+      font-size: 15px;
     }
 
     #header {
       display: flex;
       flex-direction: row;
-      justify-content: end;
+      justify-content: center;
     }
 
     #header_menu {
-      width: 50%;
       height: 40px;
       display: flex;
       flex-direction: row;
@@ -54,15 +54,10 @@
       font-size: 18px;
     }
 
-    #header_menu search {
-      width: 10%;
-    }
-
     #main_title {
       font-size: 20px;
       font-weight: bold;
-      margin-left: 20px;
-      width: 90%;
+      text-align: center;
     }
 
     #main a {
@@ -76,6 +71,7 @@
     #main_menu {
       border-bottom: 1px solid darkgray;
       padding: 7px;
+      font-size: 15px;
     }
 
     button {
@@ -90,6 +86,7 @@
 
     #middle_title {
       padding: 15px;
+      font-size: 15px;
     }
 
     .storImg {
@@ -133,19 +130,23 @@
     }
 
     .modal {
-      position: fixed;
-      width: 400px;
-      height: 250px;
       display: flex;
+      flex-direction: column;
       justify-content: center;
-      align-items: center;
+      position: fixed;
+      top: 300px;
+      left: 75px;
+      border: 1px solid rgb(204, 202, 202);
+      border-radius: 10px;
+      width: 400px;
+      height: 410px;
     }
 
     .modal-content.hidden {
       display: none;
     }
 
-    .modal-content {
+    .modal_main {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -159,6 +160,14 @@
       padding: 10px;
     }
 
+    .modal_main {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+    }
+
     .text {
       color: rgb(242, 20, 20);
       font-size: 16px;
@@ -167,7 +176,7 @@
         rgb(255, 233, 233) 50%,
         transparent 50%
       );
-      width: 205px;
+      width: 240px;
       text-align: center;
     }
 
@@ -175,18 +184,17 @@
       display: flex;
       flex-direction: row;
       justify-content: center;
-      align-items: center;
       width: 100%;
     }
 
     .back,
     .order {
       width: 50%;
+      height: 58px;
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      height: 50px;
       margin-top: 40px;
     }
 
@@ -207,14 +215,6 @@
       <div id="header">
         <div id="header_menu">
           <div id="header_title">매장 선택</div>
-          <div id="search">
-            <img
-              src="/appOrder/src/main/resources/static/img/search.png"
-              width="20px"
-              height="20px"
-              onclick="back()"
-            />
-          </div>
         </div>
       </div>
       <div id="main">
@@ -242,8 +242,8 @@
             <span>이 있습니다.</span>
           </div>
           <div id="middle_content">
-            <div class="store" onclick="openModal()">
-              <div class="store_info">
+            <div class="store">
+              <div class="store_info" onclick="openModal()">
                 <div class="storeName">의정부역점</div>
                 <div class="storeLocation">경기도 의정부시 시민로 75</div>
                 <div class="storeDistance">580m</div>
@@ -251,18 +251,18 @@
               <div class="store_img">
                 <img
                   class="storImg"
-                  src="/appOrder/src/main/resources/static/img/메가커피 외관.jpg"
+                  src="./img/메가커피 외관.jpg"
                   alt="메가커피외관"
                 />
                 <img
                   class="icon1"
-                  src="/appOrder/src/main/resources/static/img/gray_star_10307959.png"
+                  src="./img/gray_star_10307959.png"
                   width="25px"
                   onclick="icon2Change()"
                 />
                 <img
                   class="icon2"
-                  src="/appOrder/src/main/resources/static/img/star_10307959.png"
+                  src="./img/star_10307959.png"
                   width="25px"
                   onclick="icon1Change()"
                 />
@@ -299,18 +299,18 @@
 
       // 모달 html 설정
       const modalContent = `
-      <div class="modal-content" style="border: 1px solid rebeccapurple">
+      <div class="modal_content">
         <div class="modal_main">
           <div class="modal_title">'의정부역점'에서 주문하시겠습니까?</div>
-        </div>
-        <div class="map" style="width: 100%; height: 350px"></div>
+          <img src="./img/메가커피의정부역점.jpg" width="300px">
+          
         <div class="text">주문 확인 후 취소가 불가합니다.</div>
+      </div>
         <div class="modal_footer">
           <div class="back" onclick="closeModal()">취소</div>
           <div class="order" onclick="menu()">주문하기</div>
         </div>
-      </div>
-      `;
+      </div>`;
 
       modal.innerHTML = modalContent;
 

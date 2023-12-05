@@ -391,6 +391,7 @@ public class MainControllerYem {
         return "stamp";
     }
 
+    // ( 사용자 ) 새소식-이벤트
     @GetMapping("/newsEvent")
     public String newsEvent( Model model ){
 
@@ -400,6 +401,7 @@ public class MainControllerYem {
         return "/newsEvent";
     }
 
+    // ( 사용자 ) 새소식-공지사항
     @GetMapping("/newsNotice")
     public String newsNotice( Model model ){
 
@@ -407,5 +409,11 @@ public class MainControllerYem {
         model.addAttribute("list", noticeEntity);
 
         return "/newsNotice";
+    }
+
+    // ( 사용자 ) 지점
+    @GetMapping("/store")
+    public String store(){
+        return "store";
     }
 }
