@@ -416,4 +416,10 @@ public class MainControllerYem {
     public String store(){
         return "store";
     }
+
+    // api 테스트
+    @GetMapping("/api")
+    public String api(){
+        return "api";
+    }
 }
