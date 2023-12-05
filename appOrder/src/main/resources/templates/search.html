@@ -24,34 +24,48 @@
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
     crossorigin="anonymous"
   />
+  <link rel="stylesheet" href="./css/search.css" />
   <body>
     <div id="wrap">
       <div id="header">
-        <img src="" alt="엑스표" />
-        <div>상품검색</div>
+        <div id="headerC">
+          <img id="headerClose" src="./Img/close.png" />
+          <div>상품검색</div>
+        </div>
       </div>
       <div id="main">
         <div id="searchVar">
-          <form action="">
+          <form action="/search" id="sForm">
             <button type="submit" id="sImg">
-              <img src="/resources/static/Img/search.png" alt="" />
+              <img src="./Img/search.png" alt="" />
             </button>
             <div id="sInput">
-              <input type="text" placeholder="상품명으로 검색" />
+              <input
+                type="text"
+                id="keyword"
+                name="keyword"
+                placeholder="상품명으로 검색"
+              />
             </div>
           </form>
           <div id="sClose">
-            <img src="/resources/static/Img/close.png" alt="" />
+            <img src="./Img/close.png" alt="" />
           </div>
         </div>
       </div>
-      <div id="footer">
-        <div id="fImg"></div>
-        <div id="fText">
-          <div id="cateName"></div>
-          <div id="price"></div>
+      <div id="footer" th:each="search, status: ${list}">
+        <div class="fCon" th:id="${search.itemName}">
+          <img id="fImg" th:src="${search.itemImageUrl}" width="80px" />
+          <div id="fText">
+            <div
+              id="cateName"
+              th:text="|${search.itemCate} ${search.itemName}|"
+            ></div>
+            <div id="price" th:text="|${search.itemPrice}원|"></div>
+          </div>
         </div>
       </div>
     </div>
   </body>
+  <script src="./js/search.js"></script>
 </html>

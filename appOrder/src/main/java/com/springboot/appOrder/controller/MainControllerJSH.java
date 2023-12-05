@@ -88,6 +88,24 @@ public class MainControllerJSH {
         model.addAttribute("orderD",order.get(0).getOrderDatetime());
         return "/pay";
     }
+@Autowired
+private ItemRepository itemRepository;
+    @GetMapping("/search")
+    public String search(@RequestParam(required = false, defaultValue = "") String keyword
+            ,Model model){
+
+        if (keyword.isEmpty()){
+            List<ItemEntity>entities = itemRepository.findAll();
+            model.addAttribute("list",entities);
+        }else {
+            List<ItemEntity>entities = itemRepository.findByItemNameContaining(keyword);
+            model.addAttribute("list",entities);
+        }
+
+
+        return "/search";
+    }
+
 
 
 }

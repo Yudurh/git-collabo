@@ -154,15 +154,15 @@ public class ApiControllerJSH {
                 CartEntity newEntityC = CartEntity.ItemToCart(newDto);
 
                 if(newEntityC.getCartItemAmount()==1){
-                    newEntityC.setCartPrice(newEntityC.getCartPrice()+2500);
-                    newEntityC.setCartItemAmount(newEntityC.getCartItemAmount()+1);
+                    newEntityC.setCartPrice(newEntityC.getCartPrice());
+                    newEntityC.setCartItemAmount(newEntityC.getCartItemAmount());
                     cartRepository.save(newEntityC);
 
 
                 }
                 else {
-                    newEntityC.setCartPrice(newEntityC.getCartPrice()+2500);
-                    newEntityC.setCartItemAmount(newEntityC.getCartItemAmount()+1);
+                    newEntityC.setCartPrice(2500);
+                    newEntityC.setCartItemAmount(1);
                     cartRepository.save(newEntityC);
 
                 }
