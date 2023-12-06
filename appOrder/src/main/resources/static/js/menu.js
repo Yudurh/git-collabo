@@ -337,3 +337,13 @@ function acountBox() {
 function func_item_update(itemName) {
   window.location.href = "/itemInfo?itemName=" + itemName;
 }
+
+function goToPay() {
+  window.location.href = "/cartInfo";
+}
+function goToBack() {
+  window.history.back;
+}
+function goToSearch() {
+  window.location.href = "/search";
+}
