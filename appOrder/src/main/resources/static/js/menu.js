@@ -344,3 +344,6 @@ function goToPay() {
 function goToBack() {
   window.history.back;
 }
+function goToSearch() {
+  window.location.href = "/search";
+}
