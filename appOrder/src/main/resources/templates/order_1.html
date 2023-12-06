@@ -30,7 +30,7 @@
   <body>
     <div id="wrap">
       <div id="header">
-        <div>의정부고산점</div>
+        <div>의정부역점</div>
       </div>
       <div id="main">
         <div id="cartItem" class="m-3">
@@ -47,9 +47,10 @@
                 >
                   <div id="acText" class="d-flex justify-content-between">
                     <div class="fw-bold">주문상품</div>
-                    <div class="mx-2" th:text="|${first} 외 ${size}개의 상품|">
-                      뭐뭐몇개
-                    </div>
+                    <div
+                      class="mx-2"
+                      th:text="|${first} 외 ${size}개의 상품|"
+                    ></div>
                   </div>
                 </button>
               </h2>
@@ -159,26 +160,32 @@
               <label>카드</label>
             </div>
           </div>
-
+          <br />
           <div id="payPrice">
             <div>
-              <div>상품금액</div>
+              <div class="fw-bold">상품금액</div>
               <div id="pPrice"></div>
             </div>
+            <br />
             <div>
-              <div>할인금액</div>
+              <div class="fw-bold">할인금액</div>
               <div id="dPrice"></div>
             </div>
+            <br />
             <div>
-              <div>결제금액</div>
+              <div class="fw-bold">결제금액</div>
               <div id="total"></div>
-              <div class="visually-hidden" id="totalValue"></div>
+              <div
+                class="visually-hidden"
+                id="totalValue"
+                style="color: rgb(242, 20, 20)"
+              ></div>
             </div>
           </div>
         </div>
       </div>
       <div id="footer">
-        <div id="order">결재하기</div>
+        <div id="order">결제하기</div>
       </div>
     </div>
     <script src="./js/order.js"></script>

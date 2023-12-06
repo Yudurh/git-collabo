@@ -23,3 +23,7 @@ setTimeout(function () {
       console.log(error);
     });
 }, 10000);
+
+function back() {
+  window.history.back();
+}
