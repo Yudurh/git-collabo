@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>매장 선택</title>
+  </head>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+    integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+    crossorigin="anonymous"
+  ></script>
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+    crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="./css/store.css" />
+  <body>
+    <div id="wrap">
+      <div id="header">
+        <div id="header_menu">
+          <div id="header_title">매장 선택</div>
+        </div>
+      </div>
+      <div id="main">
+        <div id="main_header">
+          <div id="main_menu">
+            <button class="menu_height" id="news_event" onclick="">
+              리스트로 선택
+            </button>
+          </div>
+        </div>
+        <div id="main_middle">
+          <div id="middle_title">
+            <span>내 주변에</span>
+            <span
+              style="
+                background: linear-gradient(
+                  to top,
+                  #ffe400 50%,
+                  transparent 50%
+                );
+              "
+              >1개의 매장</span
+            >
+            <span>이 있습니다.</span>
+          </div>
+          <div id="middle_content">
+            <div class="store">
+              <div class="store_info" onclick="openModal()">
+                <div class="storeName">의정부역점</div>
+                <div class="storeLocation">경기도 의정부시 시민로 75</div>
+                <div class="storeDistance">580m</div>
+              </div>
+              <div class="store_img">
+                <img
+                  class="storImg"
+                  src="./img/메가커피 외관.jpg"
+                  alt="메가커피외관"
+                />
+                <img
+                  class="icon1"
+                  src="./img/gray_star_10307959.png"
+                  width="25px"
+                  onclick="icon2Change()"
+                />
+                <img
+                  class="icon2"
+                  src="./img/star_10307959.png"
+                  width="25px"
+                  onclick="icon1Change()"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script
+          type="text/javascript"
+          src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=01d43a4d666d0d6d94dee30754f4f76a&libraries=services"
+  ></script>
+  <script src="./js/store.js"></script>
+</html>

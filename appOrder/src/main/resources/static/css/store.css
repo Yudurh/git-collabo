@@ -1,0 +1,181 @@
+@font-face {
+  font-family: "SUITE-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+#wrap {
+  width: 500px;
+  height: 1250px;
+  font-family: "SUITE-Regular";
+  font-size: 15px;
+}
+
+#header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#header_menu {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+}
+
+#main_title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#main a {
+  text-decoration: none;
+  color: black;
+  font-size: 17px;
+  margin-left: 20px;
+  margin-bottom: 30px;
+}
+
+#main_menu {
+  border-bottom: 1px solid darkgray;
+  padding: 7px;
+  font-size: 15px;
+}
+
+button {
+  border-style: none;
+  background-color: white;
+}
+
+.menu_height {
+  border-bottom: 4px solid black;
+  border-radius: 3px;
+}
+
+#middle_title {
+  padding: 15px;
+  font-size: 15px;
+}
+
+.storImg {
+  width: 80px;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.icon1,
+.icon2 {
+  position: relative;
+  top: 70%;
+  left: 85%;
+}
+
+.store {
+  display: flex;
+  padding: 10px;
+}
+
+.store_info {
+  width: 85%;
+}
+
+.store_img {
+  width: 15%;
+}
+
+.storeName {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.storeLocation {
+  font-size: 15px;
+}
+
+.storeDistance {
+  color: rgb(242, 20, 20);
+  font-size: 16px;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  top: 300px;
+  left: 75px;
+  border: 1px solid rgb(204, 202, 202);
+  border-radius: 10px;
+  width: 400px;
+  height: 410px;
+}
+
+.modal-content.hidden {
+  display: none;
+}
+
+.modal_main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal_title {
+  font-size: 19px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+}
+
+.modal_main {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.text {
+  color: rgb(242, 20, 20);
+  font-size: 16px;
+  background: linear-gradient(to top, rgb(255, 233, 233) 50%, transparent 50%);
+  width: 240px;
+  text-align: center;
+}
+
+.modal_footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.back,
+.order {
+  width: 50%;
+  height: 65px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.back {
+  background-color: rgb(231, 224, 218);
+  color: rgb(77, 41, 27);
+  font-weight: bold;
+}
+
+.order {
+  background-color: rgb(77, 41, 27);
+  color: whitesmoke;
+  font-weight: bold;
+}

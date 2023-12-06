@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>새소식-이벤트</title>
   </head>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <script
     src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -22,7 +23,7 @@
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
     crossorigin="anonymous"
   />
-  <link rel="stylesheet" href="./css/newsEvent.css" />
+  <link rel="stylesheet" href="./css/news.css" />
   <body>
     <div id="wrap">
       <div id="header">
@@ -39,8 +40,10 @@
         <div id="main_header">
           <div id="main_title">새소식</div>
           <div id="main_menu">
-            <a href="" class="menu_height" onclick="newsEvent()">이벤트</a>
-            <a href="" onclick="">공지사항</a>
+            <button class="menu_height" id="news_event" onclick="newsEvent()">
+              이벤트
+            </button>
+            <button id="news_notice" onclick="newsNotice()">공지사항</button>
           </div>
         </div>
         <div class="main_middel">
@@ -57,8 +60,10 @@
           </div>
         </div>
       </div>
-      <div id="footer">더보기</div>
+      <div id="footer">
+        <a href="#" id="load">더보기</a>
+      </div>
     </div>
   </body>
-  <script src="./js/newsEvent.js"></script>
+  <script src="./js/news.js"></script>
 </html>

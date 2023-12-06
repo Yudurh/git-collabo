@@ -1,8 +1,17 @@
+@font-face {
+  font-family: "SUITE-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
 body {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  font-family: "SUITE-Regular";
 }
 
 #wrap {
@@ -67,19 +76,20 @@ body {
   margin-right: 50px;
 }
 
-th {
+th,
+td {
   font-size: 14px;
   text-align: center;
 }
 
-tr {
-  width: 200px
-
-}
-
-td {
-}
-
 #member_count {
   font-size: 15px;
+}
+
+#smallTitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 5px;
 }

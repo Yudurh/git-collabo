@@ -214,7 +214,6 @@ function orderUpdate() {
   let orderPayType = $("#payType").val();
   let orderDatetime = document.getElementById("inputOrderDatetime").value;
 
-
   if (orderPayType == "현금") {
     // 현금일 때 0
     orderPayType = 0;
@@ -350,7 +349,7 @@ function func_notice_updateAction_json(noticeImage) {
   let noticeTitle = document.getElementById("inputNoticeTitle").value;
   let noticeUser = document.getElementById("inputNoticeUser").value;
   let noticeContent = document.getElementById("inputNoticeContent").value;
-  let noticeDatetime = document.getElementById("inputNoticeDatetime").value;
+  let noticeDatetime = document.getElementById("noticeDatetime").value;
 
   let params = {
     noticeNo: noticeNo,
@@ -389,7 +388,6 @@ function func_notice_updateAction_json(noticeImage) {
     });
 }
 
-
 // < 이벤트 글 수정 >
 // 이미지 업로드
 function onClickUpload3() {
@@ -406,12 +404,11 @@ function readURL3(input) {
     reader.readAsDataURL(input.files[0]);
   } else {
     // 파일이 선택 되지 않았거나 비어있는 경우, 기존 이미지를 표시
-    document.getElementById("imgEventImageUrl").src =
-      "./upload/" + input.value;
+    document.getElementById("imgEventImageUrl").src = "./upload/" + input.value;
   }
 }
 
-function eventUpdate() {
+function eventRegister() {
   image_upload3();
 }
 
@@ -460,7 +457,7 @@ function func_event_updateAction_json(eventImage) {
   let eventTitle = document.getElementById("inputEventTitle").value;
   let eventUser = document.getElementById("inputEventUser").value;
   let eventContent = document.getElementById("inputEventContent").value;
-  let eventDatetime = document.getElementById("inputEventDatetime").value;
+  let eventDatetime = document.getElementById("eventDatetime").value;
 
   let params = {
     eventNo: eventNo,
@@ -468,7 +465,7 @@ function func_event_updateAction_json(eventImage) {
     eventUser: eventUser,
     eventContent: eventContent,
     eventDatetime: eventDatetime,
-    eventImage : eventImage,
+    eventImage: eventImage,
   };
   console.log(JSON.stringify(params));
 
