@@ -168,6 +168,27 @@ public class ApiControllerYem {
         return resultDto;
     }
 
+    // (관리자) 상품 등록 폼
+    @PostMapping("/itemRegiForm")
+    public ResultDto itemRegiForm(@RequestBody ItemDto itemDto) {
+        if (itemDto.getItemImageUrl().startsWith("./upload/")) {
+            // 이미지를 수정하지 않았을 경우 기존 이미지를 사용하도록 설정
+            itemDto.setItemImageUrl(itemDto.getItemImageUrl().substring(2)); // "./upload/" 제거
+        } else {
+            // 이미지를 수정했을 경우, 업로드된 새 이미지 경로로 설정
+            itemDto.setItemImageUrl("./upload/" + itemDto.getItemImageUrl());
+        }
+
+        ItemEntity itemEntity = ItemEntity.toItemEntity(itemDto);
+        ItemEntity newEntity = itemRepository.save(itemEntity);
+
+        ResultDto resultDto = (newEntity != null)
+                ? ResultDto.builder().status("ok").result(1).build() // 수정 성공
+                : ResultDto.builder().status("ok").result(0).build(); // 수정 실패
+
+        return resultDto;
+    }
+
 
     // ( 관리자 ) 주문 정보 수정 폼
     @PostMapping("/orderUpdateForm")
@@ -213,6 +234,27 @@ public class ApiControllerYem {
         return resultDto;
     }
 
+    // ( 관리자 ) 공지사항 등록 폼
+    @PostMapping("/noticeRegiForm")
+    public ResultDto noticeRegiForm(@RequestBody NoticeDto noticeDto) {
+        if (noticeDto.getNoticeImage().startsWith("./upload/")) {
+            // 이미지를 수정하지 않았을 경우 기존 이미지를 사용하도록 설정
+            noticeDto.setNoticeImage(noticeDto.getNoticeImage().substring(2)); // "./upload/" 제거
+        } else {
+            // 이미지를 수정했을 경우, 업로드된 새 이미지 경로로 설정
+            noticeDto.setNoticeImage("./upload/" + noticeDto.getNoticeImage());
+        }
+
+        NoticeEntity noticeEntity = NoticeEntity.toNoticeEntity(noticeDto);
+        NoticeEntity newEntity = noticeRepository.save(noticeEntity);
+
+        ResultDto resultDto = (newEntity != null)
+                ? ResultDto.builder().status("ok").result(1).build() // 수정 성공
+                : ResultDto.builder().status("ok").result(0).build(); // 수정 실패
+
+        return resultDto;
+    }
+
     // ( 관리자 ) 이벤트 정보 수정 폼
     @PostMapping("/eventUpdateForm")
     public ResultDto eventUpdateForm(@RequestBody EventDto eventDto) {
@@ -234,5 +276,25 @@ public class ApiControllerYem {
         return resultDto;
     }
 
+    // ( 관리자 ) 공지사항 등록 폼
+    @PostMapping("/eventRegiForm")
+    public ResultDto eventRegiForm(@RequestBody EventDto eventDto) {
+        if (eventDto.getEventImage().startsWith("./upload/")) {
+            // 이미지를 수정하지 않았을 경우 기존 이미지를 사용하도록 설정
+            eventDto.setEventImage(eventDto.getEventImage().substring(2)); // "./upload/" 제거
+        } else {
+            // 이미지를 수정했을 경우, 업로드된 새 이미지 경로로 설정
+            eventDto.setEventImage("./upload/" + eventDto.getEventImage());
+        }
+
+        EventEntity eventEntity = EventEntity.toEventEntity(eventDto);
+        EventEntity newEntity = eventRepository.save(eventEntity);
+
+        ResultDto resultDto = (newEntity != null)
+                ? ResultDto.builder().status("ok").result(1).build() // 수정 성공
+                : ResultDto.builder().status("ok").result(0).build(); // 수정 실패
+
+        return resultDto;
+    }
 
 }

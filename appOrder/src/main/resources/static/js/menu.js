@@ -347,3 +347,6 @@ function goToBack() {
 function goToSearch() {
   window.location.href = "/search";
 }
+function goToStore() {
+  window.location.href = "/store";
+}
