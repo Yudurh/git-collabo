@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
-    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+    />
     <title>상품 정보</title>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script
@@ -212,7 +215,7 @@
           <div id="totalItemPrice" th:text=" |${ itemPrice }원| "></div>
         </div>
         <div id="btns">
-          <button class="btn mybtn2">바로 주문</button>
+          <div id="qOrder" class="btn mybtn2">바로 주문</div>
           <button id="cartSet" class="btn mybtn">장바구니 담기</button>
         </div>
       </div>

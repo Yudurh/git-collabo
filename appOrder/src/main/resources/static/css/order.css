@@ -5,14 +5,14 @@
   font-weight: 400;
   font-style: normal;
 }
-
 * {
   margin: 0;
   padding: 0;
 }
 #wrap {
-  width: 600px;
-  height: 1200px;
+  width: 500px;
+  height: 1250px;
+  font-family: "SUITE-Regular";
   padding: 10px;
   font-family: "SUITE-Regular";
 }

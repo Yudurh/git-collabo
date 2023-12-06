@@ -279,32 +279,25 @@ $(document).ready(function () {
       .innerHTML.replace("원", "");
     let cartDate = getKST();
 
-
-    if($("#recomCh").is(":checked") == true && itemName == "초코스모어쿠키"){
-
-    itemAmount = Number(itemAmount)+1
-    cartPrice = Number(cartPrice)+2500
+    if ($("#recomCh").is(":checked") == true && itemName == "초코스모어쿠키") {
+      itemAmount = Number(itemAmount) + 1;
+      cartPrice = Number(cartPrice) + 2500;
+      console.log("이프문 들어감")
     }
 
-
     let cart = {
-          cartNo: 0,
-          cartCode: cartCode1,
-          itemCode: itemCode,
-          itemName: itemName,
-          optionName1: optionName1,
-          optionName2: optionName2,
-          optionName3: optionName3,
-          cartItemAmount: itemAmount,
-          itemImageUrl: itemImg,
-          cartPrice: cartPrice,
-          cartDate: cartDate,
-        };
-
-
-
-
-
+      cartNo: 0,
+      cartCode: cartCode1,
+      itemCode: itemCode,
+      itemName: itemName,
+      optionName1: optionName1,
+      optionName2: optionName2,
+      optionName3: optionName3,
+      cartItemAmount: itemAmount,
+      itemImageUrl: itemImg,
+      cartPrice: cartPrice,
+      cartDate: cartDate,
+    };
 
     fetch("/setCart", {
       method: "POST",
@@ -324,10 +317,11 @@ $(document).ready(function () {
         console.log(error);
       });
 
-    let recomItem = 0;
-    if ($("#recomCh").is(":checked") == true) {
-    recomItem = 1;
-    }
+
+      let recomItem = 0;
+      if ($("#recomCh").is(":checked") == true) {
+        recomItem = 1;
+      }
 
       let param = {
         itemNo: 0,
@@ -364,3 +358,50 @@ $(document).ready(function () {
 function goToCart() {
   window.location.href = "/cartInfo";
 }
+
+$(document).ready(function () {
+  $("#qOrder").click(function () {
+    let cartCode1 = uuidv4();
+    let itemCode = document.getElementById("itemCode").innerHTML;
+    let itemName = document.getElementById("itemTitle").innerHTML;
+    let optionName1 = $("input:radio[name=optionNameN]:checked").attr("id");
+    let optionName2 = $("input:radio[name=optionNameG]:checked").attr("id");
+    let optionName3 = $("input:radio[name=optionNameT]:checked").attr("id");
+    let itemAmount = document.getElementById("quantity").innerHTML;
+    let itemImg = document.getElementById("item_img").src;
+    let cartPrice = document
+      .getElementById("price")
+      .innerHTML.replace("원", "");
+    let cartDate = getKST();
+    let cart = {
+      cartNo: 0,
+      cartCode: cartCode1,
+      itemCode: itemCode,
+      itemName: itemName,
+      optionName1: optionName1,
+      optionName2: optionName2,
+      optionName3: optionName3,
+      cartItemAmount: itemAmount,
+      itemImageUrl: itemImg,
+      cartPrice: cartPrice,
+      cartDate: cartDate,
+    };
+    fetch("/setOrder_2", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(cart),
+    })
+      .then((response) => {
+        console.log("response:" + response);
+        return response.json();
+      }) //HTTP 응답
+      .then((json) => {
+        //{ status: "ok", result: 5 }
+        window.location.href="/order_2"
+        alert("바로결제");
+      }) //실제 데이타
+      .catch((error) => {
+        console.log(error);
+      });
+  });
+});

@@ -7,11 +7,13 @@
 }
 
 body {
+  width: 500px;
+  height: 1250px;
   font-family: "SUITE-Regular";
 }
 #wrap {
-  width: 700px;
-  height: 1000px;
+  width: 500px;
+  height: 1250px;
   display: flex;
   flex-direction: column;
 }

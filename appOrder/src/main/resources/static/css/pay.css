@@ -5,10 +5,17 @@
   font-weight: 400;
   font-style: normal;
 }
-
 body {
   width: 500px;
+  height: 1250px;
+  font-family: "SUITE-Regular";
+
   background-color: aliceblue;
+  font-family: "SUITE-Regular";
+}
+#wrap {
+  width: 500px;
+  height: 1250px;
   font-family: "SUITE-Regular";
 }
 #header {

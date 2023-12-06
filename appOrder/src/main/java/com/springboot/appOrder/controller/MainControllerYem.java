@@ -302,6 +302,7 @@ public class MainControllerYem {
     // (사용자) 상품 정보 조회
     @GetMapping("/itemInfo")
     public String itemInfo(@RequestParam String itemName,
+//                           @RequestParam String itemCate,
                            Model model){
 
         // 클릭한 아이템의 정보

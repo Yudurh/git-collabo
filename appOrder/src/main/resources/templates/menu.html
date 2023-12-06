@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+  />
   <head>
     <title>Mega coffee menu</title>
     <link rel="icon" href="" />
@@ -11,14 +15,14 @@
       <div class="wrap">
         <div class="header bg-light">
           <div class="headerRightBox bg-light">
-            <div class="returnButtonBox">
-              <img onclick="goToStore()" src="./Img/left-arrow.png" />
+            <div class="returnButtonBox" onclick="goToStore()">
+              <img src="./Img/left-arrow.png" />
             </div>
             <div class="headerTextBox">
               <span class="headerText">주문하기</span>
             </div>
             <div id="searchBox">
-              <img src="./Img/search.png" alt="" />
+              <img src="./Img/search.png" onclick="goToSearch()"/>
               <img src="./Img/exclamation.png" alt="" />
             </div>
           </div>
@@ -44,19 +48,16 @@
         </div>
         <div class="cartBox">
           <div class="goToBox">
-            <button onclick="goToStore()" id="goToBack">의정부역점</button>
-            <button
-              onclick="goToPay()"
-              id="goToPay"
-              class="btn position-relative"
-            >
+            <button onclick="goToBack()" id="goToBack">의정부역점</button>
+            <div onclick="goToPay()" id="goToPay" class="btn position-relative">
               <img src="./Img/icons8-cart-30.png" alt="" />
               <span class="visually-hidden">unread messages</span>
               <span
                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                th:text="|${cart}+|">99+
+                th:text="|${cart}+|"
+                >99+
               </span>
-            </button>
+            </div>
           </div>
         </div>
       </div>

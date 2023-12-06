@@ -1,17 +1,16 @@
 package com.springboot.appOrder.controller;
 
-import com.springboot.appOrder.entity.CartEntity;
-import com.springboot.appOrder.entity.CartRepository;
-import com.springboot.appOrder.entity.OrderEntity;
-import com.springboot.appOrder.entity.OrderRepository;
-import com.springboot.appOrder.entity.MemberEntity;
-import com.springboot.appOrder.entity.MemberRepository;
+import com.springboot.appOrder.dto.CartDto;
+import com.springboot.appOrder.entity.*;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -64,6 +63,17 @@ public class MainControllerJSH {
         model.addAttribute("first",entities.get(0).getItemName());
         return "/order_1";
     }
+    @Autowired
+    private Cart2Repository cart2Repository;
+    @GetMapping("/order_2")
+    public String order2( Model model ){
+        List<Cart2Entity>entities = cart2Repository.findAll();
+        model.addAttribute("list",entities);
+        model.addAttribute("size",entities.size()-1);
+        model.addAttribute("first",entities.get(0).getItemName());
+        return "order_2";
+    }
+
 
     @Autowired
     private OrderRepository orderRepository;
@@ -78,6 +88,24 @@ public class MainControllerJSH {
         model.addAttribute("orderD",order.get(0).getOrderDatetime());
         return "/pay";
     }
+@Autowired
+private ItemRepository itemRepository;
+    @GetMapping("/search")
+    public String search(@RequestParam(required = false, defaultValue = "") String keyword
+            ,Model model){
+
+        if (keyword.isEmpty()){
+            List<ItemEntity>entities = itemRepository.findAll();
+            model.addAttribute("list",entities);
+        }else {
+            List<ItemEntity>entities = itemRepository.findByItemNameContaining(keyword);
+            model.addAttribute("list",entities);
+        }
+
+
+        return "/search";
+    }
+
 
 
 }

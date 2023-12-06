@@ -5,13 +5,15 @@
   font-weight: 400;
   font-style: normal;
 }
-
 .kiosk-box {
   width: 500px;
   height: 1000px;
   font-family: "SUITE-Regular";
 }
 .wrap {
+  width: 500px;
+  height: 1250px;
+  font-family: "SUITE-Regular";
   background-color: white;
 }
 .header {
