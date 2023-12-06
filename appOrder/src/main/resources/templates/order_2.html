@@ -56,7 +56,7 @@
                 class="accordion-collapse collapse show border-white"
                 data-bs-parent="#accordionExample"
               >
-                <div class="accordion-body">
+                <div class="accordion-body" th:each=" cart, status: ${ list } ">
                   <div class="cartIn2">
                     <div class="cartLeft">
                       <div>
@@ -70,7 +70,7 @@
                         <div
                           class="visually-hidden"
                           name="itemCode"
-                          th:text="${cart.itemCode}"
+                          th:text="${ cart.itemCode }"
                         ></div>
                         <div
                           class="cartItemName"

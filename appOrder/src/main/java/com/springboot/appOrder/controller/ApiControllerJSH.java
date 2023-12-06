@@ -257,9 +257,33 @@ public class ApiControllerJSH {
     @Autowired
     private Cart2Repository cart2Repository;
     @RequestMapping("/setOrder_2")
-    public ResultDto order2(@RequestBody CartDto dto, Model model){
+    public ResultDto order2(@RequestBody CartDto cartDto, Model model){
 
-        Cart2Entity newEntity = Cart2Entity.toEntity(dto);
+        Cart2Entity newEntity = Cart2Entity.toEntity(cartDto);
+        CartDto newDto = cartDto;
+
+
+
+        List<Cart2Entity>searchC = cart2Repository.findByItemNameAndOptionName3AndOptionName2AndOptionName1(cartDto.getItemName(),
+                cartDto.getOptionName3(),
+                cartDto.getOptionName2(),
+                cartDto.getOptionName1());
+
+        if (searchC.size()>0){
+
+            newDto.setCartPrice(searchC.get(0).getCartPrice()+cartDto.getCartPrice());
+            newDto.setCartItemAmount(searchC.get(0).getCartItemAmount()+cartDto.getCartItemAmount());
+            newEntity = Cart2Entity.toEntity(newDto);
+
+            cart2Repository.deleteById(searchC.get(0).getCartNo());
+
+        }else {
+            newEntity = Cart2Entity.toEntity(cartDto);
+
+        }
+
+
+
         cart2Repository.save(newEntity);
 
 
@@ -281,7 +305,62 @@ public class ApiControllerJSH {
         return resultDto;
     }
 
+    @PostMapping("/setCart2Recom")
+    public ResultDto setCart2Recom(@RequestBody ItemDto dto,
+                                  Model model){
+        List<ItemEntity> newEntity = itemRepository.findByItemRecommend(dto.getItemRecommend());
+        if (dto.getItemRecommend() == 1) {
+            List<Cart2Entity> searchC = cart2Repository.findByItemName("초코스모어쿠키");
+            if (searchC.size() == 0){
+                ItemDto newDto = ItemDto.toDto(newEntity.get(0));
+                Cart2Entity newEntityC = Cart2Entity.ItemToCart(newDto);
 
+                if(newEntityC.getCartItemAmount()==1){
+                    newEntityC.setCartPrice(newEntityC.getCartPrice());
+                    newEntityC.setCartItemAmount(newEntityC.getCartItemAmount());
+                    cart2Repository.save(newEntityC);
+
+
+                }
+                else {
+                    newEntityC.setCartPrice(2500);
+                    newEntityC.setCartItemAmount(1);
+                    cart2Repository.save(newEntityC);
+
+                }
+            }else {
+                searchC.get(0).setCartPrice(searchC.get(0).getCartPrice()+2500);
+                searchC.get(0).setCartItemAmount(searchC.get(0).getCartItemAmount()+1);
+
+                cart2Repository.save(searchC.get(0));
+            }
+            List<Cart2Entity> searchC2 = cart2Repository.findByItemName("초코스모어쿠키");
+            if (searchC2.size()>1){
+                cart2Repository.deleteById(searchC2.get(0).getCartNo());
+            }
+
+        }
+
+
+
+
+        ResultDto resultDto = null;
+
+        if( newEntity != null  ) {
+            //포인트 수정 성공
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(1)
+                    .build();
+        }else{
+            //포인트 수정 실패
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(0)
+                    .build();
+        }
+        return resultDto;
+    }
 
 
 }
