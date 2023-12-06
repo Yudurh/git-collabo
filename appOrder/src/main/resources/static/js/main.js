@@ -71,8 +71,8 @@ function openModal(itemName, itemImageUrl, itemContent) {
       <div class="itemName">${itemName}</div>
       <div class="itemContent">${itemContent}</div>
       <div class="modal-btn">
-        <button class="order">
-          <img src="./img/whitecoffee.png" width="30px" style="margin-bottom: 5px" onclick="closeModal()" />
+        <button class="order" onclick="magaOrder()">
+          <img src="./img/whitecoffee.png" width="30px" style="margin-bottom: 5px"  />
           주문하기
         </button>
         <button class="gift">
