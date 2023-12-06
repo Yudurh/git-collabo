@@ -22,7 +22,7 @@ function click_megaOrder() {
 
   menu[1].classList.add("menu_height");
 
-  window.location.href = "/menu";
+  window.location.href = "/store";
 }
 
 // 더보기 페이지 이동
