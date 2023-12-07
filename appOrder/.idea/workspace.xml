@@ -8,10 +8,10 @@
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/controller/ApiControllerJSH.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/controller/ApiControllerJSH.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/entity/Cart2Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/entity/Cart2Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/itemInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/itemInfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/itemInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/itemInfo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/order_2.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/order_2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/controller/MainControllerYem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/appOrder/controller/MainControllerYem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/store.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/store.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

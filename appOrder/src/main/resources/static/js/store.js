@@ -81,5 +81,11 @@ function closeModal() {
 }
 
 function menu() {
-  window.location.href = "/menu";
+  let key = document.getElementById("key").innerHTML;
+
+  if (key == "") {
+    window.location.href = "/menu";
+  } else {
+    window.location.href = "/itemInfo?itemName=" + key;
+  }
 }

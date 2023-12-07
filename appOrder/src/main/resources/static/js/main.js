@@ -97,5 +97,6 @@ function closeModal() {
 }
 
 function magaOrder() {
-  window.location.href = "/store";
+ let itemName = document.querySelector(".itemName")
+  window.location.href = "/store?itemName=" + itemName.innerHTML ;
 }

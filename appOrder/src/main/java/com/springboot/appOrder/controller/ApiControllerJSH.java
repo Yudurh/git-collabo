@@ -232,8 +232,7 @@ public class ApiControllerJSH {
     @PostMapping("/delData")
     public ResultDto delData(Model model){
         cartRepository.deleteAll();
-        orderRepository.deleteAll();
-
+        cart2Repository.deleteAll();
 
         OrderEntity newEntity = null;
         ResultDto resultDto = null;
@@ -258,10 +257,8 @@ public class ApiControllerJSH {
     private Cart2Repository cart2Repository;
     @RequestMapping("/setOrder_2")
     public ResultDto order2(@RequestBody CartDto cartDto, Model model){
-
         Cart2Entity newEntity = Cart2Entity.toEntity(cartDto);
         CartDto newDto = cartDto;
-
 
 
         List<Cart2Entity>searchC = cart2Repository.findByItemNameAndOptionName3AndOptionName2AndOptionName1(cartDto.getItemName(),

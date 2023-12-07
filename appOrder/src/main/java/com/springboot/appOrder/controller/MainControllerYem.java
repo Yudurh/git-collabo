@@ -414,7 +414,10 @@ public class MainControllerYem {
 
     // ( 사용자 ) 지점
     @GetMapping("/store")
-    public String store(){
+    public String store(@RequestParam(required = false, defaultValue = "") String itemName,
+                        Model model){
+        model.addAttribute("itemName",itemName);
+
         return "store";
     }
 
