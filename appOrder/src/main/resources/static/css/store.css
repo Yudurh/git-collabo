@@ -160,7 +160,7 @@ button {
 .back,
 .order {
   width: 50%;
-  height: 65px;
+  height: 66px;
   display: flex;
   flex-direction: row;
   justify-content: center;
