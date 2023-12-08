@@ -1,10 +1,8 @@
 package com.springboot.appOrder.controller;
 
-import com.springboot.appOrder.dto.CartDto;
-import com.springboot.appOrder.dto.ItemDto;
-import com.springboot.appOrder.dto.OrderDto;
-import com.springboot.appOrder.dto.ResultDto;
+import com.springboot.appOrder.dto.*;
 import com.springboot.appOrder.entity.*;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -229,12 +227,57 @@ public class ApiControllerJSH {
         }
         return resultDto;
     }
+    @Autowired
+    private MemberRepository memberRepository;
+
     @PostMapping("/delData")
     public ResultDto delData(Model model){
         cartRepository.deleteAll();
         cart2Repository.deleteAll();
+        orderRepository.deleteAll();
 
-        OrderEntity newEntity = null;
+        MemberEntity newEntity = null;
+
+        ResultDto resultDto = null;
+
+        if( newEntity != null  ) {
+            //포인트 수정 성공
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(1)
+                    .build();
+        }else{
+            //포인트 수정 실패
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(0)
+                    .build();
+        }
+        return resultDto;
+    }
+
+    @PostMapping("/setPoint")
+    public ResultDto setPoint(@RequestBody PointDto pointDto,
+                             HttpServletRequest request,
+                             Model model){
+
+
+
+        MemberEntity newEntity = null;
+
+        String loginId = (String)request.getSession().getAttribute("loginId");
+        if( loginId != null ){
+            List<MemberEntity> list = memberRepository.findByMemberId(loginId);
+            if( list.size() > 0 ){
+                MemberEntity memberEntity = list.get(0);
+
+                memberEntity.setMemberPoint(pointDto.getMemberPoint());
+
+                //로그인 액션 : 아이디, 암호가 DB에 있으면 로그인 성공, 아니면 실패
+                newEntity = memberRepository.save(memberEntity);
+            }
+        }
+
         ResultDto resultDto = null;
 
         if( newEntity != null  ) {
@@ -358,6 +401,8 @@ public class ApiControllerJSH {
         }
         return resultDto;
     }
+
+
 
 
 }

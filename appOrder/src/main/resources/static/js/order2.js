@@ -71,7 +71,7 @@ $(document).ready(function () {
         //{ status: "ok", result: 5 }
         console.log("json:" + json);
         alert("결제되었습니다");
-        window.location.href = "/pay";
+        window.location.href = "/pay_2";
       }) //실제 데이타
       .catch((error) => {
         console.log(error);

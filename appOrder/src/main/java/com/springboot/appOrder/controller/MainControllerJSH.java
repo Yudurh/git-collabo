@@ -80,6 +80,7 @@ public class MainControllerJSH {
     @GetMapping("/pay")
     public String pay( Model model ){
         List<CartEntity>entities = cartRepository.findAll();
+        List<Cart2Entity>entities2 = cart2Repository.findAll();
         List<OrderEntity>order = orderRepository.findAll();
         model.addAttribute("list",entities);
         model.addAttribute("payType",order.get(0).getOrderPayType());
@@ -87,6 +88,18 @@ public class MainControllerJSH {
         model.addAttribute("orderN",order.get(0).getOrderNumber());
         model.addAttribute("orderD",order.get(0).getOrderDatetime());
         return "/pay";
+    }
+    @GetMapping("/pay_2")
+    public String pay2( Model model ){
+
+        List<Cart2Entity>entities = cart2Repository.findAll();
+        List<OrderEntity>order = orderRepository.findAll();
+        model.addAttribute("list",entities);
+        model.addAttribute("payType",order.get(0).getOrderPayType());
+        model.addAttribute("orderP",order.get(0).getOrderTotalPrice());
+        model.addAttribute("orderN",order.get(0).getOrderNumber());
+        model.addAttribute("orderD",order.get(0).getOrderDatetime());
+        return "/pay_2";
     }
 @Autowired
 private ItemRepository itemRepository;
