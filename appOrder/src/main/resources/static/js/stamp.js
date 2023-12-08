@@ -1,8 +1,6 @@
 let stampCount = document.getElementById("stamp");
 let count = Number(stampCount.innerHTML) % 10;
-console.log(count);
 let emptyCount = 10 - count;
-console.log(emptyCount);
 
 for (let i = 1; i <= count; i++) {
   addStamp();

@@ -53,7 +53,7 @@ button {
   background-color: white;
 }
 
-.menu_height {
+.list {
   border-bottom: 4px solid black;
   border-radius: 3px;
 }
@@ -178,4 +178,31 @@ button {
   background-color: rgb(77, 41, 27);
   color: whitesmoke;
   font-weight: bold;
+}
+
+.menu_height {
+  opacity: 1;
+}
+
+#footer_menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid rgb(215, 214, 214);
+  width: 500px;
+  margin-top: 300px;
+  padding: 5px;
+  position: fixed;
+  bottom: -1px;
+  background-color: white;
+}
+
+.menu {
+  text-align: center;
+  opacity: 0.6;
+}
+
+.menu_name {
+  font-size: 13px;
 }

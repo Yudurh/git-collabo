@@ -26,10 +26,23 @@ INSERT INTO item VALUES(NULL, '3fde9a4c-cd2d-4d36-a99e-9d6f7ad454c1', '디카페
         '커피(HOT)', 0, 2000, 'https://img.79plus.co.kr/megahp/manager/upload/menu/20230217162028_1676618428061_TbHsToNMcN.jpg', DEFAULT);
 INSERT INTO item VALUES(NULL, '2fa72da6-c7ad-4b0f-9242-99aad1c43b0d', '에스프레소', '메가MGC커피 원두의 향미를 온전히 즐길 수 있는 에스프레소',
         '커피(HOT)', 0, 1500, 'https://img.79plus.co.kr/megahp/manager/upload/menu/20220818143216_1660800736386_C007eosz5G.jpg', DEFAULT);
+INSERT INTO item VALUES(NULL, '15b814c7-49b9-4798-a64a-23c214cfdd5e', '라임모히또', '상큼한 라임과 달콤한 향기의 애플민트가 어우러져 상쾌함을 한잔에 가득 채운 모히또 음료',
+        '에이드&주스', 0, 2500, 'https://img.79plus.co.kr/megahp/manager/upload/menu/20220630175423_1656579263944_ycn4t3hwxa.jpg', DEFAULT);
+INSERT INTO item VALUES(NULL, '3d584402-7db9-44af-b8c1-53396ae78ea7', '레몬에이드', '시트러스향 가득한 레몬의 상큼함과 톡쏘는 탄산의 상쾌함이 만난 청량 에이드',
+        '에이드&주스', 0, 2500, 'https://img.79plus.co.kr/megahp/manager/upload/menu/20220630175526_1656579326607_5YlsYvYbOp.jpg', DEFAULT);
+INSERT INTO item VALUES(NULL, 'aff8a316-f26f-4bbb-9ace-e8fa33eaaffa', '딸기쿠키프라페', '부드러운 바닐라와 달달한 딸기, 바삭한 오레오 쿠키가 달콤한 하모니를 선물하는 프라페',
+        '스무디&프라페', 0, 2500, 'https://img.79plus.co.kr/megahp/manager/upload/menu/20220630172226_1656577346336_z_d4URoCvB.jpg', DEFAULT);
+INSERT INTO item VALUES(NULL, 'd7c32a62-f48c-460a-a136-d9fe48fbaeb6', '쿠키프라페', '바삭하고 달콤한 오레오와 고소한 우유, 부드러운 바닐라향의 조화를 느낄 수 있는 프라페',
+        '스무디&프라페', 0, 2500, 'https://img.79plus.co.kr/megahp/manager/upload/menu/20220630173946_1656578386691_VAWfjgN1Yy.jpg', DEFAULT);
+INSERT INTO item VALUES(NULL, 'd92e690a-8341-4059-8642-5c44b0a38527', '초코스모어쿠키', '초코칩이 콕콕 박힌 촉촉한 초코 쿠키에 달콤하게 구운 마시멜로우가 만나 더 진한 초코 맛 쿠키',
+        '디저트', 1, 2500, 'https://img.79plus.co.kr/megahp/manager/upload/menu/20220701140929_1656652169641_bB76y9JSan.jpg', DEFAULT);
+INSERT INTO item VALUES(NULL, '6187b605-fe3e-498c-a729-a54d86e43060', '오트밀 팬케이크', '건강한 오트밀가루로 만든 팬케이크에 달콤한 메이플 시럽과 프레지덩 버터, 쥬에그 과일잼이 더해진 팬케이크',
+        '디저트', 0, 2500, 'https://img.79plus.co.kr/megahp/manager/upload/menu/20230706143342_1688621622949_aBPbL39jYS.jpg', DEFAULT);
+
 SELECT * FROM item;
 
 
--- 장바구니 테이블
+-- 장바구니 테이블1
 DROP TABLE if EXISTS cart;
 CREATE TABLE cart (
     cart_no INT AUTO_INCREMENT NOT NULL PRIMARY KEY, -- 고유키
@@ -45,13 +58,25 @@ CREATE TABLE cart (
     cart_date DATETIME DEFAULT NOW() -- 장바구니에 담긴 시간/날짜
 );
 
-INSERT INTO cart VALUES (NULL, '222e4567-e89b-12d3-b456-556642440113', '456e4567-e89b-12d3-a456-556642440003', '스모어 카라멜쿠키',
-'https://img.79plus.co.kr/megahp/manager/upload/menu/20231025193235_1698229955914_EH9HF0a_7U.jpg', 1100, DEFAULT, DEFAULT, DEFAULT, 1, DEFAULT);
-
-INSERT INTO cart VALUES (NULL, '333e4567-e89b-12d3-b456-556642440113', '123e4567-e89b-12d3-a456-556642440003', '왕할메가커피',
-'https://img.79plus.co.kr/megahp/manager/upload/menu/20230905185615_1693907775304_fenhtXqy4y.jpg', 2200, DEFAULT, DEFAULT, DEFAULT, 1, DEFAULT);
-
 SELECT * FROM cart;
+
+-- 장바구니 테이블2
+DROP TABLE if EXISTS cart2;
+CREATE TABLE cart2 (
+    cart_no INT AUTO_INCREMENT NOT NULL PRIMARY KEY, -- 고유키
+   cart_code VARCHAR(255) NOT NULL , -- 장바구니 코드(UUID포맷-32자리)
+   item_code VARCHAR(255) NOT NULL , -- 상품 코드(UUID포맷-32자리)
+    item_name TEXT NOT NULL, -- 상품이름;
+    item_image_url TEXT NOT NULL, -- 이미지
+    cart_price INT(255) NOT NULL, -- 가격
+    option_name_1 VARCHAR(255) NOT NULL DEFAULT ('해당없음'),
+	 option_name_2 VARCHAR(255) NOT NULL DEFAULT ('해당없음'),
+	 option_name_3 VARCHAR(255) NOT NULL DEFAULT ('해당없음'), -- 옵션이름
+    cart_item_amount INT(255) NOT NULL, -- 구매갯수
+    cart_date DATETIME DEFAULT NOW() -- 장바구니에 담긴 시간/날짜
+);
+
+SELECT * FROM cart2;
 
 
 -- 주문 테이블
@@ -71,15 +96,13 @@ CREATE TABLE `order` (
     -- 주문자/수령자 정보
     order_number INT NOT NULL, -- 주문자 임시번호(0 ~ 999)
     -- 결제방법
-    order_pay_type INT DEFAULT(1) NOT NULL, -- 0 현금 또는 1 카드
+    order_pay_type VARCHAR(255) NOT NULL, -- 0 현금 또는 1 카드
     -- 주문상태
-    -- 결제완료 -> 상품 준비중 -> 상품 준비완료 -> 수령 완료 or 기한후 폐기
-	 order_state VARCHAR(255) NOT NULL UNIQUE,
     order_datetime DATETIME DEFAULT NOW() -- 결제시간
 );
 
 INSERT INTO `order` VALUES (NULL, '4444e4567-e89b-12d3-b456-556642440113', '5555e4567-e89b-12d3-a456-556642441111',
-NULL, NULL, NULL, NULL, 5000, 2, 10, DEFAULT, '결제 완료', DEFAULT);
+NULL, NULL, NULL, NULL, 5000, 2, 10, '현금', DEFAULT);
 
 
 SELECT * FROM `order`;
@@ -91,9 +114,9 @@ CREATE TABLE apporder.member(
    member_no INT AUTO_INCREMENT NOT NULL PRIMARY KEY, -- 고유키
    member_id VARCHAR(255) NOT NULL UNIQUE, -- 아이디
    member_pw VARCHAR(255) NOT NULL, -- 암호
-    member_name VARCHAR(255) NOT NULL, -- 이름
-    member_role VARCHAR(255) DEFAULT('ROLE_USER') NOT NULL, -- 권한
-    member_point INT DEFAULT(0), -- 적립금
+   member_name VARCHAR(255) NOT NULL, -- 이름
+   member_role VARCHAR(255) DEFAULT('ROLE_USER') NOT NULL, -- 권한
+   member_point INT DEFAULT(0), -- 쿠폰
    member_join_datetime DATETIME DEFAULT NOW() -- 작성/수정 시간
 );
 
@@ -120,17 +143,33 @@ CREATE TABLE apporder.p_option(
    option_price int(255) NOT NULL DEFAULT('0') -- 옵션 가격
 );
 
-INSERT INTO apporder.p_option VALUES(NULL, '커피', '농도', '연하게', DEFAULT);
-INSERT INTO apporder.p_option VALUES(NULL, '커피', '농도', '해당없음', DEFAULT);
-INSERT INTO apporder.p_option VALUES(NULL, '커피', '농도', '샷 추가', 500);
-INSERT INTO apporder.p_option VALUES(NULL, '커피', '농도', '2샷 추가', 1000);
-INSERT INTO apporder.p_option VALUES(NULL, '커피', '꿀 추가', '꿀 추가', 700);
-INSERT INTO apporder.p_option VALUES(NULL, '커피', '꿀 추가', '해당없음', DEFAULT);
-INSERT INTO apporder.p_option VALUES(NULL, '커피', '개인 텀블러 사용' ,'텀블러(개인컵) 사용', DEFAULT);
-INSERT INTO apporder.p_option VALUES(NULL, '커피', '개인 텀블러 사용', '해당없음', DEFAULT);
-INSERT INTO apporder.p_option VALUES(NULL, '음료수', '개인 텀블러 사용' , '텀블러(개인컵) 사용', DEFAULT);
-INSERT INTO apporder.p_option VALUES(NULL, '음료수', '개인 텀블러 사용' , '해당없음', DEFAULT);
-
+INSERT INTO apporder.p_option VALUES(NULL, '커피(ICE)', '농도', '해당없음', DEFAULT);
+INSERT INTO apporder.p_option VALUES(NULL, '커피(ICE)', '농도', '연하게', DEFAULT);
+INSERT INTO apporder.p_option VALUES(NULL, '커피(ICE)', '농도', '샷 추가', 500);
+INSERT INTO apporder.p_option VALUES(NULL, '커피(ICE)', '농도', '2샷 추가', 1000);
+INSERT INTO apporder.p_option VALUES(NULL, '커피(ICE)', '꿀 추가', '해당없음', DEFAULT);
+INSERT INTO apporder.p_option VALUES(NULL, '커피(ICE)', '꿀 추가', '꿀 추가', 700);
+INSERT INTO apporder.p_option VALUES(NULL, '커피(ICE)', '개인 텀블러 사용', '해당없음', DEFAULT);
+INSERT INTO apporder.p_option VALUES(NULL, '커피(ICE)', '개인 텀블러 사용' ,'텀블러(개인컵) 사용', DEFAULT);
+INSERT INTO apporder.p_option VALUES(NULL, '커피(HOT)', '농도', '해당없음', DEFAULT);
+INSERT INTO apporder.p_option VALUES(NULL, '커피(HOT)', '농도', '연하게', DEFAULT);
+INSERT INTO apporder.p_option VALUES(NULL, '커피(HOT)', '농도', '샷 추가', 500);
+INSERT INTO apporder.p_option VALUES(NULL, '커피(HOT)', '농도', '2샷 추가', 1000);
+INSERT INTO apporder.p_option VALUES(NULL, '커피(HOT)', '꿀 추가', '해당없음', DEFAULT);
+INSERT INTO apporder.p_option VALUES(NULL, '커피(HOT)', '꿀 추가', '꿀 추가', 700);
+INSERT INTO apporder.p_option VALUES(NULL, '커피(HOT)', '개인 텀블러 사용', '해당없음', DEFAULT);
+INSERT INTO apporder.p_option VALUES(NULL, '커피(HOT)', '개인 텀블러 사용' ,'텀블러(개인컵) 사용', DEFAULT);
+INSERT INTO apporder.p_option VALUES(NULL, '에이드&주스', '개인 텀블러 사용' , '해당없음', DEFAULT);
+INSERT INTO apporder.p_option VALUES(NULL, '에이드&주스', '개인 텀블러 사용' , '텀블러(개인컵) 사용', DEFAULT);
+INSERT INTO apporder.p_option VALUES(NULL, '스무디&프라페', '개인 텀블러 사용' , '해당없음', DEFAULT);
+INSERT INTO apporder.p_option VALUES(NULL, '스무디&프라페', '개인 텀블러 사용' , '텀블러(개인컵) 사용', DEFAULT);
+INSERT INTO apporder.p_option VALUES(NULL, '디저트', '개인 텀블러 사용' , '해당없음', DEFAULT);
+INSERT INTO apporder.p_option VALUES(NULL, '디저트', '농도' , '해당없음', DEFAULT);
+INSERT INTO apporder.p_option VALUES(NULL, '디저트', '꿀 추가' , '해당없음', DEFAULT);
+INSERT INTO apporder.p_option VALUES(NULL, '에이드&주스', '농도' , '해당없음', DEFAULT);
+INSERT INTO apporder.p_option VALUES(NULL, '에이드&주스', '꿀 추가' , '해당없음', DEFAULT);
+INSERT INTO apporder.p_option VALUES(NULL, '스무디&프라페', '농도' , '해당없음', DEFAULT);
+INSERT INTO apporder.p_option VALUES(NULL, '스무디&프라페', '꿀 추가' , '해당없음', DEFAULT);
 
 
 SELECT * FROM apporder.p_option;

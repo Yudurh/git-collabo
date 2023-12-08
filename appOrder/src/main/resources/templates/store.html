@@ -34,7 +34,7 @@
       <div id="main">
         <div id="main_header">
           <div id="main_menu">
-            <button class="menu_height" id="news_event" onclick="">
+            <button class="list" id="news_event" onclick="">
               리스트로 선택
             </button>
           </div>
@@ -84,11 +84,33 @@
           </div>
         </div>
       </div>
+      <div id="footer_menu">
+        <div name="menu" onclick="click_main();" class="menu">
+          <img src="./img/home_1946436.png" width="23px" />
+          <div class="menu_name">메인</div>
+        </div>
+        <div class="menu">
+          <img src="./img/coin_117626.png" width="23px" />
+          <div class="menu_name">메가선불카드</div>
+        </div>
+        <div name="menu" onclick="click_megaOrder();" class="menu_height">
+          <img src="./img/coffee-cup_657491.png" width="23px" />
+          <div class="menu_name">메가오더</div>
+        </div>
+        <div class="menu">
+          <img src="./img/gift-box-with-bow_66834.png" width="23px" />
+          <div class="menu_name">선물하기</div>
+        </div>
+        <div name="menu" onclick="click_more();" class="menu">
+          <img src="./img/options_2647907.png" width="23px" />
+          <div class="menu_name">더보기</div>
+        </div>
+      </div>
     </div>
   </body>
   <script
-          type="text/javascript"
-          src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=01d43a4d666d0d6d94dee30754f4f76a&libraries=services"
+    type="text/javascript"
+    src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=01d43a4d666d0d6d94dee30754f4f76a&libraries=services"
   ></script>
   <script src="./js/store.js"></script>
 </html>
