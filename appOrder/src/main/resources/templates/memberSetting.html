@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>계정 설정</title>
+  </head>
+  <link rel="stylesheet" href="./css/memberSetting.css" />
+  <body>
+    <div id="wrap">
+      <div id="header">
+        <div id="header_menu">
+          <img
+            src="./img/angle-left_10513349.png"
+            width="20px"
+            height="20px"
+            onclick="back()"
+          />
+          <div id="header_title">계정 설정</div>
+        </div>
+      </div>
+      <div id="main">
+        <div class="main_menu" onclick="memberManage()">
+          <div class="manege">회원정보 관리</div>
+          <div class="manege">></div>
+        </div>
+        <div class="main_menu" onclick="openModal()">
+          <div class="manege">로그아웃</div>
+          <div class="manege">></div>
+        </div>
+      </div>
+      <!-- 모달창 기능 -->
+      <div class="modal" id="modal">
+        <div class="modal-content">
+          <div id="modal_header">
+            <div id="modal_title">로그아웃</div>
+            <div id="content">로그아웃하시겠습니까?</div>
+          </div>
+          <div class="modal-footer">
+            <div id="cancel" onclick="closeModal()">취소</div>
+            <div id="change" onclick="logout()">로그아웃</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./js/memberSetting.js"></script>
+</html>

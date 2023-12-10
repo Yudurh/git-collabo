@@ -196,6 +196,7 @@ button {
   position: fixed;
   bottom: -1px;
   background-color: white;
+  text-align: center
 }
 
 .menu {

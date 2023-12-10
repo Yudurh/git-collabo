@@ -422,7 +422,6 @@ public class MainControllerYem {
     @GetMapping("/coupon")
     public String coupon(Model model,
                          HttpServletRequest request) {
-        // 로그인한 회원 이름, 스탬프 렌더링
         String loginId = (String) request.getSession().getAttribute("loginId");
         if (loginId != null) {
             List<MemberEntity> list = memberRepository.findByMemberId(loginId);
@@ -433,4 +432,47 @@ public class MainControllerYem {
         }
         return "coupon";
     }
+
+    // ( 사용자 ) 계정 설정 페이지
+    @GetMapping("/memberSetting")
+    public String memberSetting(){
+        return "memberSetting";
+    }
+
+    // ( 사용자 ) 회원정보 관리
+    @GetMapping("/memberManage")
+    public String memberManage(Model model,
+                         HttpServletRequest request) {
+        String loginId = (String) request.getSession().getAttribute("loginId");
+        if (loginId != null) {
+            List<MemberEntity> list = memberRepository.findByMemberId(loginId);
+            if (list.size() > 0) {
+                MemberEntity memberEntity = list.get(0);
+                model.addAttribute("list", memberEntity);
+                model.addAttribute("memberName", memberEntity.getMemberName());
+            }
+        }
+        return "memberManage";
+    }
+
+    // ( 사용자 ) 회원 탈퇴
+    @GetMapping("/withdrawal")
+    public String withdrawal(Model model,
+                             HttpServletRequest request){
+            String loginId = (String) request.getSession().getAttribute("loginId");
+            if (loginId != null) {
+                List<MemberEntity> list = memberRepository.findByMemberId(loginId);
+                if (list.size() > 0) {
+                    MemberEntity memberEntity = list.get(0);
+                    model.addAttribute("stamp", memberEntity.getMemberPoint() % 10);
+                    model.addAttribute("coupon", memberEntity.getMemberPoint() / 10);
+
+                }
+            }
+
+        return "withdrawal";
+    }
+
+
+
 }

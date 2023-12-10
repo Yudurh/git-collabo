@@ -1,0 +1,74 @@
+@font-face {
+  font-family: "SUITE-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+#wrap {
+  width: 500px;
+  height: 1250px;
+  font-family: "SUITE-Regular";
+  font-size: 15px;
+  margin-left: 24px;
+}
+
+#header {
+  font-size: 23px;
+}
+
+#main_title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 15px 0px;
+}
+
+.main_content {
+  margin-bottom: 5px;
+}
+
+#main2 {
+  background-color: rgba(169, 169, 169, 0.262);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.main2_content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  width: 80%;
+  border: 1px solid daksalmon;
+}
+
+.main2_content {
+  padding: 10px;
+}
+
+#check_content {
+  margin-top: 40px;
+}
+
+#footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  width: 80%;
+  height: 35px;
+  margin-top: 20px;
+  border-style: none;
+  border-radius: 10px;
+  background-color: rgba(195, 195, 195, 0.844);
+  color: white;
+  font-weight: bold;
+  font-size: 17;
+}
