@@ -30,7 +30,7 @@
     <div id="wrap">
       <div id="header">
         <div id="topNav">
-          <div><img src="./Img/close.png" /></div>
+          <div onclick="back()">X</div>
           <div>주문확인</div>
         </div>
         <div id="topNar">
@@ -98,15 +98,15 @@
           </div>
           <div class="sort">
             <div>상품금액</div>
-            <div id="cartPrice">123</div>
+            <div id="cartPrice" th:text="|${orderP}원|">123</div>
           </div>
           <div class="sort">
             <div>할인금액</div>
-            <div id="dPrice">123</div>
+            <div id="dPrice">원</div>
           </div>
           <div class="sort">
             <div>결제금액</div>
-            <div th:text="${orderP}">123</div>
+            <div th:text="|${orderP}원|">123</div>
           </div>
         </div>
       </div>

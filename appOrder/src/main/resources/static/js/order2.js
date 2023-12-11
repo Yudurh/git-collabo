@@ -1,4 +1,8 @@
 $(document).ready(function () {
+
+$("input:radio[name=pay]")[0].checked = true;
+$("input:radio[name=eat]")[0].checked = true;
+
   let cartPrice = document.getElementsByClassName("cartPrice");
   let pPrice = document.getElementById("pPrice");
   let dPrice = document.getElementById("dPrice");

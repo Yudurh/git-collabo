@@ -101,15 +101,15 @@
           </div>
           <div class="sort">
             <div>상품금액</div>
-            <div id="cartPrice">123</div>
+            <div id="cartPrice" th:text="|${orderP}원|">123</div>
           </div>
           <div class="sort">
             <div>할인금액</div>
-            <div id="dPrice">123</div>
+            <div id="dPrice">0원</div>
           </div>
           <div class="sort">
             <div>결제금액</div>
-            <div style="color: rgb(242, 20, 20)" th:text="${orderP}">123</div>
+            <div style="color: rgb(242, 20, 20)" th:text="|${orderP}원|">123</div>
           </div>
         </div>
       </div>

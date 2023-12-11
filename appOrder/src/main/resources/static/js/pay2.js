@@ -50,3 +50,6 @@ function setPoint() {
       console.log(error);
     });
 }
+function back() {
+  window.location.href="/main"
+}

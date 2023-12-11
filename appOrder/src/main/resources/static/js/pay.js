@@ -51,5 +51,5 @@ function setPoint() {
     });
 }
 function back() {
-  window.history.back();
+  window.location.href="/main"
 }

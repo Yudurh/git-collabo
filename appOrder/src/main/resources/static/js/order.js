@@ -1,4 +1,8 @@
 $(document).ready(function () {
+
+$("input:radio[name=pay]")[0].checked = true;
+$("input:radio[name=eat]")[0].checked = true;
+
   let cartPrice = document.getElementsByClassName("cartPrice");
   let pPrice = document.getElementById("pPrice");
   let dPrice = document.getElementById("dPrice");
@@ -11,9 +15,10 @@ $(document).ready(function () {
   for (let i = 0; i < cartPrice.length; i++) {
     price += Number(cartPrice[i].innerHTML.replace("원", ""));
   }
-  price = price - Number(dPrice.innerHTML.replace("원", ""));
+
   pPrice.innerHTML = price + "원";
   dPrice.innerHTML = 0 + "원";
+  price = price - Number(dPrice.innerHTML.replace("원", ""));
   total.innerHTML = price + "원";
   totalValue.innerHTML = price;
 
