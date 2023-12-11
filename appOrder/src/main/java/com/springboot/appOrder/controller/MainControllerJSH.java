@@ -91,7 +91,6 @@ public class MainControllerJSH {
     }
     @GetMapping("/pay_2")
     public String pay2( Model model ){
-
         List<Cart2Entity>entities = cart2Repository.findAll();
         List<OrderEntity>order = orderRepository.findAll();
         model.addAttribute("list",entities);
