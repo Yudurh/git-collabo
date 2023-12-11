@@ -11,23 +11,29 @@ a {
   color: black;
 }
 
+.text-secondary {
+  font-size: 13.5px;
+}
+
 #wrap {
   width: 500px;
   height: 1250px;
   font-family: "SUITE-Regular";
-  margin-left: 20px;
-  margin-top: 10px;
 }
 
 #header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 150px;
+  width: 110px;
+  margin-left: 20px;
+  margin-top: 10px;
 }
 
 #main {
   margin-top: 35px;
+  margin-left: 20px;
+  margin-top: 10px;
 }
 
 #adCal img {
@@ -42,7 +48,7 @@ a {
 }
 
 .listTitle {
-  font-size: 14px;
+  font-size: 13.5px;
 }
 
 .list a {

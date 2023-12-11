@@ -349,7 +349,7 @@ function func_notice_updateAction_json(noticeImage) {
   let noticeTitle = document.getElementById("inputNoticeTitle").value;
   let noticeUser = document.getElementById("inputNoticeUser").value;
   let noticeContent = document.getElementById("inputNoticeContent").value;
-  let noticeDatetime = document.getElementById("noticeDatetime").value;
+  let noticeDatetime = new Date().toISOString();
 
   let params = {
     noticeNo: noticeNo,
@@ -457,7 +457,7 @@ function func_event_updateAction_json(eventImage) {
   let eventTitle = document.getElementById("inputEventTitle").value;
   let eventUser = document.getElementById("inputEventUser").value;
   let eventContent = document.getElementById("inputEventContent").value;
-  let eventDatetime = document.getElementById("eventDatetime").value;
+  let eventDatetime = new Date().toISOString();
 
   let params = {
     eventNo: eventNo,

@@ -10,7 +10,7 @@ body {
   height: 1250px;
   font-family: "SUITE-Regular";
 
-  background-color: aliceblue;
+  background-color: rgba(215, 215, 215, 0.147);
   font-family: "SUITE-Regular";
 }
 #wrap {
@@ -27,17 +27,27 @@ body {
   display: flex;
   justify-content: space-between;
   width: 58%;
+  font-weight: bold;
+  font-size: 17px;
+  padding: 10px 0px;
 }
 #topNar {
-  background-color: darkgray;
+  background-color: rgba(23, 22, 22, 0.893);
   border-radius: 5px;
   text-align: center;
   color: white;
-  padding: 20px;
+  padding: 10px;
 }
 #marketInfo {
+  padding: 20px 0px;
   text-align: center;
 }
+
+#number {
+  font-size: 23px;
+  font-weight: bold;
+}
+
 #main {
   background-color: white;
   margin: 10px;
@@ -69,4 +79,5 @@ body {
 .sort {
   display: flex;
   justify-content: space-between;
+  padding: 2px 0px;
 }

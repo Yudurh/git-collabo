@@ -50,7 +50,7 @@
             <a href="/stamp">스탬프</a>
             <span style="margin-right: 20px" th:text="${ memberPoint }"></span>
             <img src="./img/coupon.png" />
-            <a href="#">쿠폰</a>
+            <a href="/coupon">쿠폰</a>
             <span th:text="${ coupon }"></span>
           </div>
         </div>
@@ -84,23 +84,31 @@
                   />
                   <div class="slider_content" th:text="${ itemName1 }"></div>
                 </div>
-                <div class="slider-item"
-                     th:onclick="openModal([[${itemName2}]],[[${itemImageUrl2}]],[[${itemContent2}]])">
+                <div
+                  class="slider-item"
+                  th:onclick="openModal([[${itemName2}]],[[${itemImageUrl2}]],[[${itemContent2}]])"
+                >
                   <img width="150px" th:src="${ itemImageUrl2 }" />
                   <div class="slider_content" th:text="${ itemName2 }"></div>
                 </div>
-                <div class="slider-item"
-                     th:onclick="openModal([[${itemName3}]],[[${itemImageUrl3}]],[[${itemContent3}]])">
+                <div
+                  class="slider-item"
+                  th:onclick="openModal([[${itemName3}]],[[${itemImageUrl3}]],[[${itemContent3}]])"
+                >
                   <img width="150px" th:src="${ itemImageUrl3 }" />
                   <div class="slider_content" th:text="${ itemName3 }"></div>
                 </div>
-                <div class="slider-item"
-                     th:onclick="openModal([[${itemName4}]],[[${itemImageUrl4}]],[[${itemContent4}]])">
+                <div
+                  class="slider-item"
+                  th:onclick="openModal([[${itemName4}]],[[${itemImageUrl4}]],[[${itemContent4}]])"
+                >
                   <img width="150px" th:src="${ itemImageUrl4 }" />
                   <div class="slider_content" th:text="${ itemName4 }"></div>
                 </div>
-                <div class="slider-item"
-                     th:onclick="openModal([[${itemName5}]],[[${itemImageUrl5}]],[[${itemContent5}]])">
+                <div
+                  class="slider-item"
+                  th:onclick="openModal([[${itemName5}]],[[${itemImageUrl5}]],[[${itemContent5}]])"
+                >
                   <img width="150px" th:src="${ itemImageUrl5 }" />
                   <div class="slider_content" th:text="${ itemName5 }"></div>
                 </div>

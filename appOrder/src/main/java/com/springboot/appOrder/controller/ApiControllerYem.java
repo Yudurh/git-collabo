@@ -41,14 +41,14 @@ public class ApiControllerYem {
 
         ResultDto resultDto = null;
 
-        if( list.size() > 0 ) {
+        if (list.size() > 0) {
             //로그인 성공
-            if( loginDto.getLoginId().equals("admin") ){   //관리자로 로그인하면
+            if (loginDto.getLoginId().equals("admin")) {   //관리자로 로그인하면
                 resultDto = ResultDto.builder()
                         .status("ok")
                         .result(2)
                         .build();
-            }else{ // 일반 회원으로 로그인하면
+            } else { // 일반 회원으로 로그인하면
                 resultDto = ResultDto.builder()
                         .status("ok")
                         .result(1)
@@ -56,7 +56,7 @@ public class ApiControllerYem {
             }
 
             request.getSession().setAttribute("loginId", loginDto.getLoginId());
-        }else{
+        } else {
             //로그인 실패
             resultDto = ResultDto.builder()
                     .status("ok")
@@ -70,24 +70,24 @@ public class ApiControllerYem {
     // ( 관리자 ) 회원가입 폼
     @PostMapping("/joinAction")
     public ResultDto joinAction(@RequestBody JoinDto joinDto) {
-        System.out.println("loginId:"+joinDto.getLoginId());
-        System.out.println("loginPw:"+joinDto.getLoginPw());
-        System.out.println("loginName:"+joinDto.getLoginName());
+        System.out.println("loginId:" + joinDto.getLoginId());
+        System.out.println("loginPw:" + joinDto.getLoginPw());
+        System.out.println("loginName:" + joinDto.getLoginName());
 
         // 수정된 정보 dto -> entity
-        MemberEntity memberJoinEntity = MemberEntity.toJoinEntity( joinDto );
+        MemberEntity memberJoinEntity = MemberEntity.toJoinEntity(joinDto);
         // 수정된 정보  repository에 저장
         MemberEntity newEntity = memberRepository.save(memberJoinEntity);
 
         ResultDto resultDto = null;
 
-        if( newEntity != null  ) {
+        if (newEntity != null) {
             //회원가입 성공
             resultDto = ResultDto.builder()
                     .status("ok")
                     .result(1)
                     .build();
-        }else{
+        } else {
             //회원가입 실패
             resultDto = ResultDto.builder()
                     .status("ok")
@@ -106,12 +106,12 @@ public class ApiControllerYem {
 
         ResultDto resultDto = null;
 
-        if( newEntity != null  ) {
+        if (newEntity != null) {
             resultDto = ResultDto.builder()
                     .status("ok")
                     .result(1)
                     .build();
-        }else{
+        } else {
             resultDto = ResultDto.builder()
                     .status("ok")
                     .result(0)
@@ -198,17 +198,10 @@ public class ApiControllerYem {
 
         ResultDto resultDto = null;
 
-        if( newEntity != null  ) {
-            resultDto = ResultDto.builder()
-                    .status("ok")
-                    .result(1)
-                    .build();
-        }else{
-            resultDto = ResultDto.builder()
-                    .status("ok")
-                    .result(0)
-                    .build();
-        }
+        resultDto = ResultDto.builder()
+                .status("ok")
+                .result(1)
+                .build();
 
         return resultDto;
     }
@@ -297,4 +290,67 @@ public class ApiControllerYem {
         return resultDto;
     }
 
+    // ( 사용자 ) 회원 정보 수정 폼 - 닉네임 변경
+    @PostMapping("/manageForm")
+    public ResultDto manageForm(@RequestBody MemberDto memberDto,
+                                HttpServletRequest request) {
+        String loginId = (String) request.getSession().getAttribute("loginId");
+        if (loginId != null) {
+            List<MemberEntity> list = memberRepository.findByMemberId(loginId);
+            if (list.size() > 0) {
+                MemberEntity memberEntity = list.get(0);
+                // 닉네임 변경
+                memberEntity.setMemberName(memberDto.getMemberName());
+                MemberEntity newEntity = memberRepository.save(memberEntity);
+            }
+        }
+
+        ResultDto resultDto = null;
+
+        resultDto = ResultDto.builder()
+                .status("ok")
+                .result(1)
+                .build();
+
+        return resultDto;
+    }
+
+    // ( 사용자 ) 로그아웃
+    @GetMapping("/logout")
+    public ResultDto logout(HttpServletRequest request) {
+        // 세션 무효화
+        request.getSession().invalidate();
+
+        ResultDto resultDto = ResultDto.builder()
+                .status("ok")
+                .result(1)
+                .build();
+
+        return resultDto;
+    }
+
+    // ( 사용자 ) 탈퇴
+    @GetMapping("/withdrawalForm")
+    public ResultDto withdrawalForm(HttpServletRequest request) {
+
+        String loginId = (String) request.getSession().getAttribute("loginId");
+
+        ResultDto resultDto = null;
+
+        if (loginId != null) {
+            System.out.println("Deleting member with ID: " + loginId);  // Add this line
+
+            // 회원 정보 삭제
+            memberRepository.deleteByMemberId(loginId);
+
+            // 세션 무효화
+            request.getSession().invalidate();
+
+            resultDto = ResultDto.builder()
+                    .status("ok")
+                    .result(1)
+                    .build();
+        }
+        return resultDto;
+    }
 }
