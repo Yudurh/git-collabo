@@ -8,7 +8,7 @@ function withdrawal() {
     })
       .then((response) => response.json())
       .then((json) => {
-        console.log("Response from server:", json); // Log the response
+        console.log("Response from server:", json);
 
         if (json.result === 1) {
           // 로그아웃 성공
@@ -27,3 +27,8 @@ function withdrawal() {
     alert("유의사항을 확인 후 체크박스에 체크해 주세요.");
   }
 }
+
+function back() {
+  window.history.back();
+}
+

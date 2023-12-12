@@ -408,7 +408,7 @@ function readURL3(input) {
   }
 }
 
-function eventRegister() {
+function eventUpdate() {
   image_upload3();
 }
 
