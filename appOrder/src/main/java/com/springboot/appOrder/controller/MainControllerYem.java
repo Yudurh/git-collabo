@@ -300,12 +300,15 @@ public class MainControllerYem {
         return "redirect:/adminEventList";
     }
 
+    @Autowired
+    private Cart2Repository cart2Repository;
     // (사용자) 상품 정보 조회
     @GetMapping("/itemInfo")
     public String itemInfo(@RequestParam String itemName,
 //                           @RequestParam String itemCate,
                            Model model) {
 
+        cart2Repository.deleteAll();
         // 클릭한 아이템의 정보
         List<ItemEntity> itemEntitiy = itemRepository.findByItemName(itemName);
         // 메뉴 중복이 없으므로 .get(0)을 하면 원하는 커피 정보를 가져옴

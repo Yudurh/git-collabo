@@ -24,6 +24,9 @@ body {
   padding: 10px;
 }
 #topNav {
+ z-index: 0;
+  position: sticky;
+  top: 0px;
   display: flex;
   justify-content: space-between;
   width: 58%;

@@ -17,13 +17,25 @@
   font-family: "SUITE-Regular";
 }
 
-#header {
+#headerC {
   color: aliceblue;
   background-color: black;
   height: 50px;
   display: flex;
   align-items: center;
   padding: 5px;
+}
+#topNav {
+background-color: white;
+ z-index: 1;
+  position: sticky;
+  top: 0px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-weight: bold;
+  font-size: 17px;
+  padding: 10px 0px;
 }
 #cartItem {
   /* margin: 0 10px 0 10px; */

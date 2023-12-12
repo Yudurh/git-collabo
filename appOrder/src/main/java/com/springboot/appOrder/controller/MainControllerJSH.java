@@ -31,7 +31,6 @@ public class MainControllerJSH {
         return "/menu";
     }
     @GetMapping("/more")
-
     // ( 사용자 ) 더보기 화면
     public String more(HttpServletRequest request,
                        Model model){
