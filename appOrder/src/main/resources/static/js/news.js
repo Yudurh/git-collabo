@@ -6,9 +6,10 @@ $(function () {
     // preventDefault() : a의 링크 이동 or submit 기능을 하지 못하게 함
     e.preventDefault();
     // 클릭시 더 보여질 갯수 지정
-    $(".contentBox:hidden").slice(0, 1).show();
-    if ($(".contentBox:hidden").length == 0) {
-      alert("더 이상 표시할 글이 없습니다.");
+    if ($(".contentBox:hidden").length > 0) {
+      $(".contentBox:hidden").slice(0, 1).show();
+    }else{
+      alert("더이상 표시할 글이 없습니다.")
     }
   });
 });

@@ -371,11 +371,11 @@ function func_event_registerAction_json(eventImage) {
       if (json.result == 1) {
         // 이벤트 정보 수정 성공
         // 다음 페이지 이동
-        alert("이벤트 글을 수정하였습니다.");
+        alert("이벤트 글을 등록하였습니다.");
         window.location.href = "/adminEventList";
       } else {
         // 이벤트 정보 수정 실패
-        alert("이벤트 글 수정 실패했습니다.");
+        alert("이벤트 글 등록 실패했습니다.");
       }
     }) // 실제 데이타
     .catch((error) => {
