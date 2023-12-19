@@ -50,7 +50,7 @@
         </div>
         <th:block th:if="${coupon > 0}">
           <th:block th:each="index : ${#numbers.sequence(1, coupon)}">
-            <div class="main_content">
+            <div id="main_content1">
               <div class="couponImg">
                 <img src="./img/아메리카노.jpg" width="80px" />
               </div>
@@ -60,8 +60,7 @@
             </div>
           </th:block>
         </th:block>
-
-        <div class="main_content" th:if="${coupon == 0}">
+        <div id="main_content2" th:if="${coupon == 0}">
           <div class="noCoupon">보유한 쿠폰이 없습니다.</div>
         </div>
       </div>
