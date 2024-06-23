@@ -9,7 +9,7 @@
 기존의 메가커피 오더앱을 클론 코딩 후, </br>
 관리자가 보다 쉽게 상품/회원/공지사항 및 이벤트 글 등을 관리할 수 있도록 해주는 관리자 사이트를 기획 및 구현
 
-<h2>🛠Skills and Tools</h2>
+<h2>Skills and Tools</h2>
 <h3>Frontend</h3>
 HTML / CSS / JS / JQuery / Bootstrap
 
